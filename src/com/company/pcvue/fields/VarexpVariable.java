@@ -2,6 +2,8 @@ package com.company.pcvue.fields;
 
 import com.company.dbConnector;
 
+import java.sql.Connection;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +18,14 @@ import java.util.List;
  * any sense, then you need to read the varexp manual.
  */
 
-abstract class varexpVariable {
+abstract class VarexpVariable {
     //Member variable. This represents the maximum amount of fields that PcVue will have
     private int FIELD_NUM = 250;
 
-    //This is the same varexpArray, but splitted based on ','
-    private List<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
+    //This is the same varexpArrayList, but splitted based on ','
+    private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
-    //The name of the table. This is things like common, acm, ala, all_alarms, etc. Refer to the SQL file for details
+    //The name of the table. This is things like Common, acm, ala, all_alarms, etc. Refer to the SQL file for details
     private String tableName;
 
     //This is the command you use to insert into the database
@@ -47,10 +49,11 @@ abstract class varexpVariable {
         return this.varexpArrayList;
     }
 
-    abstract void varexpVariable();
+    abstract void VarexpVariable();
 
-    abstract void common();
+    abstract void insertToDB();
 
+    public abstract void setArrayList(String appendedString);
     //This function splits a varexp variable into its respective fields and then
     //set the varexpArrayPlist variable
     /*
@@ -63,6 +66,7 @@ abstract class varexpVariable {
     public void setvarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.split(",");
+        this.varexpArrayList.clear();
         if (temp.length < FIELD_NUM) {
             try {
                 for (int i = 0; i < temp.length; i++) {
@@ -126,27 +130,42 @@ abstract class varexpVariable {
     This function sets up insert command parameters before hadning it off to the dbConnector for the actually
     insert
      */
-    public void writeDB(List<String> subArrayList) {
-        try {
-            /*
-            TODO:
-                Get the length of the passed in array,
-                create a string with (%s,%s,%s....n%s) depending on the length
-                Append it to String cmd
-            */
-            String temp = this.tableName + " VALUES (";
-            for (int i = 0; i < subArrayList.size(); i++) {
-                temp += "%s,";
+    public void writeDB(ArrayList<List<String>> fileList, String databaseName) {
+        dbConnector db = new dbConnector();
+        //Connection connection = db.openConnection("twin_buttes_2");
+        Connection connection = db.openConnection(databaseName);
+        Statement statement = db.getStatement(connection);
+
+        //use a loop to iterate through arraylist and stuff them into a batch statement
+        for (List<String> list : fileList) {
+
+            //You need to insert other queries here as well
+            String query = "INSERT INTO common VALUES (0,";
+
+            System.out.println(list);
+            System.out.println("Size " + list.size());
+
+            for (String item : list) {
+                query += "'" + item + "',";
             }
-            //because the last element is handled differently, you need to do append to temp one last time
-            temp += "%s)";
+            //String finalQuery=query.substring(0,query.length()-5)+")";
+            String finalQuery = query.substring(0, query.length() - 1) + ")";
+            //System.out.println(query);
+            System.out.println(finalQuery);
+            try {
+                statement.addBatch(finalQuery);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            String cmd = this.getInsertSQLCmd() + temp;
-            print("Insert CMD: " + cmd);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
         }
+        statement.executeBatch();
+
+
+        //then execute said batch statement
+
+        //Close the DB Connection
+        db.close(connection);
     }
+
 }

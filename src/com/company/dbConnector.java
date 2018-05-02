@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -35,7 +36,7 @@ public class dbConnector {
             statement = connect.createStatement();
 
             //Result set the result of  the     SQL query
-            resultSet = statement.executeQuery("select * from common limit 1000");
+            resultSet = statement.executeQuery("select * from Common limit 1000");
             writeResultSet(resultSet);
             System.out.println("Done with 'reading'");
         } catch (Exception e) {
@@ -44,15 +45,16 @@ public class dbConnector {
         }
     }
 
-    public void writeDatabase(String insertToDBCmd) throws SQLException {
+    public void writeDatabase(Connection connection, String insertToDBCmd, List<String> subArrayList) throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/twin_buttes_2?"
-                            + "user=root&password=Gundam7seed");
-            preparedStatement = connect.prepareStatement(insertToDBCmd);
+            //connect = DriverManager .getConnection("jdbc:mysql://localhost/twin_buttes_2?" + "user=root&password=Gundam7seed");
+            System.out.println(insertToDBCmd);
+            preparedStatement = connection.prepareStatement(insertToDBCmd);
         } catch (Exception e) {
-
+            e.printStackTrace();
+        } finally {
+            //connect.close();
         }
 
     }
@@ -78,9 +80,22 @@ public class dbConnector {
                     .getConnection("jdbc:mysql://localhost/twin_buttes_2?"
                             + "user=root&password=Gundam7seed");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return this.connect;
+    }
+
+    public void setStatement(Connection connection) throws SQLException {
+        this.statement = connection.createStatement();
+    }
+
+    public Statement getStatement(Connection connection) {
+        try {
+            this.statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this.statement;
     }
 
     public void close() {

@@ -1,29 +1,59 @@
 package com.company.pcvue.fields;
 
-import com.company.dbConnector;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Stephen on 4/27/2018.
  */
-public class common extends varexpVariable {
+public class Common extends VarexpVariable {
 
+    public List<String> commonList;
     List<String> stringList;
     private String tableName;
     private String[] commonArray;
 
     //Constructor
-    public common(String varexpString) {
+    public Common(String varexpString) {
         setvarexpArrayList(varexpString);
-        setTableName("common");
+        setTableName("Common");
+        List<String> varexpArraySplit = this.getVarexpList();
+    }
 
+    public Common() {
+        setTableName("Common");
+    }
+
+    //Constructor, I guess
+    @Override
+    void VarexpVariable() {
+    }
+
+    @Override
+    void insertToDB() {
+        String query = this.getInsertSQLCmd() + "";
+
+    }
+
+    @Override
+    public void setArrayList(String varexpString) {
+        setvarexpArrayList(varexpString);
+        List<String> commonArrayList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
-        //This is another array list that is used to compile a new subarray
-        // so I can keep every variable that is common to all varexp variables
-        List<String> commonArrayList = new ArrayList<>();
+        /*
+        for (int i = 0; i<=28; i++){
+            commonArrayList.add(varexpArraySplit.get(i).toString());
+        }
+        commonArrayList.add(varexpArraySplit.get(39).toString());
+        for (int i = 129; i<=143; i++){
+            commonArrayList.add(varexpArraySplit.get(i).toString());
+        }
+        commonArrayList.add(varexpArraySplit.get(173).toString());
+        commonArrayList.add(varexpArraySplit.get(177).toString());
+        commonArrayList.add(varexpArraySplit.get(178).toString());
+        commonArrayList.add(varexpArraySplit.get(240).toString());
+        */
         commonArrayList.add(varexpArraySplit.get(0).toString());
         commonArrayList.add(varexpArraySplit.get(1).toString());
         commonArrayList.add(varexpArraySplit.get(2).toString());
@@ -43,6 +73,8 @@ public class common extends varexpVariable {
         commonArrayList.add(varexpArraySplit.get(16).toString());
         commonArrayList.add(varexpArraySplit.get(17).toString());
         commonArrayList.add(varexpArraySplit.get(18).toString());
+        commonArrayList.add(varexpArraySplit.get(19).toString());
+        commonArrayList.add(varexpArraySplit.get(20).toString());
         commonArrayList.add(varexpArraySplit.get(21).toString());
         commonArrayList.add(varexpArraySplit.get(22).toString());
         commonArrayList.add(varexpArraySplit.get(23).toString());
@@ -71,20 +103,12 @@ public class common extends varexpVariable {
         commonArrayList.add(varexpArraySplit.get(177).toString());
         commonArrayList.add(varexpArraySplit.get(178).toString());
         commonArrayList.add(varexpArraySplit.get(240).toString());
-
-        writeDB(commonArrayList);
-
-
+        this.commonList = commonArrayList;
+        //this.commonList.add(commonList);
     }
 
-    @Override
-    void varexpVariable() {
-
-    }
-
-    @Override
-    void common() {
-
+    public List<String> getCommonList() {
+        return this.commonList;
 
     }
 
