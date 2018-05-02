@@ -130,7 +130,7 @@ abstract class VarexpVariable {
     This function sets up insert command parameters before hadning it off to the dbConnector for the actually
     insert
      */
-    public void writeDB(ArrayList<List<String>> fileList, String databaseName) {
+    public void writeDB(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
         dbConnector db = new dbConnector();
         //Connection connection = db.openConnection("twin_buttes_2");
         Connection connection = db.openConnection(databaseName);
@@ -140,7 +140,8 @@ abstract class VarexpVariable {
         for (List<String> list : fileList) {
 
             //You need to insert other queries here as well
-            String query = "INSERT INTO common VALUES (0,";
+            //Recall the first 0 after VALUES is suppose to be the auto increment id for the common table
+            String query = "INSERT INTO " + this.tableName + " VALUES (0,";
 
             System.out.println(list);
             System.out.println("Size " + list.size());
@@ -148,9 +149,7 @@ abstract class VarexpVariable {
             for (String item : list) {
                 query += "'" + item + "',";
             }
-            //String finalQuery=query.substring(0,query.length()-5)+")";
             String finalQuery = query.substring(0, query.length() - 1) + ")";
-            //System.out.println(query);
             System.out.println(finalQuery);
             try {
                 statement.addBatch(finalQuery);
@@ -159,10 +158,8 @@ abstract class VarexpVariable {
             }
 
         }
-        statement.executeBatch();
-
-
         //then execute said batch statement
+        statement.executeBatch();
 
         //Close the DB Connection
         db.close(connection);
