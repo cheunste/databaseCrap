@@ -53,7 +53,7 @@ abstract class VarexpVariable {
 
     abstract void insertToDB();
 
-    public abstract void setArrayList(String appendedString);
+    public abstract void setArrayList(String varexpString);
     //This function splits a varexp variable into its respective fields and then
     //set the varexpArrayPlist variable
     /*
@@ -164,5 +164,37 @@ abstract class VarexpVariable {
         //Close the DB Connection
         db.close(connection);
     }
+
+    //This function takes a given varexpVariable (as a String) and returns the proper table name it should get inserted
+    // to (excluding the common table) (ie ala, acm, dnp3, etc.).
+    //Note that the
+    public String variableMap(String varexpVariable) throws Exception {
+
+        switch (varexpVariable.toUpperCase()) {
+            case "ACM":
+                break;
+            case "ALA":
+                break;
+            case "ATS":
+                break;
+            case "BIT":
+                break;
+            case "CHR":
+                break;
+            case "CMD":
+                break;
+            case "CTV":
+                break;
+            case "CXT":
+                break;
+            case "REG":
+                break;
+            case "TXT":
+                break;
+        }
+
+        return "";
+    }
+
 
 }

@@ -57,45 +57,8 @@ public class Main {
 
                 //4) Doing the write to DB stuff
                 //Open up a DB connection
-                dbConnector db = new dbConnector();
-                Connection connection = db.openConnection("twin_buttes_2");
-                Statement statement = db.getStatement(connection);
-                /*
-                if (statement == null){
-                    System.out.println("Error");
-                }
-                */
+                common_field.writeDB(fileList, "twin_buttes_2", "common");
 
-                //use a loop to iterate through arraylist and stuff them into a batch statement
-                for (List<String> list : fileList) {
-
-                    //You need to insert other queries here as well
-                    String query = "INSERT INTO common VALUES (0,";
-
-                    System.out.println(list);
-                    System.out.println("Size " + list.size());
-
-                    for (String item : list) {
-                        query += "'" + item + "',";
-                    }
-                    //String finalQuery=query.substring(0,query.length()-5)+")";
-                    String finalQuery = query.substring(0, query.length() - 1) + ")";
-                    //System.out.println(query);
-                    System.out.println(finalQuery);
-                    try {
-                        statement.addBatch(finalQuery);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                statement.executeBatch();
-
-
-                //then execute said batch statement
-
-                //Close the DB Connection
-                db.close(connection);
                 //close file
                 fh.closeFile(fileBR);
 

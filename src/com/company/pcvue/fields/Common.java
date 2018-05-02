@@ -104,7 +104,7 @@ public class Common extends VarexpVariable {
         commonArrayList.add(varexpArraySplit.get(178).toString());
         commonArrayList.add(varexpArraySplit.get(240).toString());
         this.commonList = commonArrayList;
-        //this.commonList.add(commonList);
+        //this.acmList.add(acmList);
     }
 
     public List<String> getCommonList() {
