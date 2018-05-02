@@ -15,8 +15,21 @@ public class ACM extends VarexpVariable {
     }
 
     @Override
-    void insertToDB() {
+    String insertToDB() {
 
+        return "";
+    }
+
+    @Override
+    String empty() {
+
+        return "";
+    }
+
+    @Override
+    String getJoinCmd() {
+
+        return "";
     }
 
     @Override

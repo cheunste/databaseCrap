@@ -51,7 +51,16 @@ abstract class VarexpVariable {
 
     abstract void VarexpVariable();
 
-    abstract void insertToDB();
+    abstract String insertToDB();
+
+    //abstract method for returning empty fields. This is needed as not all fields are used
+    abstract String empty();
+
+    // abstract method for joining. This is so you can insert a variable in a joined table
+    abstract String getJoinCmd();
+
+    //abstract void empty();
+    //abstract void empty();
 
     public abstract void setArrayList(String varexpString);
     //This function splits a varexp variable into its respective fields and then
@@ -165,7 +174,7 @@ abstract class VarexpVariable {
         db.close(connection);
     }
 
-    //This function takes a given varexpVariable (as a String) and returns the proper table name it should get inserted
+    //This function takes a given varexpVariable (as a String) and returns the proper join statement for that table
     // to (excluding the common table) (ie ala, acm, dnp3, etc.).
     //Note that the
     public String variableMap(String varexpVariable) throws Exception {

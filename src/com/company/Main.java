@@ -29,6 +29,7 @@ public class Main {
                 //initiate the reference
                 //Recall this only sets up the table, but you need to handle the variable elsewhere
                 Common common_field = new Common();
+                ACM acm = new ACM();
 
                 /*
                 For each line in the file do the following:
@@ -46,8 +47,21 @@ public class Main {
                     //Common common_field = new Common(appendedString);
                     //1) This method should split the line from string to fields and store them in a list
                     common_field.setArrayList(appendedString);
+                    String variableType = common_field.getCommonList().get(0).toUpperCase();
+                    switch (variableType) {
+                        case "ACM":
+                            acm.setArrayList(appendedString);
+                            break;
+                        default:
+                            break;
+                    }
+                    //For other non-common variables...
+                    //Get the variable type from the commonlist (result should be acm, ala, bit, etc.)
+                    common_field.getCommonList().get(0);
+
                     //2) Add the newly converted list to another list. Will need a get method
                     fileList.add(common_field.getCommonList());
+                    //For other non-common variables
                     temp++;
                 }
 
