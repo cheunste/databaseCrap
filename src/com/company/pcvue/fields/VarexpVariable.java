@@ -178,37 +178,4 @@ abstract class VarexpVariable {
     public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
 
     }
-
-    //This function takes a given varexpVariable (as a String) and returns the proper join statement for that table
-    // to (excluding the common table) (ie ala, acm, dnp3, etc.).
-    //Note that the
-    public String variableMap(String varexpVariable) throws Exception {
-
-        switch (varexpVariable.toUpperCase()) {
-            case "ACM":
-                break;
-            case "ALA":
-                break;
-            case "ATS":
-                break;
-            case "BIT":
-                break;
-            case "CHR":
-                break;
-            case "CMD":
-                break;
-            case "CTV":
-                break;
-            case "CXT":
-                break;
-            case "REG":
-                break;
-            case "TXT":
-                break;
-        }
-
-        return "";
-    }
-
-
 }

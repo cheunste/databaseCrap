@@ -59,11 +59,16 @@ public class Main {
                 //Consider handling the other varexp elements here
                 //TODO: Research to see if you can handle other varexp elements here and then
                 // stuff them into their respective tables
+                for (int i = 0; i <= fileList.size(); i++) {
+
+                }
+
                 for (List<String> subList : fileList) {
                     System.out.println(subList);
                     switch (subList.get(0).toUpperCase()) {
                         case "ACM":
                             System.out.println("Do acm Stuff");
+                            System.out.println(subList);
                             acm.setArrayList(subList.toString());
                             break;
                         case "ALA":
@@ -94,11 +99,10 @@ public class Main {
                             System.out.println("Do txt Stuff");
                             break;
                     }
-
                 }
 
                 System.out.println("rows handled: " + temp);
-                acm.getArrayList();
+                //acm.getArrayList();
 
                 //3) This is a simple case, let's assume this is for common
 
@@ -117,6 +121,5 @@ public class Main {
 
 
     }
-
 
 }
