@@ -47,7 +47,7 @@ public class Main {
 
                     //Common common_field = new Common(appendedString);
                     //1) This method should split the line from string to fields and store them in a list
-                    common_field.setArrayList(appendedString);
+                    common_field.setArrayList(appendedString, temp);
 
                     //2) Add the newly converted list to another list. Will need a get method
                     fileList.add(common_field.getCommonList());
@@ -59,17 +59,14 @@ public class Main {
                 //Consider handling the other varexp elements here
                 //TODO: Research to see if you can handle other varexp elements here and then
                 // stuff them into their respective tables
-                for (int i = 0; i <= fileList.size(); i++) {
 
-                }
-
+                temp = 0;
                 for (List<String> subList : fileList) {
                     System.out.println(subList);
-                    switch (subList.get(0).toUpperCase()) {
+                    switch (subList.get(1).toUpperCase()) {
                         case "ACM":
                             System.out.println("Do acm Stuff");
-                            System.out.println(subList);
-                            acm.setArrayList(subList.toString());
+                            acm.setArrayList(subList.toString(), temp);
                             break;
                         case "ALA":
                             System.out.println("Do ala Stuff");
@@ -99,6 +96,7 @@ public class Main {
                             System.out.println("Do txt Stuff");
                             break;
                     }
+                    temp++;
                 }
 
                 System.out.println("rows handled: " + temp);
@@ -108,7 +106,10 @@ public class Main {
 
                 //4) Doing the write to DB stuff
                 //Open up a DB connection
-                //common_field.writeDB(fileList, "twin_buttes_2", "common");
+
+                common_field.writeDB(fileList, "twin_buttes_2", "common");
+                System.out.println("Done with wrting common to DB");
+                acm.writeDB(acm.getArrayList(), "twin_buttes_2", "acm");
 
                 //close file
                 fh.closeFile(fileBR);

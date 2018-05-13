@@ -48,10 +48,13 @@ public class Common extends VarexpVariable {
     }
 
     @Override
-    public void setArrayList(String varexpString) {
+    public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> commonArrayList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
+
+        //Add the index Number. This will be used as the ID reference to the DB
+        commonArrayList.add("" + dbIndex);
 
         for (int i = 0; i<=28; i++){
             commonArrayList.add(varexpArraySplit.get(i).toString());

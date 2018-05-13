@@ -62,7 +62,7 @@ abstract class VarexpVariable {
     //abstract void empty();
     //abstract void empty();
 
-    public abstract void setArrayList(String varexpString);
+    public abstract void setArrayList(String varexpString, int dbIndex);
     //This function splits a varexp variable into its respective fields and then
     //set the varexpArrayPlist variable
     /*
@@ -141,7 +141,6 @@ abstract class VarexpVariable {
      */
     public void writeDB(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
         dbConnector db = new dbConnector();
-        //Connection connection = db.openConnection("twin_buttes_2");
         Connection connection = db.openConnection(databaseName);
         Statement statement = db.getStatement(connection);
 
@@ -150,10 +149,12 @@ abstract class VarexpVariable {
 
             //You need to insert other queries here as well
             //Recall the first 0 after VALUES is suppose to be the auto increment id for the common table
-            String query = "INSERT INTO " + this.tableName + " VALUES (0,";
-
-            System.out.println(list);
-            System.out.println("Size " + list.size());
+            String query;
+            if (this.tableName.toLowerCase().equals("common")) {
+                query = "INSERT INTO " + this.tableName + " VALUES (";
+            } else {
+                query = "INSERT INTO " + this.tableName + " VALUES (";
+            }
 
             for (String item : list) {
                 query += "'" + item + "',";
@@ -168,7 +169,7 @@ abstract class VarexpVariable {
 
         }
         //then execute said batch statement
-        //statement.executeBatch();
+        statement.executeBatch();
 
         //Close the DB Connection
         db.close(connection);

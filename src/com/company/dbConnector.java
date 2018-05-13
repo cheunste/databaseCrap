@@ -32,6 +32,10 @@ public class dbConnector {
                     .getConnection("jdbc:mysql://localhost/twin_buttes_2?"
                             + "user=root&password=Gundam7seed");
 
+
+            //This line should make it ignore duplicate entry
+            connect.setAutoCommit(false);
+
             // Statements allow to isuse SQl qwuesries to the DB
             statement = connect.createStatement();
 
@@ -77,10 +81,12 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/twin_buttes_2?"
-                            + "user=root&password=Gundam7seed");
+                    .getConnection("jdbc:mysql://localhost/" + site + "?" + "user=root&password=Gundam7seed");
         } catch (Exception e) {
             e.printStackTrace();
+            //In the case where you get an error opening, this might mean the database does not exist, In this case
+            //it will build you a new DATABAES instead
+
         }
         return this.connect;
     }
@@ -128,5 +134,9 @@ public class dbConnector {
         } catch (Exception e) {
 
         }
+    }
+
+    public void createDB(String DBName, Connection connection) {
+
     }
 }
