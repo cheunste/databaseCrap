@@ -168,10 +168,15 @@ abstract class VarexpVariable {
 
         }
         //then execute said batch statement
-        statement.executeBatch();
+        //statement.executeBatch();
 
         //Close the DB Connection
         db.close(connection);
+    }
+
+    //This method is to add the query to the database queue. However, ti does NOT execute the batch itesm.
+    public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
+
     }
 
     //This function takes a given varexpVariable (as a String) and returns the proper join statement for that table

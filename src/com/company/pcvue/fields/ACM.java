@@ -7,7 +7,13 @@ import java.util.List;
  * Created by Stephen on 5/2/2018.
  */
 public class ACM extends VarexpVariable {
-    public List<String> acmList;
+    public List<List<String>> acmList;
+
+    public ACM() {
+        this.acmList = new ArrayList<>();
+        setTableName("acm");
+
+    }
 
     @Override
     void VarexpVariable() {
@@ -22,28 +28,38 @@ public class ACM extends VarexpVariable {
 
     @Override
     String empty() {
+        String emptyString = "";
+        for (int i = 40; i <= 46; i++) {
+            emptyString += ",";
+        }
 
-        return "";
+        emptyString += ",";
+
+        return emptyString;
     }
 
     @Override
     String getJoinCmd() {
 
-        return "";
+        return "LEFT JOIN  acm on common.variable_id=acm.acm_variable_id";
+    }
+
+    public List<List<String>> getArrayList() {
+        return this.acmList;
     }
 
     @Override
     public void setArrayList(String varexpString) {
         setvarexpArrayList(varexpString);
-        List<String> commonArrayList = new ArrayList<>();
+        List<String> acmList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
         for (int i = 40; i <= 46; i++) {
-            commonArrayList.add(varexpArraySplit.get(i).toString());
+            acmList.add(varexpArraySplit.get(i).toString());
         }
-        commonArrayList.add(varexpArraySplit.get(156).toString());
+        acmList.add(varexpArraySplit.get(156).toString());
 
-        this.acmList = commonArrayList;
+        this.acmList.add(acmList);
 
     }
 }

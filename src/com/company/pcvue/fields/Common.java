@@ -17,7 +17,6 @@ public class Common extends VarexpVariable {
     public Common(String varexpString) {
         setvarexpArrayList(varexpString);
         setTableName("Common");
-        List<String> varexpArraySplit = this.getVarexpList();
     }
 
     public Common() {
