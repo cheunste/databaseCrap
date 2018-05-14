@@ -53,16 +53,25 @@ abstract class VarexpVariable {
 
     abstract String insertToDB();
 
+    public String getTableName() {
+        return this.tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
+
+    //abstract void empty();
+    //abstract void empty();
 
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
 
-    //abstract void empty();
-    //abstract void empty();
-
     public abstract void setArrayList(String varexpString, int dbIndex);
+
     //This function splits a varexp variable into its respective fields and then
     //set the varexpArrayPlist variable
     /*
@@ -98,12 +107,6 @@ abstract class VarexpVariable {
     public String getInsertSQLCmd() {
         return this.insertToDBCmd;
     }
-
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
 
     /*
     This method checks to see if an array is empty. You use this to check if a sub array have fields or not
@@ -150,10 +153,10 @@ abstract class VarexpVariable {
             //You need to insert other queries here as well
             //Recall the first 0 after VALUES is suppose to be the auto increment id for the common table
             String query;
-            if (this.tableName.toLowerCase().equals("common")) {
-                query = "INSERT INTO " + this.tableName + " VALUES (";
+            if (tableName.toLowerCase().equals("common")) {
+                query = "INSERT INTO " + tableName + " VALUES (";
             } else {
-                query = "INSERT INTO " + this.tableName + " VALUES (";
+                query = "INSERT INTO " + tableName + " VALUES (";
             }
 
             for (String item : list) {
@@ -168,8 +171,12 @@ abstract class VarexpVariable {
             }
 
         }
-        //then execute said batch statement
-        statement.executeBatch();
+        try {
+            //then execute said batch statement
+            statement.executeBatch();
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
         //Close the DB Connection
         db.close(connection);

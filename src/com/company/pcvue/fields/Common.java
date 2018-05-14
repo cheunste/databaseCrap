@@ -13,19 +13,15 @@ public class Common extends VarexpVariable {
     private String tableName;
     private String[] commonArray;
 
-    //Constructor
-    public Common(String varexpString) {
-        setvarexpArrayList(varexpString);
-        setTableName("Common");
-    }
-
+    //Constructor, I guess
     public Common() {
         setTableName("Common");
     }
 
-    //Constructor, I guess
+
     @Override
     void VarexpVariable() {
+
     }
 
     @Override

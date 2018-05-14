@@ -107,9 +107,9 @@ public class Main {
                 //4) Doing the write to DB stuff
                 //Open up a DB connection
 
-                common_field.writeDB(fileList, "twin_buttes_2", "common");
+                common_field.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 System.out.println("Done with wrting common to DB");
-                acm.writeDB(acm.getArrayList(), "twin_buttes_2", "acm");
+                acm.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
 
                 //close file
                 fh.closeFile(fileBR);
