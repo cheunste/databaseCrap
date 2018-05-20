@@ -54,4 +54,9 @@ public class CXT extends VarexpVariable {
 
         this.cxtList.add(cxtList);
     }
+
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.cxtList;
+    }
 }

@@ -49,4 +49,8 @@ public class CTV extends VarexpVariable {
 
         this.ctvList.add(ctvList);
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.ctvList;
+    }
 }
