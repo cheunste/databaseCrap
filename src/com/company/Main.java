@@ -30,6 +30,16 @@ public class Main {
                 //Recall this only sets up the table, but you need to handle the variable elsewhere
                 Common common_field = new Common();
                 ACM acm = new ACM();
+                ALA ala = new ALA();
+                ATS ats = new ATS();
+                BIT bit = new BIT();
+                CHR chr = new CHR();
+                CMD cmd = new CMD();
+                CTV ctv = new CTV();
+                CXT cxt = new CXT();
+                REG reg = new REG();
+                TXT txt = new TXT();
+
 
                 /*
                 For each line in the file do the following:
@@ -70,30 +80,39 @@ public class Main {
                             break;
                         case "ALA":
                             System.out.println("Do ala Stuff");
+                            ala.setArrayList(subList.toString(), temp);
                             break;
                         case "ATS":
                             System.out.println("Do ats Stuff");
+                            ats.setArrayList(subList.toString(), temp);
                             break;
                         case "BIT":
                             System.out.println("Do bit Stuff");
+                            bit.setArrayList(subList.toString(), temp);
                             break;
                         case "CHR":
                             System.out.println("Do ctr Stuff");
+                            chr.setArrayList(subList.toString(), temp);
                             break;
                         case "CMD":
                             System.out.println("Do cmd Stuff");
+                            cmd.setArrayList(subList.toString(), temp);
                             break;
                         case "CTV":
                             System.out.println("Do ctv Stuff");
+                            ctv.setArrayList(subList.toString(), temp);
                             break;
                         case "CXT":
                             System.out.println("Do cxt Stuff");
+                            cxt.setArrayList(subList.toString(), temp);
                             break;
                         case "REG":
                             System.out.println("Do reg Stuff");
+                            reg.setArrayList(subList.toString(), temp);
                             break;
                         case "TXT":
                             System.out.println("Do txt Stuff");
+                            txt.setArrayList(subList.toString(), temp);
                             break;
                     }
                     temp++;
