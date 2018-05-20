@@ -48,4 +48,8 @@ public class TXT extends VarexpVariable {
 
         this.txtList.add(txtList);
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.txtList;
+    }
 }

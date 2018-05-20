@@ -40,6 +40,9 @@ abstract class VarexpVariable {
     //TODO: IMplment the update function
     private String updateFromDBCmd = "";
 
+    protected VarexpVariable() {
+    }
+
     //return FIELD_NUM
     public int getFieldNum() {
         return this.FIELD_NUM;
@@ -137,6 +140,7 @@ abstract class VarexpVariable {
             e.printStackTrace();
         }
     }
+
 
     /*
     This function sets up insert command parameters before hadning it off to the dbConnector for the actually

@@ -53,4 +53,8 @@ public class BIT extends VarexpVariable {
 
         this.bitList.add(bitList);
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.bitList;
+    }
 }

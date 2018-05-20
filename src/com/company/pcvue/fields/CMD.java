@@ -55,4 +55,8 @@ public class CMD extends VarexpVariable {
 
         this.cmdList.add(cmdList);
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.cmdList;
+    }
 }

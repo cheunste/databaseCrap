@@ -38,6 +38,9 @@ public class ATS extends VarexpVariable {
         return emptyString;
     }
 
+    public ArrayList<List<String>> getArrayList() {
+        return this.atsList;
+    }
     @Override
     String getJoinCmd() {
         return "RIGHT JOIN ats on common.variable_id = ats.ats_variable_id";

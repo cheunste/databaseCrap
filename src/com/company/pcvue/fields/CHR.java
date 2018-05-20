@@ -62,4 +62,8 @@ public class CHR extends VarexpVariable {
 
         this.chrList.add(chrList);
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.chrList;
+    }
 }

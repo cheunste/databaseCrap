@@ -61,4 +61,8 @@ public class ALA extends VarexpVariable {
         this.alaList.add(alaList);
 
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return this.alaList;
+    }
 }

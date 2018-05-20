@@ -129,7 +129,15 @@ public class Main {
                 common_field.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 System.out.println("Done with wrting common to DB");
                 acm.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
-
+                ala.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
+                ats.writeDB(ats.getArrayList(), "twin_buttes_2", ala.getTableName());
+                bit.writeDB(bit.getArrayList(), "twin_buttes_2", ala.getTableName());
+                chr.writeDB(chr.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                cmd.writeDB(cmd.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                ctv.writeDB(ctv.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                cxt.writeDB(cxt.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                reg.writeDB(reg.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                txt.writeDB(txt.getArrayList(), "twin_buttes_2", ala.getTableName();)
                 //close file
                 fh.closeFile(fileBR);
 

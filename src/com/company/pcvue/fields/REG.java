@@ -40,6 +40,9 @@ public class REG extends VarexpVariable {
         return "RIGHT JOIN reg on common.variable_id = reg.reg_variable_id";
     }
 
+    public ArrayList<List<String>> getArrayList() {
+        return this.regList;
+    }
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
