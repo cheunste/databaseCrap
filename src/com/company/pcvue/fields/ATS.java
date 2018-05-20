@@ -11,7 +11,8 @@ public class ATS extends VarexpVariable {
     public ArrayList<List<String>> atsList;
 
     public ATS() {
-
+        this.atsList = new ArrayList<>();
+        setTableName("ats");
     }
 
     @Override
