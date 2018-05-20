@@ -36,7 +36,7 @@ public class BIT extends VarexpVariable {
 
     @Override
     String getJoinCmd() {
-        return null;
+        return "RIGHT JOIN bit on common.variable_id = bit.bit_variable_id";
     }
 
     @Override

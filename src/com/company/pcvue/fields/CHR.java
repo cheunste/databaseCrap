@@ -41,7 +41,7 @@ public class CHR extends VarexpVariable {
 
     @Override
     String getJoinCmd() {
-        return null;
+        return "RIGHT JOIN chr on common.variable_id = chr.chr_variable_id";
     }
 
     @Override
