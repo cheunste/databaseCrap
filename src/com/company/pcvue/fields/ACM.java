@@ -42,7 +42,7 @@ public class ACM extends VarexpVariable {
     @Override
     String getJoinCmd() {
 
-        return "LEFT JOIN  acm on common.variable_id=acm.acm_variable_id";
+        return "RIGHT JOIN  acm on common.variable_id=acm.acm_variable_id";
     }
 
     public ArrayList<List<String>> getArrayList() {

@@ -39,7 +39,7 @@ public class ALA extends VarexpVariable {
 
     @Override
     String getJoinCmd() {
-        return "select * from common right join acm on common.variable_id = acm.acm_variable_id";
+        return "RIGHT JOIN ala on common.variable_id = ala.ala_variable_id";
     }
 
     @Override
