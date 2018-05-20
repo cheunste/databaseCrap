@@ -42,15 +42,15 @@ public class BIT extends VarexpVariable {
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
-        List<String> acmList = new ArrayList<>();
+        List<String> bitList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
-        acmList.add("" + dbIndex);
+        bitList.add("" + dbIndex);
         for (int i = 40; i <= 42; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+            bitList.add(varexpArraySplit.get(i).toString());
         }
-        acmList.add(varexpArraySplit.get(156).toString());
+        bitList.add(varexpArraySplit.get(156).toString());
 
-        this.bitList.add(acmList);
+        this.bitList.add(bitList);
     }
 }

@@ -45,17 +45,17 @@ public class ATS extends VarexpVariable {
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
-        List<String> acmList = new ArrayList<>();
+        List<String> atsList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
-        acmList.add("" + dbIndex);
+        atsList.add("" + dbIndex);
         for (int i = 40; i <= 46; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+            atsList.add(varexpArraySplit.get(i).toString());
         }
         for (int i = 49; i <= 54; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+            atsList.add(varexpArraySplit.get(i).toString());
         }
-        acmList.add(varexpArraySplit.get(156).toString());
-        this.atsList.add(acmList);
+        atsList.add(varexpArraySplit.get(156).toString());
+        this.atsList.add(atsList);
     }
 }

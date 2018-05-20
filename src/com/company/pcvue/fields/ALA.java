@@ -46,19 +46,19 @@ public class ALA extends VarexpVariable {
     public void setArrayList(String varexpString, int dbIndex) {
 
         setvarexpArrayList(varexpString);
-        List<String> acmList = new ArrayList<>();
+        List<String> alaList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
-        acmList.add("" + dbIndex);
+        alaList.add("" + dbIndex);
         for (int i = 40; i <= 42; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+            alaList.add(varexpArraySplit.get(i).toString());
         }
         for (int i = 44; i <= 47; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+            alaList.add(varexpArraySplit.get(i).toString());
         }
-        acmList.add(varexpArraySplit.get(156).toString());
+        alaList.add(varexpArraySplit.get(156).toString());
 
-        this.alaList.add(acmList);
+        this.alaList.add(alaList);
 
     }
 }
