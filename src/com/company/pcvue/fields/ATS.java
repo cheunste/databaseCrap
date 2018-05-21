@@ -53,7 +53,10 @@ public class ATS extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         atsList.add("" + dbIndex);
-        for (int i = 40; i <= 46; i++) {
+        for (int i = 40; i <= 42; i++) {
+            atsList.add(varexpArraySplit.get(i).toString());
+        }
+        for (int i = 44; i <= 46; i++) {
             atsList.add(varexpArraySplit.get(i).toString());
         }
         for (int i = 49; i <= 54; i++) {

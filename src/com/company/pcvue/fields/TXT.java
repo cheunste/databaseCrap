@@ -41,9 +41,9 @@ public class TXT extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         txtList.add("" + dbIndex);
-        for (int i = 99; i <= 102; i++) {
-            txtList.add(varexpArraySplit.get(i).toString());
-        }
+        txtList.add(varexpArraySplit.get(99).toString());
+        txtList.add(varexpArraySplit.get(100).toString());
+        txtList.add(varexpArraySplit.get(102).toString());
         txtList.add(varexpArraySplit.get(156).toString());
 
         this.txtList.add(txtList);
