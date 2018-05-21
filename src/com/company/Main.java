@@ -5,6 +5,7 @@ import com.company.pcvue.fields.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -39,6 +40,7 @@ public class Main {
                 CXT cxt = new CXT();
                 REG reg = new REG();
                 TXT txt = new TXT();
+                All_Alarms allAlarms = new All_Alarms();
 
 
                 /*
@@ -51,6 +53,7 @@ public class Main {
 
                 //Create a fileLIst arrayList to hold all varexp variables
                 ArrayList<List<String>> fileList = new ArrayList();
+                ArrayList<List<String>> fullList = new ArrayList();
                 while ((line = fileBR.readLine()) != null) {
                     String appendedString = line;
                     //System.out.println(appendedString);
@@ -62,6 +65,8 @@ public class Main {
                     //2) Add the newly converted list to another list. Will need a get method
                     fileList.add(common_field.getCommonList());
                     //For other non-common variables
+                    List<String> tempItem = Arrays.asList(appendedString.split(","));
+                    fullList.add(tempItem);
 
                     temp++;
                 }
@@ -71,9 +76,9 @@ public class Main {
                 // stuff them into their respective tables
 
                 temp = 0;
-                for (List<String> subList : fileList) {
+                for (List<String> subList : fullList) {
                     System.out.println(subList);
-                    switch (subList.get(1).toUpperCase()) {
+                    switch (subList.get(0).toUpperCase()) {
                         case "ACM":
                             System.out.println("Do acm Stuff");
                             acm.setArrayList(subList.toString(), temp);
@@ -115,6 +120,7 @@ public class Main {
                             txt.setArrayList(subList.toString(), temp);
                             break;
                     }
+                    allAlarms.setArrayList(subList.toString(), temp);
                     temp++;
                 }
 
@@ -127,17 +133,18 @@ public class Main {
                 //Open up a DB connection
 
                 common_field.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
-                System.out.println("Done with wrting common to DB");
+                //System.out.println("Done with wrting common to DB");
                 acm.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
                 ala.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
-                ats.writeDB(ats.getArrayList(), "twin_buttes_2", ala.getTableName());
-                bit.writeDB(bit.getArrayList(), "twin_buttes_2", ala.getTableName());
-                chr.writeDB(chr.getArrayList(), "twin_buttes_2", ala.getTableName();)
-                cmd.writeDB(cmd.getArrayList(), "twin_buttes_2", ala.getTableName();)
-                ctv.writeDB(ctv.getArrayList(), "twin_buttes_2", ala.getTableName();)
-                cxt.writeDB(cxt.getArrayList(), "twin_buttes_2", ala.getTableName();)
-                reg.writeDB(reg.getArrayList(), "twin_buttes_2", ala.getTableName();)
-                txt.writeDB(txt.getArrayList(), "twin_buttes_2", ala.getTableName();)
+                ats.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
+                bit.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
+                chr.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
+                cmd.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
+                ctv.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
+                cxt.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
+                reg.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
+                txt.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
+                allAlarms.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
                 //close file
                 fh.closeFile(fileBR);
 

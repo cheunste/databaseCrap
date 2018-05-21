@@ -167,7 +167,7 @@ abstract class VarexpVariable {
                 query += "'" + item + "',";
             }
             String finalQuery = query.substring(0, query.length() - 1) + ")";
-            System.out.println(finalQuery);
+            //System.out.println(finalQuery);
             try {
                 statement.addBatch(finalQuery);
             } catch (Exception e) {
