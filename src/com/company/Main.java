@@ -36,11 +36,15 @@ public class Main {
                 BIT bit = new BIT();
                 CHR chr = new CHR();
                 CMD cmd = new CMD();
+                CNT cnt = new CNT();
                 CTV ctv = new CTV();
                 CXT cxt = new CXT();
                 REG reg = new REG();
                 TXT txt = new TXT();
+                TSH tsh = new TSH();
                 All_Alarms allAlarms = new All_Alarms();
+
+                Equipment
 
 
                 /*
@@ -103,6 +107,9 @@ public class Main {
                             System.out.println("Do cmd Stuff");
                             cmd.setArrayList(subList.toString(), temp);
                             break;
+                        case "CNT":
+                            System.out.println("Do cnt stuff");
+                            cnt.setArrayList(subList.toString(), temp);
                         case "CTV":
                             System.out.println("Do ctv Stuff");
                             ctv.setArrayList(subList.toString(), temp);
@@ -119,8 +126,53 @@ public class Main {
                             System.out.println("Do txt Stuff");
                             txt.setArrayList(subList.toString(), temp);
                             break;
+                        case "TSH":
+                            System.out.println("Do tsh Stuff");
+                            tsh.setArrayList(subList.toString(), temp);
+                            break;
                     }
                     allAlarms.setArrayList(subList.toString(), temp);
+                    switch (subList.get(16).toUpperCase()) {
+                        //For equpiment
+                        case "E":
+                            break;
+                        //For Internal
+                        case "I":
+                            break;
+                        //For external
+                        case "X":
+                            break;
+                        //For DDE
+                        case "D":
+                            break;
+                        //For OPC
+                        case "O":
+                            break;
+                        //For Lonwork
+                        case "L":
+                            break;
+                        //For BACnet
+                        case "B":
+                            break;
+                        //For 60870-5-104
+                        case "4":
+                            break;
+                        //For 61850
+                        case "8":
+                            break;
+                        //For DNP3
+                        case "3":
+                            break;
+                        //For SNMP Manager
+                        case "S":
+                            break;
+                        default:
+                            //Handle other unexpect cases here
+                            break;
+                    }
+                    //This following case statemnets determine the "source"  of the tag and then assign it to their
+                    //respective table. See page 11 of the varexp format manual for detail
+
                     temp++;
                 }
 
