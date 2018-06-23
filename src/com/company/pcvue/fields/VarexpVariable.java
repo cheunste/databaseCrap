@@ -27,29 +27,29 @@ import java.util.List;
 abstract class VarexpVariable {
     //Member variable. This represents the maximum amount of fields that PcVue will have.
     //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
-    private int FIELD_NUM = 250;
+    protected int FIELD_NUM = 250;
 
     //This is the same varexpArrayList, but splitted based on ','
-    private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
+    protected ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
     //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
-    private String tableName;
+    protected String tableName;
 
     //This is the command you use to insert into the database
     //TODO: You need to implement this so that you can insert the values as well
-    private String insertToDBCmd = "INSERT INTO ";
+    protected String insertToDBCmd = "INSERT INTO ";
 
     //This is going to be the command you use to delete from the DB.
     //TODO: Implement the delete function
-    private String deleteFromDBCmd = "";
+    protected String deleteFromDBCmd = "";
 
     //This is the update functino you use to update the MySQL DB.
     //TODO: IMplment the update function
-    private String updateFromDBCmd = "";
+    protected String updateFromDBCmd = "";
 
     //This is the list you'll be using to keep track of what position a varexp variable uses;
     //TODO: Implement the associated method
-    private List<Integer> varexpPositionList = new ArrayList<Integer>();
+    protected List<Integer> varexpPositionList = new ArrayList<Integer>();
 
     //return FIELD_NUM
     public int getFieldNum() {
