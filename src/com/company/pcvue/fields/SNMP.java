@@ -17,11 +17,6 @@ public class SNMP extends VarexpVariable {
 
 
     @Override
-    void VarexpVariable() {
-
-    }
-
-    @Override
     String insertToDB() {
 
         return "";

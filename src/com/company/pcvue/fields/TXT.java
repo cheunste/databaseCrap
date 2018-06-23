@@ -14,10 +14,6 @@ public class TXT extends VarexpVariable {
         setTableName("txt");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

@@ -15,10 +15,6 @@ public class ATS extends VarexpVariable {
         setTableName("ats");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

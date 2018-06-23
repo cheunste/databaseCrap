@@ -17,11 +17,6 @@ public class ACM extends VarexpVariable {
 
 
     @Override
-    void VarexpVariable() {
-
-    }
-
-    @Override
     String insertToDB() {
 
         return "";

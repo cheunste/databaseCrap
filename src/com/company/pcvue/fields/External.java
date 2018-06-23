@@ -17,11 +17,6 @@ public class External extends VarexpVariable {
 
 
     @Override
-    void VarexpVariable() {
-
-    }
-
-    @Override
     String insertToDB() {
 
         return "";

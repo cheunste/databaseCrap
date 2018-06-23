@@ -15,10 +15,6 @@ public class All_Alarms extends VarexpVariable {
 
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

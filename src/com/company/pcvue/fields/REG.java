@@ -14,10 +14,6 @@ public class REG extends VarexpVariable {
         setTableName("reg");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

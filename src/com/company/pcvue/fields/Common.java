@@ -20,11 +20,6 @@ public class Common extends VarexpVariable {
 
 
     @Override
-    void VarexpVariable() {
-
-    }
-
-    @Override
     String insertToDB() {
         String query = this.getInsertSQLCmd() + "";
         return query;

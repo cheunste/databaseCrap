@@ -14,10 +14,6 @@ public class BIT extends VarexpVariable {
         setTableName("bit");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

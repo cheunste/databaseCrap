@@ -15,10 +15,6 @@ public class CHR extends VarexpVariable {
         setTableName("chr");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

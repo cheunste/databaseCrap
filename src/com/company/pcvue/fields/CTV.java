@@ -14,10 +14,6 @@ public class CTV extends VarexpVariable {
         setTableName("ctv");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

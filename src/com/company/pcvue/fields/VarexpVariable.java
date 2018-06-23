@@ -18,6 +18,12 @@ import java.util.List;
  * any sense, then you need to read the varexp manual.
  */
 
+/*
+ The varexpVariable methods can be catalogried into three different cases:
+ 1) Splitting the varexpVariable array (deconstruction). Ex: anything to do with position, setting arrays, passing arrays, etc.
+ 2) Building the varexpVariable array (Reconsttruction)
+ 3) Database related methods (anything CRUD related, so setting name of table,
+ */
 abstract class VarexpVariable {
     //Member variable. This represents the maximum amount of fields that PcVue will have.
     //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
@@ -41,26 +47,30 @@ abstract class VarexpVariable {
     //TODO: IMplment the update function
     private String updateFromDBCmd = "";
 
-    protected VarexpVariable() {
-    }
-
     //return FIELD_NUM
     public int getFieldNum() {
         return this.FIELD_NUM;
     }
 
+    //Returns the varexpList
     public List<String> getVarexpList() {
         return this.varexpArrayList;
     }
 
-    abstract void VarexpVariable();
+    //I think this is a constructor
+    //TODO: Check if this is even used
+    //abstract void VarexpVariable();
 
+    //Abstract method to insert data into table
+    //TODO: Check if this is even used
     abstract String insertToDB();
 
+    //Return the table name of the variable.
     public String getTableName() {
         return this.tableName;
     }
 
+    //Sets the table name of the variable.
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
@@ -128,20 +138,6 @@ abstract class VarexpVariable {
         }
         return isEmpty;
     }
-
-    /*
-    This function is to read EVERYTHING in a DB. This is what I would call 'a bad idea'
-     */
-    public void read() {
-        dbConnector db = new dbConnector();
-        try {
-            db.readDatabase();
-            db.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /*
     This function sets up insert command parameters before hadning it off to the dbConnector for the actually

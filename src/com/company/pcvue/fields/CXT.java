@@ -15,10 +15,6 @@ public class CXT extends VarexpVariable {
         setTableName("cxt");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

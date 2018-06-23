@@ -14,10 +14,6 @@ public class CMD extends VarexpVariable {
         setTableName("cmd");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {

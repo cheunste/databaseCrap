@@ -15,10 +15,6 @@ public class BACnet extends VarexpVariable {
         setTableName("bac");
     }
 
-    @Override
-    void VarexpVariable() {
-
-    }
 
     @Override
     String insertToDB() {
