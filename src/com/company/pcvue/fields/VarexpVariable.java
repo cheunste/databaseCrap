@@ -19,13 +19,14 @@ import java.util.List;
  */
 
 abstract class VarexpVariable {
-    //Member variable. This represents the maximum amount of fields that PcVue will have
+    //Member variable. This represents the maximum amount of fields that PcVue will have.
+    //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
     private int FIELD_NUM = 250;
 
     //This is the same varexpArrayList, but splitted based on ','
     private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
-    //The name of the table. This is things like Common, acm, ala, all_alarms, etc. Refer to the SQL file for details
+    //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
     private String tableName;
 
     //This is the command you use to insert into the database

@@ -44,7 +44,20 @@ public class Main {
                 TSH tsh = new TSH();
                 All_Alarms allAlarms = new All_Alarms();
 
-                Equipment
+                Equipment equipment = new Equipment();
+                External external = new External();
+                Internal internal = new Internal();
+                External ext = new External();
+                DDE dde = new DDE();
+                OPC opc = new OPC();
+
+                LonWork lonWork = new LonWork();
+                BACnet bac = new BACnet();
+
+                IEC61850_Master iec61850_master = new IEC61850_Master();
+                IEC60870_Master iec60870Master = new IEC60870_Master();
+                DNP3_Master dnp3 = new DNP3_Master();
+                SNMP smnp = new SNMP();
 
 
                 /*
@@ -135,36 +148,47 @@ public class Main {
                     switch (subList.get(16).toUpperCase()) {
                         //For equpiment
                         case "E":
+                            equipment.setArrayList(subList.toString(), temp);
                             break;
                         //For Internal
                         case "I":
+                            internal.setArrayList(subList.toString(), temp);
                             break;
                         //For external
                         case "X":
+                            external.setArrayList(subList.toString(), temp);
                             break;
                         //For DDE
                         case "D":
+                            dde.setArrayList(subList.toString(), temp);
                             break;
                         //For OPC
                         case "O":
+                            opc.setArrayList(subList.toString(), temp);
                             break;
                         //For Lonwork
                         case "L":
+                            lonWork.setArrayList(subList.toString(), temp);
                             break;
                         //For BACnet
                         case "B":
+                            bac.setArrayList(subList.toString(), temp);
                             break;
                         //For 60870-5-104
                         case "4":
+                            iec60870Master.setArrayList(subList.toString(), temp);
                             break;
                         //For 61850
                         case "8":
+                            iec61850_master.setArrayList(subList.toString(), temp);
                             break;
                         //For DNP3
                         case "3":
+                            dnp3.setArrayList(subList.toString(), temp);
                             break;
                         //For SNMP Manager
                         case "S":
+                            smnp.setArrayList(subList.toString(), temp);
                             break;
                         default:
                             //Handle other unexpect cases here
