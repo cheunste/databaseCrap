@@ -12,9 +12,16 @@ public class ACM extends VarexpVariable {
     public ACM() {
         this.acmList = new ArrayList<>();
         setTableName("acm");
-
     }
 
+
+    @Override
+    void setPositionList() {
+        for (int i = 40; i <= 46; i++) {
+            this.varexpPositionList.add(i);
+        }
+        this.varexpPositionList.add(156);
+    }
 
     @Override
     String insertToDB() {

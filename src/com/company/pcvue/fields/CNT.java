@@ -17,6 +17,11 @@ public class CNT extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
 
         return "";

@@ -16,6 +16,11 @@ public class REG extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
         return null;
     }

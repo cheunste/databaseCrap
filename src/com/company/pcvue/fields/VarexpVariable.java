@@ -51,6 +51,9 @@ abstract class VarexpVariable {
     //TODO: Implement the associated method
     protected List<Integer> varexpPositionList = new ArrayList<Integer>();
 
+    //This is the method all sub class will have to implement in order to get an array of position indexes
+    abstract void setPositionList();
+
     //return FIELD_NUM
     public int getFieldNum() {
         return this.FIELD_NUM;
@@ -72,12 +75,6 @@ abstract class VarexpVariable {
     //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
     public List<Integer> getVarexpPositionList() {
         return this.varexpPositionList;
-    }
-
-    public void setVarexpPositionList(List<Integer> inputList) {
-
-        for (int i : inputList)
-            this.varexpPositionList.add(i, inputList.get(i));
     }
 
     //Return the table name of the variable.

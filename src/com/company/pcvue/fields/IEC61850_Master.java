@@ -17,6 +17,11 @@ public class IEC61850_Master extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
 
         return "";

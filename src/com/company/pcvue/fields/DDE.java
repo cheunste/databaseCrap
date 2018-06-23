@@ -16,6 +16,11 @@ public class DDE extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
 
         return "";

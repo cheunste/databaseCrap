@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
 
+
         try {
             if (args.length == 2) {
                 String path = args[0];

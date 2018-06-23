@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by Stephen on 5/20/2018.
  */
+
 public class TXT extends VarexpVariable {
     public ArrayList<List<String>> txtList;
 
@@ -14,6 +15,11 @@ public class TXT extends VarexpVariable {
         setTableName("txt");
     }
 
+
+    @Override
+    void setPositionList() {
+
+    }
 
     @Override
     String insertToDB() {

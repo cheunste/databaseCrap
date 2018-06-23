@@ -17,6 +17,11 @@ public class ATS extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
         return null;
     }

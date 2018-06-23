@@ -15,6 +15,11 @@ public class ALA extends VarexpVariable {
     }
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
         return "";
     }

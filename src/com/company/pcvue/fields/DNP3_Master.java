@@ -16,6 +16,11 @@ public class DNP3_Master extends VarexpVariable {
 
 
     @Override
+    void setPositionList() {
+
+    }
+
+    @Override
     String insertToDB() {
 
         return "";
