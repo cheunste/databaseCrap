@@ -47,6 +47,10 @@ abstract class VarexpVariable {
     //TODO: IMplment the update function
     private String updateFromDBCmd = "";
 
+    //This is the list you'll be using to keep track of what position a varexp variable uses;
+    //TODO: Implement the associated method
+    private List<Integer> varexpPositionList = new ArrayList<Integer>();
+
     //return FIELD_NUM
     public int getFieldNum() {
         return this.FIELD_NUM;
@@ -65,6 +69,17 @@ abstract class VarexpVariable {
     //TODO: Check if this is even used
     abstract String insertToDB();
 
+    //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
+    public List<Integer> getVarexpPositionList() {
+        return this.varexpPositionList;
+    }
+
+    public void setVarexpPositionList(List<Integer> inputList) {
+
+        for (int i : inputList)
+            this.varexpPositionList.add(i, inputList.get(i));
+    }
+
     //Return the table name of the variable.
     public String getTableName() {
         return this.tableName;
@@ -78,23 +93,14 @@ abstract class VarexpVariable {
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
 
-    //abstract void empty();
-    //abstract void empty();
-
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
 
+    //Method to set a varexp varible respective fields. Must be implemented by all sub classes
     public abstract void setArrayList(String varexpString, int dbIndex);
 
-    //This function splits a varexp variable into its respective fields and then
-    //set the varexpArrayPlist variable
-    /*
-        Todo:
-        - split string based on fields
-        - append more fields if the number of fields is less than FIELD_NUM
-        - Create a tempList arraylist<String> and copy all the crap from above to it
-        - set varexpLIst to the new temp list
-     */
+    //This function splits a varexp variable into fields (for use with the varexp variables) and then
+    //set the varexpArrayList variable
     public void setvarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.split(",");
@@ -114,17 +120,20 @@ abstract class VarexpVariable {
         }
     }
 
-    public void print(String string) {
-        System.out.println(string);
-    }
-
+    //Get the SQL INSERT cmd
     public String getInsertSQLCmd() {
         return this.insertToDBCmd;
     }
+    //TODO: Implement the other getXXXXSQLCmd functions
 
+    //This method checks to see if an array is empty. You use this to check if a sub array have fields or not
     /*
-    This method checks to see if an array is empty. You use this to check if a sub array have fields or not
+        TODO:
+        This needs to be replaced with something else.
+        The idea is that you'll only be using at most three tables out of the 23 (you can figure this out by decision statements
+        and this function might just be a waste computational time
      */
+
     public boolean isEmpty(String subArray) {
         Boolean isEmpty = true;
 
@@ -184,6 +193,7 @@ abstract class VarexpVariable {
     }
 
     //This method is to add the query to the database queue. However, ti does NOT execute the batch itesm.
+    //This is primary used for updating the DB
     public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
 
     }
