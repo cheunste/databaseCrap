@@ -66,4 +66,10 @@ public class SQLHandler {
         //Close the DB Connection
         db.close(connection);
     }
+
+    /*
+    This function reads from the DB
+     */
+    public void read() {
+    }
 }

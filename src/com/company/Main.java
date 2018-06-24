@@ -213,19 +213,20 @@ public class Main {
                 //4) Doing the write to DB stuff
                 //Open up a DB connection
 
-                sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 //System.out.println("Done with wrting common to DB");
-                sqlHandler.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
-                sqlHandler.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
-                sqlHandler.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
-                sqlHandler.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
-                sqlHandler.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
-                sqlHandler.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
-                sqlHandler.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
-                sqlHandler.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
-                sqlHandler.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
-                sqlHandler.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
-                sqlHandler.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
+                //TODO: Rewrite the entire writeDB method in sqlHandler
+                sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
+                //sqlHandler.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
+                //sqlHandler.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
+                //sqlHandler.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
+                //sqlHandler.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
+                //sqlHandler.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
+                //sqlHandler.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
+                //sqlHandler.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
+                //sqlHandler.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
+                //sqlHandler.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
+                //sqlHandler.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
+                //sqlHandler.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
                 //close file
                 fh.closeFile(fileBR);
 
