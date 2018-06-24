@@ -12,13 +12,12 @@ public class External extends VarexpVariable {
     public External() {
         this.externalList = new ArrayList<>();
         setTableName("external");
-
+        setPositionList();
     }
-
 
     @Override
     void setPositionList() {
-
+        varexpPositionList.add(18);
     }
 
     @Override
@@ -52,7 +51,9 @@ public class External extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         externalList.add("" + dbIndex);
-        externalList.add(varexpArraySplit.get(59).toString());
+        for (int i : varexpPositionList) {
+            externalList.add(varexpArraySplit.get(i).toString());
+        }
 
         this.externalList.add(externalList);
 
