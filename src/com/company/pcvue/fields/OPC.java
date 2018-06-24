@@ -12,12 +12,16 @@ public class OPC extends VarexpVariable {
     public OPC() {
         this.opcList = new ArrayList<>();
         setTableName("opc");
+        setPositionList();
 
     }
 
 
     @Override
     void setPositionList() {
+        for (int i = 144; i <= 150; i++) {
+            varexpPositionList.add(i);
+        }
 
     }
 
@@ -30,7 +34,7 @@ public class OPC extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 144; i <= 150; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
 
@@ -54,8 +58,8 @@ public class OPC extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         opcList.add("" + dbIndex);
-        for (int i = 144; i <= 150; i++) {
-            opcList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            opcList.add(varexpArraySplit.get(i));
         }
 
         this.opcList.add(opcList);

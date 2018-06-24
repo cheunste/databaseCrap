@@ -12,13 +12,16 @@ public class SNMP extends VarexpVariable {
     public SNMP() {
         this.snmpList = new ArrayList<>();
         setTableName("snmp");
+        setPositionList();
 
     }
 
 
     @Override
     void setPositionList() {
-
+        for (int i = 229; i <= 238; i++) {
+            varexpPositionList.add(i);
+        }
     }
 
     @Override
@@ -30,8 +33,7 @@ public class SNMP extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-
-        for (int i = 229; i <= 238; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
         return emptyString;
@@ -54,8 +56,8 @@ public class SNMP extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         snmpList.add("" + dbIndex);
-        for (int i = 229; i <= 238; i++) {
-            snmpList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            snmpList.add(varexpArraySplit.get(i));
         }
 
         this.snmpList.add(snmpList);

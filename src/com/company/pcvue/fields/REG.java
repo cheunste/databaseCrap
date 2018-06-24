@@ -12,11 +12,16 @@ public class REG extends VarexpVariable {
     public REG() {
         this.regList = new ArrayList<>();
         setTableName("reg");
+        setPositionList();
     }
-
 
     @Override
     void setPositionList() {
+        for (int i = 59; i <= 66; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(155);
+        varexpPositionList.add(156);
 
     }
 
@@ -28,11 +33,10 @@ public class REG extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 59; i <= 66; i++) {
+        for (int i : varexpPositionList) {
+
             emptyString += ",";
         }
-        emptyString += ",";
-        emptyString += ",";
         return emptyString;
     }
 
@@ -51,12 +55,9 @@ public class REG extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         acmList.add("" + dbIndex);
-        for (int i = 59; i <= 66; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            acmList.add(varexpArraySplit.get(i));
         }
-
-        acmList.add(varexpArraySplit.get(155).toString());
-        acmList.add(varexpArraySplit.get(156).toString());
 
         this.regList.add(acmList);
     }
