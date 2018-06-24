@@ -22,12 +22,6 @@ public class TSH extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
 

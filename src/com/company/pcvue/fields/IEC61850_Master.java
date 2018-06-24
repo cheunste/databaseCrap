@@ -22,12 +22,6 @@ public class IEC61850_Master extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
 

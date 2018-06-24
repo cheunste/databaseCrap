@@ -20,11 +20,6 @@ public class CTV extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         return null;
     }

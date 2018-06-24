@@ -22,12 +22,6 @@ public class ACM extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 40; i <= 46; i++) {

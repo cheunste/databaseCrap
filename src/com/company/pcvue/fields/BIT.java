@@ -20,11 +20,6 @@ public class BIT extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 40; i <= 42; i++) {

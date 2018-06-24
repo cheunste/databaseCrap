@@ -29,18 +29,6 @@ abstract class VarexpVariable {
     //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
     private String tableName;
 
-    //This is the command you use to insert into the database
-    //TODO: You need to implement this so that you can insert the values as well
-    private String insertToDBCmd = "INSERT INTO ";
-
-    //This is going to be the command you use to delete from the DB.
-    //TODO: Implement the delete function
-    private String deleteFromDBCmd = "";
-
-    //This is the update functino you use to update the MySQL DB.
-    //TODO: IMplment the update function
-    private String updateFromDBCmd = "";
-
     protected VarexpVariable() {
     }
 
@@ -54,8 +42,6 @@ abstract class VarexpVariable {
     }
 
     abstract void VarexpVariable();
-
-    abstract String insertToDB();
 
     public String getTableName() {
         return this.tableName;
@@ -106,10 +92,6 @@ abstract class VarexpVariable {
 
     public void print(String string) {
         System.out.println(string);
-    }
-
-    public String getInsertSQLCmd() {
-        return this.insertToDBCmd;
     }
 
     /*

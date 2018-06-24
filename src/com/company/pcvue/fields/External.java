@@ -22,12 +22,6 @@ public class External extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         emptyString += ",";

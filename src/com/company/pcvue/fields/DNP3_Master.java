@@ -21,12 +21,6 @@ public class DNP3_Master extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
 

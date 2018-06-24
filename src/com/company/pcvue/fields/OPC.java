@@ -22,12 +22,6 @@ public class OPC extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 144; i <= 150; i++) {

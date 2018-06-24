@@ -21,11 +21,6 @@ public class BACnet extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 162; i <= 172; i++) {

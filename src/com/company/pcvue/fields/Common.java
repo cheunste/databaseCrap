@@ -25,13 +25,6 @@ public class Common extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        String query = this.getInsertSQLCmd() + "";
-        return query;
-
-    }
-
-    @Override
         //Should never be used for common;
     String empty() {
         return "";

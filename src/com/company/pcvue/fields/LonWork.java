@@ -22,12 +22,6 @@ public class LonWork extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 109; i <= 117; i++) {

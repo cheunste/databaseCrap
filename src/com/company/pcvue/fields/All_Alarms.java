@@ -21,11 +21,6 @@ public class All_Alarms extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 158; i <= 160; i++) {

@@ -20,11 +20,6 @@ public class REG extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 59; i <= 66; i++) {

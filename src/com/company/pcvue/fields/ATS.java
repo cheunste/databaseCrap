@@ -21,11 +21,6 @@ public class ATS extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 40; i <= 46; i++) {

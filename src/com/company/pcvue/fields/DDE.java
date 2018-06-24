@@ -21,12 +21,6 @@ public class DDE extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-
-        return "";
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 119; i <= 126; i++) {

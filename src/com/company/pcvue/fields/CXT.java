@@ -21,11 +21,6 @@ public class CXT extends VarexpVariable {
     }
 
     @Override
-    String insertToDB() {
-        return null;
-    }
-
-    @Override
     String empty() {
         String emptyString = "";
         for (int i = 99; i <= 102; i++) {
