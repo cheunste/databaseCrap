@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
 
-
         try {
             if (args.length == 2) {
                 String path = args[0];
@@ -211,17 +210,17 @@ public class Main {
 
                 common_field.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 //System.out.println("Done with wrting common to DB");
-                acm.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
-                ala.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
-                ats.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
-                bit.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
-                chr.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
-                cmd.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
-                ctv.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
-                cxt.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
-                reg.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
-                txt.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
-                allAlarms.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
+                //acm.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
+                //ala.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
+                //ats.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
+                //bit.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
+                //chr.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
+                //cmd.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
+                //ctv.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
+                //cxt.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
+                //reg.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
+                //txt.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
+                //allAlarms.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
                 //close file
                 fh.closeFile(fileBR);
 

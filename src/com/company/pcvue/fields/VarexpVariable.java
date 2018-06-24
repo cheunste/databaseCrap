@@ -32,7 +32,8 @@ abstract class VarexpVariable {
     //This is the same varexpArrayList, but splitted based on ','
     protected ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
-    //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
+    //The name of the table. This is limited to 23 options, aka the varexp variables (the 12 Types of variables:BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT),
+    // and the 11 sources (Equipment, Internal, external, DDE, OPC, LonWOrks, BACnet, SNMP, DNP3, 60870 and 61850) Refer to the SQL file for details
     protected String tableName;
 
     //This is the command you use to insert into the database
@@ -83,7 +84,7 @@ abstract class VarexpVariable {
     }
 
     //Sets the table name of the variable.
-    public void setTableName(String tableName) {
+    protected void setTableName(String tableName) {
         this.tableName = tableName;
     }
 
@@ -94,11 +95,11 @@ abstract class VarexpVariable {
     abstract String getJoinCmd();
 
     //Method to set a varexp varible respective fields. Must be implemented by all sub classes
-    public abstract void setArrayList(String varexpString, int dbIndex);
+    protected abstract void setArrayList(String varexpString, int dbIndex);
 
     //This function splits a varexp variable into fields (for use with the varexp variables) and then
     //set the varexpArrayList variable
-    public void setvarexpArrayList(String varexpString) {
+    protected void setvarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.split(",");
         this.varexpArrayList.clear();
@@ -127,7 +128,7 @@ abstract class VarexpVariable {
     /*
         TODO:
         This needs to be replaced with something else.
-        The idea is that you'll only be using at most three tables out of the 23 (you can figure this out by decision statements
+        The idea is that you'll only be using at most three tables out of the 23 (The type of variable, common, and the source)
         and this function might just be a waste computational time
      */
 
