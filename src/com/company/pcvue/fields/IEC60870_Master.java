@@ -7,17 +7,21 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class IEC60870_Master extends VarexpVariable {
-    public ArrayList<List<String>> iec60870_masterList;
+    private ArrayList<List<String>> iec60870_masterList;
 
     public IEC60870_Master() {
         this.iec60870_masterList = new ArrayList<>();
         setTableName("iec60870_master");
-
+        setPositionList();
     }
 
 
     @Override
-    void VarexpVariable() {
+    void setPositionList() {
+        for (int i = 179; i <= 188; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(205);
 
     }
 
@@ -30,11 +34,10 @@ public class IEC60870_Master extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-
-        for (int i = 179; i <= 188; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-        emptyString += ",";
+
         return emptyString;
     }
 
@@ -55,10 +58,9 @@ public class IEC60870_Master extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         iec60870_masterList.add("" + dbIndex);
-        for (int i = 179; i <= 188; i++) {
-            iec60870_masterList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            iec60870_masterList.add(varexpArraySplit.get(i));
         }
-        iec60870_masterList.add(varexpArraySplit.get(205).toString());
 
         this.iec60870_masterList.add(iec60870_masterList);
 

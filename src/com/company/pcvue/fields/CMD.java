@@ -7,16 +7,21 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class CMD extends VarexpVariable {
-    public ArrayList<List<String>> cmdList;
+    private ArrayList<List<String>> cmdList;
 
     public CMD() {
         this.cmdList = new ArrayList<>();
         setTableName("cmd");
+        setPositionList();
     }
 
     @Override
-    void VarexpVariable() {
+    void setPositionList() {
+        for (int i = 40; i <= 43; i++) {
+            varexpPositionList.add(i);
+        }
 
+        varexpPositionList.add(156);
     }
 
     @Override
@@ -27,11 +32,9 @@ public class CMD extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 40; i <= 42; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-
-        emptyString += ",";
         return emptyString;
     }
 
@@ -47,11 +50,9 @@ public class CMD extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         cmdList.add("" + dbIndex);
-        for (int i = 40; i <= 43; i++) {
-            cmdList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            cmdList.add(varexpArraySplit.get(i));
         }
-
-        cmdList.add(varexpArraySplit.get(156).toString());
 
         this.cmdList.add(cmdList);
     }

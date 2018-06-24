@@ -7,16 +7,23 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class ALA extends VarexpVariable {
-    public ArrayList<List<String>> alaList;
+    private ArrayList<List<String>> alaList;
 
     public ALA() {
         this.alaList = new ArrayList<>();
         setTableName("ala");
+        setPositionList();
     }
 
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 40; i <= 42; i++) {
+            this.varexpPositionList.add(i);
+        }
+        for (int i = 44; i <= 47; i++) {
+            this.varexpPositionList.add(i);
+        }
+        this.varexpPositionList.add(156);
     }
 
     @Override
@@ -27,13 +34,9 @@ public class ALA extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 40; i <= 42; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-        for (int i = 44; i <= 47; i++) {
-            emptyString += ",";
-        }
-        emptyString += ",";
         return emptyString;
     }
 
@@ -50,14 +53,9 @@ public class ALA extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         alaList.add("" + dbIndex);
-        for (int i = 40; i <= 42; i++) {
-            alaList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            alaList.add(varexpArraySplit.get(i));
         }
-        for (int i = 44; i <= 47; i++) {
-            alaList.add(varexpArraySplit.get(i).toString());
-        }
-        alaList.add(varexpArraySplit.get(156).toString());
-
         this.alaList.add(alaList);
 
     }

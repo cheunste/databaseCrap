@@ -7,18 +7,18 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class Equipment extends VarexpVariable {
-    public ArrayList<List<String>> equipmentList;
+    private ArrayList<List<String>> equipmentList;
 
     public Equipment() {
         this.equipmentList = new ArrayList<>();
         setTableName("equipment");
-
     }
 
-
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 29; i <= 36; i++) {
+            varexpPositionList.add(i);
+        }
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Equipment extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 29; i <= 36; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
         return emptyString;
@@ -53,8 +53,8 @@ public class Equipment extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         equipmentList.add("" + dbIndex);
-        for (int i = 29; i <= 36; i++) {
-            equipmentList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            equipmentList.add(varexpArraySplit.get(i));
         }
 
         this.equipmentList.add(equipmentList);

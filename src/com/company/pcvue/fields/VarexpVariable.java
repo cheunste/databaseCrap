@@ -18,74 +18,88 @@ import java.util.List;
  * any sense, then you need to read the varexp manual.
  */
 
+/*
+ The varexpVariable methods can be catalogried into three different cases:
+ 1) Splitting the varexpVariable array (deconstruction). Ex: anything to do with position, setting arrays, passing arrays, etc.
+ 2) Building the varexpVariable array (Reconsttruction)
+ 3) Database related methods (anything CRUD related, so setting name of table,
+ */
 abstract class VarexpVariable {
     //Member variable. This represents the maximum amount of fields that PcVue will have.
     //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
-    private int FIELD_NUM = 250;
+    protected int FIELD_NUM = 250;
 
     //This is the same varexpArrayList, but splitted based on ','
-    private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
+    protected ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
-    //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
-    private String tableName;
+    //The name of the table. This is limited to 23 options, aka the varexp variables (the 12 Types of variables:BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT),
+    // and the 11 sources (Equipment, Internal, external, DDE, OPC, LonWOrks, BACnet, SNMP, DNP3, 60870 and 61850) Refer to the SQL file for details
+    protected String tableName;
 
     //This is the command you use to insert into the database
     //TODO: You need to implement this so that you can insert the values as well
-    private String insertToDBCmd = "INSERT INTO ";
+    protected String insertToDBCmd = "INSERT INTO ";
 
     //This is going to be the command you use to delete from the DB.
     //TODO: Implement the delete function
-    private String deleteFromDBCmd = "";
+    protected String deleteFromDBCmd = "";
 
     //This is the update functino you use to update the MySQL DB.
     //TODO: IMplment the update function
-    private String updateFromDBCmd = "";
+    protected String updateFromDBCmd = "";
 
-    protected VarexpVariable() {
-    }
+    //This is the list you'll be using to keep track of what position a varexp variable uses;
+    //TODO: Implement the associated method
+    protected List<Integer> varexpPositionList = new ArrayList<Integer>();
+
+    //This is the method all sub class will have to implement in order to get an array of position indexes
+    abstract void setPositionList();
 
     //return FIELD_NUM
     public int getFieldNum() {
         return this.FIELD_NUM;
     }
 
+    //Returns the varexpList
     public List<String> getVarexpList() {
         return this.varexpArrayList;
     }
 
-    abstract void VarexpVariable();
+    //I think this is a constructor
+    //TODO: Check if this is even used
+    //abstract void VarexpVariable();
 
+    //Abstract method to insert data into table
+    //TODO: Check if this is even used
     abstract String insertToDB();
 
+    //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
+    public List<Integer> getVarexpPositionList() {
+        return this.varexpPositionList;
+    }
+
+    //Return the table name of the variable.
     public String getTableName() {
         return this.tableName;
     }
 
-    public void setTableName(String tableName) {
+    //Sets the table name of the variable.
+    protected void setTableName(String tableName) {
         this.tableName = tableName;
     }
 
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
 
-    //abstract void empty();
-    //abstract void empty();
-
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
 
-    public abstract void setArrayList(String varexpString, int dbIndex);
+    //Method to set a varexp varible respective fields. Must be implemented by all sub classes
+    protected abstract void setArrayList(String varexpString, int dbIndex);
 
-    //This function splits a varexp variable into its respective fields and then
-    //set the varexpArrayPlist variable
-    /*
-        Todo:
-        - split string based on fields
-        - append more fields if the number of fields is less than FIELD_NUM
-        - Create a tempList arraylist<String> and copy all the crap from above to it
-        - set varexpLIst to the new temp list
-     */
-    public void setvarexpArrayList(String varexpString) {
+    //This function splits a varexp variable into fields (for use with the varexp variables) and then
+    //set the varexpArrayList variable
+    protected void setvarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.split(",");
         this.varexpArrayList.clear();
@@ -104,17 +118,20 @@ abstract class VarexpVariable {
         }
     }
 
-    public void print(String string) {
-        System.out.println(string);
-    }
-
+    //Get the SQL INSERT cmd
     public String getInsertSQLCmd() {
         return this.insertToDBCmd;
     }
+    //TODO: Implement the other getXXXXSQLCmd functions
 
+    //This method checks to see if an array is empty. You use this to check if a sub array have fields or not
     /*
-    This method checks to see if an array is empty. You use this to check if a sub array have fields or not
+        TODO:
+        This needs to be replaced with something else.
+        The idea is that you'll only be using at most three tables out of the 23 (The type of variable, common, and the source)
+        and this function might just be a waste computational time
      */
+
     public boolean isEmpty(String subArray) {
         Boolean isEmpty = true;
 
@@ -128,20 +145,6 @@ abstract class VarexpVariable {
         }
         return isEmpty;
     }
-
-    /*
-    This function is to read EVERYTHING in a DB. This is what I would call 'a bad idea'
-     */
-    public void read() {
-        dbConnector db = new dbConnector();
-        try {
-            db.readDatabase();
-            db.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /*
     This function sets up insert command parameters before hadning it off to the dbConnector for the actually
@@ -188,6 +191,7 @@ abstract class VarexpVariable {
     }
 
     //This method is to add the query to the database queue. However, ti does NOT execute the batch itesm.
+    //This is primary used for updating the DB
     public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
 
     }

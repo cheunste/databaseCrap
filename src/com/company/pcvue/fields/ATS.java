@@ -8,16 +8,27 @@ import java.util.List;
  */
 public class ATS extends VarexpVariable {
 
-    public ArrayList<List<String>> atsList;
+    private ArrayList<List<String>> atsList;
 
     public ATS() {
         this.atsList = new ArrayList<>();
         setTableName("ats");
+        setPositionList();
     }
 
-    @Override
-    void VarexpVariable() {
 
+    @Override
+    void setPositionList() {
+        for (int i = 40; i <= 42; i++) {
+            this.varexpPositionList.add(i);
+        }
+        for (int i = 44; i <= 46; i++) {
+            this.varexpPositionList.add(i);
+        }
+        for (int i = 49; i <= 54; i++) {
+            this.varexpPositionList.add(i);
+        }
+        this.varexpPositionList.add(156);
     }
 
     @Override
@@ -53,16 +64,9 @@ public class ATS extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         atsList.add("" + dbIndex);
-        for (int i = 40; i <= 42; i++) {
-            atsList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            atsList.add(varexpArraySplit.get(i));
         }
-        for (int i = 44; i <= 46; i++) {
-            atsList.add(varexpArraySplit.get(i).toString());
-        }
-        for (int i = 49; i <= 54; i++) {
-            atsList.add(varexpArraySplit.get(i).toString());
-        }
-        atsList.add(varexpArraySplit.get(156).toString());
         this.atsList.add(atsList);
     }
 }

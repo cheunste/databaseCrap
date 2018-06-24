@@ -7,17 +7,19 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class DDE extends VarexpVariable {
-    public ArrayList<List<String>> ddeList;
+    private ArrayList<List<String>> ddeList;
 
     public DDE() {
         this.ddeList = new ArrayList<>();
         setTableName("dde");
+        setPositionList();
     }
 
-
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 119; i <= 126; i++) {
+            varexpPositionList.add(i);
+        }
     }
 
     @Override
@@ -29,10 +31,9 @@ public class DDE extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 119; i <= 126; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-
         return emptyString;
     }
 
@@ -53,8 +54,8 @@ public class DDE extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         ddeList.add("" + dbIndex);
-        for (int i = 119; i <= 126; i++) {
-            ddeList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            ddeList.add(varexpArraySplit.get(i));
         }
 
         this.ddeList.add(ddeList);

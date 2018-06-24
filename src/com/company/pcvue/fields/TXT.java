@@ -6,16 +6,23 @@ import java.util.List;
 /**
  * Created by Stephen on 5/20/2018.
  */
+
 public class TXT extends VarexpVariable {
-    public ArrayList<List<String>> txtList;
+    private ArrayList<List<String>> txtList;
 
     public TXT() {
         this.txtList = new ArrayList<>();
         setTableName("txt");
+        setPositionList();
     }
 
+
     @Override
-    void VarexpVariable() {
+    void setPositionList() {
+        varexpPositionList.add(99);
+        varexpPositionList.add(100);
+        varexpPositionList.add(102);
+        varexpPositionList.add(156);
 
     }
 
@@ -41,11 +48,9 @@ public class TXT extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         txtList.add("" + dbIndex);
-        txtList.add(varexpArraySplit.get(99).toString());
-        txtList.add(varexpArraySplit.get(100).toString());
-        txtList.add(varexpArraySplit.get(102).toString());
-        txtList.add(varexpArraySplit.get(156).toString());
-
+        for (int i : varexpPositionList) {
+            txtList.add(varexpArraySplit.get(i));
+        }
         this.txtList.add(txtList);
     }
 

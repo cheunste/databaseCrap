@@ -7,18 +7,21 @@ import java.util.List;
  * Created by Stephen on 5/2/2018.
  */
 public class ACM extends VarexpVariable {
-    public ArrayList<List<String>> acmList;
+    private ArrayList<List<String>> acmList;
 
     public ACM() {
         this.acmList = new ArrayList<>();
+        setPositionList();
         setTableName("acm");
-
     }
 
 
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 40; i <= 46; i++) {
+            this.varexpPositionList.add(i);
+        }
+        this.varexpPositionList.add(156);
     }
 
     @Override
@@ -30,12 +33,9 @@ public class ACM extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 40; i <= 46; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-
-        emptyString += ",";
-
         return emptyString;
     }
 
@@ -56,11 +56,9 @@ public class ACM extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         acmList.add("" + dbIndex);
-        for (int i = 40; i <= 46; i++) {
-            acmList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            acmList.add(varexpArraySplit.get(i));
         }
-        acmList.add(varexpArraySplit.get(156).toString());
-
         this.acmList.add(acmList);
 
     }
