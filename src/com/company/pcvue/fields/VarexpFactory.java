@@ -76,6 +76,10 @@ public class VarexpFactory {
             case "B":
                 return new BACnet();
 
+            //For Common
+            case "common":
+                return new Common();
+
             //For 60870-5-104
             case "4":
                 return new IEC60870_Master();
