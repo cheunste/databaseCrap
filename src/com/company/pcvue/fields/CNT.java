@@ -7,31 +7,32 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class CNT extends VarexpVariable {
-    public ArrayList<List<String>> cntList;
+    private ArrayList<List<String>> cntList;
 
     public CNT() {
         this.cntList = new ArrayList<>();
         setTableName("cnt");
-
+        setPositionList();
     }
 
-
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 59; i <= 66; i++) {
+            varexpPositionList.add(i);
+        }
+        for (int i = 79; i <= 84; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(155);
+        varexpPositionList.add(156);
     }
 
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 59; i <= 66; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-        for (int i = 79; i <= 84; i++) {
-            emptyString += ",";
-        }
-        emptyString += ",";
-        emptyString += ",";
 
         return emptyString;
     }
@@ -53,14 +54,9 @@ public class CNT extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         cntList.add("" + dbIndex);
-        for (int i = 59; i <= 66; i++) {
+        for (int i : varexpPositionList) {
             cntList.add(varexpArraySplit.get(i).toString());
         }
-        for (int i = 79; i <= 84; i++) {
-            cntList.add(varexpArraySplit.get(i).toString());
-        }
-        cntList.add(varexpArraySplit.get(155).toString());
-        cntList.add(varexpArraySplit.get(156).toString());
 
         this.cntList.add(cntList);
 

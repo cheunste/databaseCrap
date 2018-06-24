@@ -8,25 +8,31 @@ import java.util.List;
  */
 public class CXT extends VarexpVariable {
 
-    public ArrayList<List<String>> cxtList;
+    private ArrayList<List<String>> cxtList;
 
     public CXT() {
         this.cxtList = new ArrayList<>();
         setTableName("cxt");
+        setPositionList();
     }
 
-    @Override
-    void VarexpVariable() {
 
+    @Override
+    void setPositionList() {
+        for (int i = 99; i <= 102; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(156);
     }
 
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 99; i <= 102; i++) {
+        for (int i : varexpPositionList) {
+
             emptyString += ",";
         }
-        emptyString += ",";
+
         return emptyString;
     }
 
@@ -42,11 +48,9 @@ public class CXT extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         cxtList.add("" + dbIndex);
-        for (int i = 99; i <= 102; i++) {
+        for (int i : varexpPositionList) {
             cxtList.add(varexpArraySplit.get(i).toString());
         }
-        cxtList.add(varexpArraySplit.get(156).toString());
-
         this.cxtList.add(cxtList);
     }
 

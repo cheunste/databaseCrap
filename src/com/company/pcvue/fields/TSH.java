@@ -7,31 +7,33 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class TSH extends VarexpVariable {
-    public ArrayList<List<String>> tshList;
+    private ArrayList<List<String>> tshList;
 
     public TSH() {
         this.tshList = new ArrayList<>();
         setTableName("tsh");
-
+        setPositionList();
     }
 
 
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 40; i <= 42; i++) {
+            varexpPositionList.add(i);
+        }
+        for (int i = 49; i <= 54; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(156);
     }
 
     @Override
     String empty() {
         String emptyString = "";
 
-        for (int i = 40; i <= 42; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-        for (int i = 49; i <= 54; i++) {
-            emptyString += ",";
-        }
-        emptyString += ",";
 
         return emptyString;
     }
@@ -53,13 +55,9 @@ public class TSH extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         tshList.add("" + dbIndex);
-        for (int i = 40; i <= 42; i++) {
-            tshList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            tshList.add(varexpArraySplit.get(i));
         }
-        for (int i = 49; i <= 54; i++) {
-            tshList.add(varexpArraySplit.get(i).toString());
-        }
-        tshList.add(varexpArraySplit.get(156).toString());
         this.tshList.add(tshList);
 
     }

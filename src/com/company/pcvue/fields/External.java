@@ -7,18 +7,17 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class External extends VarexpVariable {
-    public ArrayList<List<String>> externalList;
+    private ArrayList<List<String>> externalList;
 
     public External() {
         this.externalList = new ArrayList<>();
         setTableName("external");
-
+        setPositionList();
     }
 
-
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        varexpPositionList.add(18);
     }
 
     @Override
@@ -46,7 +45,9 @@ public class External extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         externalList.add("" + dbIndex);
-        externalList.add(varexpArraySplit.get(59).toString());
+        for (int i : varexpPositionList) {
+            externalList.add(varexpArraySplit.get(i).toString());
+        }
 
         this.externalList.add(externalList);
 

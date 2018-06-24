@@ -7,25 +7,27 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class SNMP extends VarexpVariable {
-    public ArrayList<List<String>> snmpList;
+    private ArrayList<List<String>> snmpList;
 
     public SNMP() {
         this.snmpList = new ArrayList<>();
         setTableName("snmp");
+        setPositionList();
 
     }
 
 
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 229; i <= 238; i++) {
+            varexpPositionList.add(i);
+        }
     }
 
     @Override
     String empty() {
         String emptyString = "";
-
-        for (int i = 229; i <= 238; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
         return emptyString;
@@ -48,8 +50,8 @@ public class SNMP extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         snmpList.add("" + dbIndex);
-        for (int i = 229; i <= 238; i++) {
-            snmpList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            snmpList.add(varexpArraySplit.get(i));
         }
 
         this.snmpList.add(snmpList);

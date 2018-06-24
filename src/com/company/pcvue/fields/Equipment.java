@@ -12,19 +12,25 @@ public class Equipment extends VarexpVariable {
     public Equipment() {
         this.equipmentList = new ArrayList<>();
         setTableName("equipment");
-
     }
 
+    @Override
+    void setPositionList() {
+        for (int i = 29; i <= 36; i++) {
+            varexpPositionList.add(i);
+        }
+    }
 
     @Override
-    void VarexpVariable() {
+    String insertToDB() {
 
+        return "";
     }
 
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 29; i <= 36; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
         return emptyString;
@@ -47,7 +53,7 @@ public class Equipment extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         equipmentList.add("" + dbIndex);
-        for (int i = 29; i <= 36; i++) {
+        for (int i : varexpPositionList) {
             equipmentList.add(varexpArraySplit.get(i));
         }
 

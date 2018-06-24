@@ -7,24 +7,28 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class OPC extends VarexpVariable {
-    public ArrayList<List<String>> opcList;
+    private ArrayList<List<String>> opcList;
 
     public OPC() {
         this.opcList = new ArrayList<>();
         setTableName("opc");
+        setPositionList();
 
     }
 
 
     @Override
-    void VarexpVariable() {
+    void setPositionList() {
+        for (int i = 144; i <= 150; i++) {
+            varexpPositionList.add(i);
+        }
 
     }
 
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 144; i <= 150; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
 
@@ -48,8 +52,8 @@ public class OPC extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         opcList.add("" + dbIndex);
-        for (int i = 144; i <= 150; i++) {
-            opcList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            opcList.add(varexpArraySplit.get(i));
         }
 
         this.opcList.add(opcList);

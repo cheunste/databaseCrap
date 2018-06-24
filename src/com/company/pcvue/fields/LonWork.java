@@ -7,24 +7,26 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class LonWork extends VarexpVariable {
-    public ArrayList<List<String>> lonworkList;
+    private ArrayList<List<String>> lonworkList;
 
     public LonWork() {
         this.lonworkList = new ArrayList<>();
         setTableName("lonwork");
-
+        setPositionList();
     }
 
 
     @Override
-    void VarexpVariable() {
-
+    void setPositionList() {
+        for (int i = 109; i <= 117; i++) {
+            varexpPositionList.add(i);
+        }
     }
 
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 109; i <= 117; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
 
@@ -48,10 +50,9 @@ public class LonWork extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         lonworkList.add("" + dbIndex);
-        for (int i = 109; i <= 117; i++) {
-            lonworkList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            lonworkList.add(varexpArraySplit.get(i));
         }
-
         this.lonworkList.add(lonworkList);
 
     }
