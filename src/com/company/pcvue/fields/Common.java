@@ -16,12 +16,23 @@ public class Common extends VarexpVariable {
     //Constructor, I guess
     public Common() {
         setTableName("Common");
+        setPositionList();
     }
-
 
     @Override
     void setPositionList() {
 
+        for (int i = 0; i <= 28; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(39);
+        for (int i = 129; i <= 143; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(173);
+        varexpPositionList.add(177);
+        varexpPositionList.add(178);
+        varexpPositionList.add(240);
     }
 
     @Override
@@ -52,17 +63,9 @@ public class Common extends VarexpVariable {
         //Add the index Number. This will be used as the ID reference to the DB
         commonArrayList.add("" + dbIndex);
 
-        for (int i = 0; i<=28; i++){
-            commonArrayList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            commonArrayList.add(varexpArraySplit.get(i));
         }
-        commonArrayList.add(varexpArraySplit.get(39).toString());
-        for (int i = 129; i<=143; i++){
-            commonArrayList.add(varexpArraySplit.get(i).toString());
-        }
-        commonArrayList.add(varexpArraySplit.get(173).toString());
-        commonArrayList.add(varexpArraySplit.get(177).toString());
-        commonArrayList.add(varexpArraySplit.get(178).toString());
-        commonArrayList.add(varexpArraySplit.get(240).toString());
 
         this.commonList = commonArrayList;
         //this.acmList.add(acmList);

@@ -12,12 +12,20 @@ public class CTV extends VarexpVariable {
     public CTV() {
         this.ctvList = new ArrayList<>();
         setTableName("ctv");
+        setPositionList();
     }
 
 
     @Override
     void setPositionList() {
-
+        for (int i = 59; i <= 66; i++) {
+            varexpPositionList.add(i);
+        }
+        for (int i = 69; i <= 71; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(155);
+        varexpPositionList.add(156);
     }
 
     @Override
@@ -42,14 +50,9 @@ public class CTV extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         ctvList.add("" + dbIndex);
-        for (int i = 59; i <= 66; i++) {
-            ctvList.add(varexpArraySplit.get(i).toString());
+        for (int i : varexpPositionList) {
+            ctvList.add(varexpArraySplit.get(i));
         }
-        for (int i = 69; i <= 71; i++) {
-            ctvList.add(varexpArraySplit.get(i).toString());
-        }
-        ctvList.add(varexpArraySplit.get(155).toString());
-        ctvList.add(varexpArraySplit.get(156).toString());
 
         this.ctvList.add(ctvList);
     }

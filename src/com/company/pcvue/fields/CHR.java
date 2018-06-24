@@ -13,11 +13,21 @@ public class CHR extends VarexpVariable {
     public CHR() {
         this.chrList = new ArrayList<>();
         setTableName("chr");
+        setPositionList();
     }
 
 
     @Override
     void setPositionList() {
+
+        for (int i = 59; i <= 66; i++) {
+            varexpPositionList.add(i);
+        }
+        for (int i = 89; i <= 94; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(155);
+        varexpPositionList.add(156);
 
     }
 
@@ -29,14 +39,10 @@ public class CHR extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 59; i <= 66; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-        for (int i = 89; i <= 94; i++) {
-            emptyString += ",";
-        }
-        emptyString += ",";
-        emptyString += ",";
+
         return emptyString;
     }
 
@@ -52,15 +58,9 @@ public class CHR extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         chrList.add("" + dbIndex);
-        for (int i = 59; i <= 66; i++) {
+        for (int i : varexpPositionList) {
             chrList.add(varexpArraySplit.get(i).toString());
         }
-        for (int i = 89; i <= 94; i++) {
-            chrList.add(varexpArraySplit.get(i).toString());
-        }
-        chrList.add(varexpArraySplit.get(155).toString());
-        chrList.add(varexpArraySplit.get(156).toString());
-
         this.chrList.add(chrList);
     }
 
