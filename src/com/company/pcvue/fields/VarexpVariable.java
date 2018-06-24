@@ -19,18 +19,16 @@ import java.util.List;
  */
 
 abstract class VarexpVariable {
+    //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
+    protected String tableName;
+    //This is the list you'll be using to keep track of what position a varexp variable uses;
+    //TODO: Implement the associated method
+    protected List<Integer> varexpPositionList = new ArrayList<Integer>();
     //Member variable. This represents the maximum amount of fields that PcVue will have.
     //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
     private int FIELD_NUM = 250;
-
     //This is the same varexpArrayList, but splitted based on ','
     private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
-
-    //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
-    private String tableName;
-
-    protected VarexpVariable() {
-    }
 
     //return FIELD_NUM
     public int getFieldNum() {
@@ -41,7 +39,11 @@ abstract class VarexpVariable {
         return this.varexpArrayList;
     }
 
-    abstract void VarexpVariable();
+    //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
+    public List<Integer> getVarexpPositionList() {
+        return this.varexpPositionList;
+    }
+
 
     public String getTableName() {
         return this.tableName;
@@ -51,6 +53,9 @@ abstract class VarexpVariable {
         this.tableName = tableName;
     }
 
+
+    //This is the method all sub class will have to implement in order to get an array of position indexes
+    abstract void setPositionList();
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
 
