@@ -12,12 +12,16 @@ public class BIT extends VarexpVariable {
     public BIT() {
         this.bitList = new ArrayList<>();
         setTableName("bit");
+        setPositionList();
     }
 
 
     @Override
     void setPositionList() {
-
+        for (int i = 40; i <= 42; i++) {
+            varexpPositionList.add(i);
+        }
+        varexpPositionList.add(156);
     }
 
     @Override
@@ -28,10 +32,11 @@ public class BIT extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 40; i <= 42; i++) {
+
+        for (int i : varexpPositionList) {
+
             emptyString += "";
         }
-        emptyString += "";
         return emptyString;
     }
 
@@ -47,11 +52,9 @@ public class BIT extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         bitList.add("" + dbIndex);
-        for (int i = 40; i <= 42; i++) {
+        for (int i : varexpPositionList) {
             bitList.add(varexpArraySplit.get(i).toString());
         }
-        bitList.add(varexpArraySplit.get(156).toString());
-
         this.bitList.add(bitList);
     }
 

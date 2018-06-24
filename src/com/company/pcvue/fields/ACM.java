@@ -33,12 +33,9 @@ public class ACM extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 40; i <= 46; i++) {
+        for (int i : varexpPositionList) {
             emptyString += ",";
         }
-
-        emptyString += ",";
-
         return emptyString;
     }
 

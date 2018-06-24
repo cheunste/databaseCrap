@@ -13,12 +13,19 @@ public class BACnet extends VarexpVariable {
     public BACnet() {
         this.bacList = new ArrayList<>();
         setTableName("bac");
+        setPositionList();
     }
 
 
     @Override
     void setPositionList() {
-
+        for (int i = 162; i <= 172; i++) {
+            getVarexpPositionList().add(i);
+        }
+        getVarexpPositionList().add(203);
+        getVarexpPositionList().add(204);
+        getVarexpPositionList().add(217);
+        getVarexpPositionList().add(218);
     }
 
     @Override
@@ -29,14 +36,9 @@ public class BACnet extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        for (int i = 162; i <= 172; i++) {
+        for (int i : getVarexpPositionList()) {
             emptyString += ",";
         }
-
-        emptyString += ",";
-        emptyString += ",";
-        emptyString += ",";
-        emptyString += ",";
 
         return emptyString;
     }
@@ -59,13 +61,10 @@ public class BACnet extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         bacList.add("" + dbIndex);
-        for (int i = 162; i <= 172; i++) {
-            bacList.add(varexpArraySplit.get(i).toString());
+
+        for (int i : getVarexpPositionList()) {
+            bacList.add(varexpArraySplit.get(i));
         }
-        bacList.add(varexpArraySplit.get(203).toString());
-        bacList.add(varexpArraySplit.get(204).toString());
-        bacList.add(varexpArraySplit.get(217).toString());
-        bacList.add(varexpArraySplit.get(218).toString());
 
         this.bacList.add(bacList);
     }
