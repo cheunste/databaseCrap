@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ATS extends VarexpVariable {
 
-    public ArrayList<List<String>> atsList;
+    private ArrayList<List<String>> atsList;
 
     public ATS() {
         this.atsList = new ArrayList<>();

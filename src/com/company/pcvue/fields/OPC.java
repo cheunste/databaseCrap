@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class OPC extends VarexpVariable {
-    public ArrayList<List<String>> opcList;
+    private ArrayList<List<String>> opcList;
 
     public OPC() {
         this.opcList = new ArrayList<>();

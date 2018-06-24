@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class CMD extends VarexpVariable {
-    public ArrayList<List<String>> cmdList;
+    private ArrayList<List<String>> cmdList;
 
     public CMD() {
         this.cmdList = new ArrayList<>();

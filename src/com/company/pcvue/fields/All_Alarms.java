@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/21/2018.
  */
 public class All_Alarms extends VarexpVariable {
-    public ArrayList<List<String>> allAlarmsList;
+    private ArrayList<List<String>> allAlarmsList;
 
     public All_Alarms() {
         this.allAlarmsList = new ArrayList<>();

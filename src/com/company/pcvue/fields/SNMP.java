@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class SNMP extends VarexpVariable {
-    public ArrayList<List<String>> snmpList;
+    private ArrayList<List<String>> snmpList;
 
     public SNMP() {
         this.snmpList = new ArrayList<>();

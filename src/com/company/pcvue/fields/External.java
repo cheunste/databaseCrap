@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class External extends VarexpVariable {
-    public ArrayList<List<String>> externalList;
+    private ArrayList<List<String>> externalList;
 
     public External() {
         this.externalList = new ArrayList<>();

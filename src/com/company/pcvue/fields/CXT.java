@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class CXT extends VarexpVariable {
 
-    public ArrayList<List<String>> cxtList;
+    private ArrayList<List<String>> cxtList;
 
     public CXT() {
         this.cxtList = new ArrayList<>();

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class REG extends VarexpVariable {
-    public ArrayList<List<String>> regList;
+    private ArrayList<List<String>> regList;
 
     public REG() {
         this.regList = new ArrayList<>();

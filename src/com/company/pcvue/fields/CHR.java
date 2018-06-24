@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class CHR extends VarexpVariable {
 
-    public ArrayList<List<String>> chrList;
+    private ArrayList<List<String>> chrList;
 
     public CHR() {
         this.chrList = new ArrayList<>();

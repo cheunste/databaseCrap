@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class CTV extends VarexpVariable {
-    public ArrayList<List<String>> ctvList;
+    private ArrayList<List<String>> ctvList;
 
     public CTV() {
         this.ctvList = new ArrayList<>();

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class DNP3_Master extends VarexpVariable {
-    public ArrayList<List<String>> dnp3_masterList;
+    private ArrayList<List<String>> dnp3_masterList;
 
     public DNP3_Master() {
         this.dnp3_masterList = new ArrayList<>();

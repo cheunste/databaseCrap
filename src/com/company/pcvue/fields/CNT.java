@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class CNT extends VarexpVariable {
-    public ArrayList<List<String>> cntList;
+    private ArrayList<List<String>> cntList;
 
     public CNT() {
         this.cntList = new ArrayList<>();

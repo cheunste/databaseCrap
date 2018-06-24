@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class DDE extends VarexpVariable {
-    public ArrayList<List<String>> ddeList;
+    private ArrayList<List<String>> ddeList;
 
     public DDE() {
         this.ddeList = new ArrayList<>();

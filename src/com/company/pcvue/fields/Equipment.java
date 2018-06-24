@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class Equipment extends VarexpVariable {
-    public ArrayList<List<String>> equipmentList;
+    private ArrayList<List<String>> equipmentList;
 
     public Equipment() {
         this.equipmentList = new ArrayList<>();

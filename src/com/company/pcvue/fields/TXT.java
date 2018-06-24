@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class TXT extends VarexpVariable {
-    public ArrayList<List<String>> txtList;
+    private ArrayList<List<String>> txtList;
 
     public TXT() {
         this.txtList = new ArrayList<>();

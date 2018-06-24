@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BACnet extends VarexpVariable {
 
-    public ArrayList<List<String>> bacList;
+    private ArrayList<List<String>> bacList;
 
     public BACnet() {
         this.bacList = new ArrayList<>();

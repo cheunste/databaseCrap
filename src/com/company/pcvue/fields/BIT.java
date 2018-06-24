@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/20/2018.
  */
 public class BIT extends VarexpVariable {
-    public ArrayList<List<String>> bitList;
+    private ArrayList<List<String>> bitList;
 
     public BIT() {
         this.bitList = new ArrayList<>();

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class TSH extends VarexpVariable {
-    public ArrayList<List<String>> tshList;
+    private ArrayList<List<String>> tshList;
 
     public TSH() {
         this.tshList = new ArrayList<>();
