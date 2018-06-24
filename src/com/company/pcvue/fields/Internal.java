@@ -7,18 +7,17 @@ import java.util.List;
  * Created by Stephen on 5/28/2018.
  */
 public class Internal extends VarexpVariable {
-    public ArrayList<List<String>> internalList;
+    private ArrayList<List<String>> internalList;
 
     public Internal() {
         this.internalList = new ArrayList<>();
         setTableName("internal");
-
+        setPositionList();
     }
-
 
     @Override
     void setPositionList() {
-
+        varexpPositionList.add(17);
     }
 
     @Override
@@ -30,7 +29,9 @@ public class Internal extends VarexpVariable {
     @Override
     String empty() {
         String emptyString = "";
-        emptyString += ",";
+        for (int i : varexpPositionList) {
+            emptyString += ",";
+        }
 
         return emptyString;
     }
@@ -52,7 +53,9 @@ public class Internal extends VarexpVariable {
         List<String> varexpArraySplit = this.getVarexpList();
 
         internalList.add("" + dbIndex);
-        internalList.add(varexpArraySplit.get(17).toString());
+        for (int i : varexpPositionList) {
+            internalList.add(varexpArraySplit.get(i));
+        }
 
         this.internalList.add(internalList);
 
