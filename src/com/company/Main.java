@@ -102,6 +102,7 @@ public class Main {
                 VarexpFactory factoryVariable = new VarexpFactory();
                 VarexpVariable varexpType = null;
                 VarexpVariable varexpSource = null;
+                ArrayList<VarexpVariable> queue = new ArrayList<>();
                 for (List<String> subList : fullList) {
                     System.out.println(subList);
 
@@ -114,6 +115,7 @@ public class Main {
                     if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
                         varexpSource = factoryVariable.declareNewVariable("ALL");
                         varexpSource.setArrayList(subList.toString(), temp);
+                        //make a call to store in queue
                     }
 
                     varexpSource = factoryVariable.declareNewVariable(source);
@@ -146,7 +148,7 @@ public class Main {
 
                 //System.out.println("Done with wrting common to DB");
                 //TODO: Rewrite the entire writeDB method in sqlHandler
-                //sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
+                sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 //sqlHandler.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
                 //sqlHandler.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
                 //sqlHandler.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * This class handles the formatting of sql requests before passing them onto the dbConnector class.
@@ -14,13 +15,31 @@ import java.util.List;
  * Handling basic CRUD operations
  */
 public class SQLHandler {
-    //Constructor
-    public SQLHandler() {
 
+    //Constructor
+    private int batchTracker;
+    public SQLHandler() {
+        this.batchTracker = 0;
     }
 
     public void mapTables() {
 
+    }
+
+    public void insertQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) {
+        this.batchTracker++;
+
+        //Push to a queue
+        //If batchTracker exceeds...some arbitrary number, then create a new thread so that it sends a request to writeDB()
+        //reset batchTracker
+        if (batchTracker >= 100) {
+            writeThread();
+            batchTracker = 0;
+        }
+
+    }
+
+    private void writeThread() {
     }
 
     /*
