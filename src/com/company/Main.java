@@ -111,10 +111,24 @@ public class Main {
                     varexpType = factoryVariable.declareNewVariable(type);
                     varexpType.setArrayList(subList.toString(), temp);
 
+                    if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
+                        varexpSource = factoryVariable.declareNewVariable("ALL");
+                        varexpSource.setArrayList(subList.toString(), temp);
+                    }
+
                     varexpSource = factoryVariable.declareNewVariable(source);
                     varexpSource.setArrayList(subList.toString(), temp);
 
-                    //allAlarms.setArrayList(subList.toString(), temp);
+                    /*
+                    At this point, you might want to consider pushing all of this shit into a queue.
+                    Because by this point you're running into a tradeoff.
+                    By makign your code more readable, you're going to have to add a queue or else things will get erased
+                    (due to you calling a new instance every time) before things get inserted into the DB.
+
+                    so you can store the varexpType and varexpSource, along with the temp, and the type/source table name
+
+                    Also, you need to take care of the all_alarms case
+                     */
 
                     //This following case statemnets determine the "source"  of the tag and then assign it to their
                     //respective table. See page 11 of the varexp format manual for detail

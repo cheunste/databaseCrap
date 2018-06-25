@@ -96,6 +96,8 @@ public class VarexpFactory {
             case "S":
                 return new SNMP();
 
+            case "ALL":
+                return new All_Alarms();
             default:
                 //Handle other unexpect cases here
                 return null;
