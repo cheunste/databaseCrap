@@ -18,7 +18,7 @@ import java.util.List;
  * any sense, then you need to read the varexp manual.
  */
 
-abstract class VarexpVariable {
+public abstract class VarexpVariable {
     //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
     protected String tableName;
     //This is the list you'll be using to keep track of what position a varexp variable uses;

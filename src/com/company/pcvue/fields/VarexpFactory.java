@@ -8,7 +8,7 @@ package com.company.pcvue.fields;
  */
 public class VarexpFactory {
 
-    public VarexpVariable declareNewClass(String newVarexpVariable) {
+    public VarexpVariable declareNewVariable(String newVarexpVariable) {
         VarexpVariable varexpVariable = null;
 
         switch (newVarexpVariable) {

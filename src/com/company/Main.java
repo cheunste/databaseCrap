@@ -76,6 +76,7 @@ public class Main {
                 //Create a fileLIst arrayList to hold all varexp variables
                 ArrayList<List<String>> fileList = new ArrayList();
                 ArrayList<List<String>> fullList = new ArrayList();
+                VarexpFactory common = new VarexpFactory();
                 while ((line = fileBR.readLine()) != null) {
                     String appendedString = line;
                     //System.out.println(appendedString);
@@ -98,107 +99,23 @@ public class Main {
                 // stuff them into their respective tables
 
                 temp = 0;
+                VarexpFactory factoryVariable = new VarexpFactory();
+                VarexpVariable varexpType = null;
+                VarexpVariable varexpSource = null;
                 for (List<String> subList : fullList) {
                     System.out.println(subList);
-                    switch (subList.get(0).toUpperCase()) {
-                        case "ACM":
-                            System.out.println("Do acm Stuff");
-                            acm.setArrayList(subList.toString(), temp);
-                            break;
-                        case "ALA":
-                            System.out.println("Do ala Stuff");
-                            ala.setArrayList(subList.toString(), temp);
-                            break;
-                        case "ATS":
-                            System.out.println("Do ats Stuff");
-                            ats.setArrayList(subList.toString(), temp);
-                            break;
-                        case "BIT":
-                            System.out.println("Do bit Stuff");
-                            bit.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CHR":
-                            System.out.println("Do ctr Stuff");
-                            chr.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CMD":
-                            System.out.println("Do cmd Stuff");
-                            cmd.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CNT":
-                            System.out.println("Do cnt stuff");
-                            cnt.setArrayList(subList.toString(), temp);
-                        case "CTV":
-                            System.out.println("Do ctv Stuff");
-                            ctv.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CXT":
-                            System.out.println("Do cxt Stuff");
-                            cxt.setArrayList(subList.toString(), temp);
-                            break;
-                        case "REG":
-                            System.out.println("Do reg Stuff");
-                            reg.setArrayList(subList.toString(), temp);
-                            break;
-                        case "TXT":
-                            System.out.println("Do txt Stuff");
-                            txt.setArrayList(subList.toString(), temp);
-                            break;
-                        case "TSH":
-                            System.out.println("Do tsh Stuff");
-                            tsh.setArrayList(subList.toString(), temp);
-                            break;
-                    }
-                    allAlarms.setArrayList(subList.toString(), temp);
-                    switch (subList.get(16).toUpperCase()) {
-                        //For equpiment
-                        case "E":
-                            equipment.setArrayList(subList.toString(), temp);
-                            break;
-                        //For Internal
-                        case "I":
-                            internal.setArrayList(subList.toString(), temp);
-                            break;
-                        //For external
-                        case "X":
-                            external.setArrayList(subList.toString(), temp);
-                            break;
-                        //For DDE
-                        case "D":
-                            dde.setArrayList(subList.toString(), temp);
-                            break;
-                        //For OPC
-                        case "O":
-                            opc.setArrayList(subList.toString(), temp);
-                            break;
-                        //For Lonwork
-                        case "L":
-                            lonWork.setArrayList(subList.toString(), temp);
-                            break;
-                        //For BACnet
-                        case "B":
-                            bac.setArrayList(subList.toString(), temp);
-                            break;
-                        //For 60870-5-104
-                        case "4":
-                            iec60870Master.setArrayList(subList.toString(), temp);
-                            break;
-                        //For 61850
-                        case "8":
-                            iec61850_master.setArrayList(subList.toString(), temp);
-                            break;
-                        //For DNP3
-                        case "3":
-                            dnp3.setArrayList(subList.toString(), temp);
-                            break;
-                        //For SNMP Manager
-                        case "S":
-                            smnp.setArrayList(subList.toString(), temp);
-                            break;
-                        default:
-                            //Handle other unexpect cases here
-                            break;
-                    }
+
+                    String type = subList.get(0).toUpperCase();
+                    String source = subList.get(16).toUpperCase();
+
+                    varexpType = factoryVariable.declareNewVariable(type);
+                    varexpType.setArrayList(subList.toString(), temp);
+
+                    varexpSource = factoryVariable.declareNewVariable(source);
+                    varexpSource.setArrayList(subList.toString(), temp);
+
+                    //allAlarms.setArrayList(subList.toString(), temp);
+
                     //This following case statemnets determine the "source"  of the tag and then assign it to their
                     //respective table. See page 11 of the varexp format manual for detail
 
@@ -215,7 +132,7 @@ public class Main {
 
                 //System.out.println("Done with wrting common to DB");
                 //TODO: Rewrite the entire writeDB method in sqlHandler
-                sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
+                //sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
                 //sqlHandler.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
                 //sqlHandler.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
                 //sqlHandler.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
