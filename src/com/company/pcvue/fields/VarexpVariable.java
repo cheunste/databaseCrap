@@ -39,6 +39,13 @@ public abstract class VarexpVariable {
         return this.varexpArrayList;
     }
 
+    public ArrayList<List<String>> getArrayList() {
+        return null;
+    }
+
+    ;
+
+
     //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
     public List<Integer> getVarexpPositionList() {
         return this.varexpPositionList;
@@ -78,7 +85,7 @@ public abstract class VarexpVariable {
      */
     public void setvarexpArrayList(String varexpString) {
 
-        String[] temp = varexpString.split(",");
+        String[] temp = varexpString.replace("[", "").replace("]", "").split(",");
         this.varexpArrayList.clear();
         if (temp.length < FIELD_NUM) {
             try {
