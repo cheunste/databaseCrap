@@ -16,6 +16,7 @@ public class ACM extends VarexpVariable {
     }
 
 
+
     @Override
     void setPositionList() {
         for (int i = 40; i <= 46; i++) {
@@ -39,6 +40,7 @@ public class ACM extends VarexpVariable {
         return "RIGHT JOIN  acm on common.variable_id=acm.acm_variable_id";
     }
 
+    @Override
     public ArrayList<List<String>> getArrayList() {
         return this.acmList;
     }
