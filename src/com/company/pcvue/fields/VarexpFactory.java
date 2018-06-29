@@ -48,6 +48,9 @@ public class VarexpFactory {
             case "TSH":
                 return new TSH();
 
+            //For common:
+            case "COMMON":
+                return new Common();
             //For equpiment
             case "E":
                 return new Equipment();
