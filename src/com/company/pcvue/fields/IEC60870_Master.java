@@ -41,6 +41,24 @@ public class IEC60870_Master extends VarexpVariable {
         return "RIGHT JOIN  iec60870_master on common.variable_id=iec60870_master.iec60870_master_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return "CREATE TABLE iec60870_master(" +
+                "iec60870_variable_id int unsigned  primary key," +
+                "iec60870_Network_name TEXT(50) NULL," +
+                "iec60870_Device_name TEXT(50) NULL," +
+                "iec60870_sector_name TEXT(50) NULL," +
+                "iec60870_IO_Address TEXT(50) NULL," +
+                "iec60870_Type TEXT(50) NULL," +
+                "iec60870_Writing_address TEXT(50) NULL," +
+                "iec60870_select_before_operate TEXT(50) NULL," +
+                "iec60870_Qualifier TEXT(50) NULL," +
+                "iec60870_write_time_tagged TEXT(50) NULL," +
+                "iec60870_mapping_bit TEXT(50) NULL," +
+                "iec60870_signed TEXT(50) NULL," +
+                "foreign key fk_equipment(iec60870_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.iec60870_masterList;
     }

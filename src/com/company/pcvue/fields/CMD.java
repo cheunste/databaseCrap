@@ -39,6 +39,18 @@ public class CMD extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return "CREATE TABLE cmd(" +
+                "cmd_variable_id int unsigned  primary key," +
+                "cmd_Log_bit_0_to_1 TEXT(50) NULL," +
+                "cmd_Log_bit_1_to_0 TEXT(50) NULL," +
+                "cmd_reserved TEXT(50) NULL," +
+                "cmd_Authorisation_Level TEXT(50) NULL," +
+                "cmd_VCR TEXT(50) NULL ," +
+                "foreign key fk_equipment(cmd_variable_id) references common(variable_id));";
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> cmdList = new ArrayList<>();

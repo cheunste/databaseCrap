@@ -39,6 +39,26 @@ public class CTV extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return "CREATE TABLE ctv(" +
+                "	ctv_variable_id int unsigned  primary key," +
+                "	ctv_Measurement_Units TEXT(50) NULL," +
+                "	ctv_Deadband TEXT(50) NULL," +
+                "	ctv_Minimium_display_value TEXT(50) NULL," +
+                "	ctv_Maximum_display_value TEXT(50) NULL," +
+                "	ctv_Scaling TEXT(50) NULL," +
+                "	ctv_Minimum_equipment_value TEXT(50) NULL," +
+                "	ctv_Maximum_equipment_value TEXT(50) NULL," +
+                "	ctv_Display_format TEXT(50) NULL," +
+                "	ctv_Minimum_control_value TEXT(50) NULL," +
+                "	ctv_maximum_control_value TEXT(50) NULL," +
+                "	ctv_authorisation_level TEXT(50) NULL," +
+                "	ctv_deadband_type TEXT(50) NULL," +
+                "	ctv_VCR TEXT(50) NULL ," +
+                "foreign key fk_equipment(ctv_variable_id) references common(variable_id));";
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> ctvList = new ArrayList<>();

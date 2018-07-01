@@ -42,6 +42,19 @@ public class All_Alarms extends VarexpVariable {
         return "RIGHT JOIN  all_alarms on common.variable_id=all_alarms.all_alarms_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return "CREATE TABLE all_alarms(" +
+                "all_alarms_variable_id int unsigned  primary key," +
+                "	all_alarms_Expression_Branch TEXT(50) NULL," +
+                "	all_alarms_Expression_template_for_alarm_mask TEXT(50) NULL," +
+                "	all_alarms_Latch_behavior TEXT(50) NULL," +
+                "	all_alarms_Acknowledgement_level TEXT(50) NULL," +
+                "	all_alarms_Mask_level TEXT(50) NULL," +
+                "	all_alarms_Maintenance_level TEXT(50) NULL ," +
+                "foreign key fk_equipment(all_alarms_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.allAlarmsList;
     }

@@ -39,6 +39,24 @@ public class SNMP extends VarexpVariable {
         return "RIGHT JOIN  snmp on common.variable_id=snmp.snmp_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE snmp(" +
+                        "snmp_variable_id int unsigned  primary key," +
+                        "snmp_Network_Name TEXT(50) NULL," +
+                        "snmp_Device_name TEXT(50) NULL," +
+                        "snmp_polling_group TEXT(50) NULL," +
+                        "snmp_data_type TEXT(50) NULL," +
+                        "snmp_OID TEXT(50) NULL," +
+                        "snmp_Disable_reading TEXT(50) NULL," +
+                        "snmp_with_initial_value TEXT(50) NULL," +
+                        "snmp_initial_value TEXT(50) NULL," +
+                        "snmp_offset TEXT(50) NULL," +
+                        "snmp_extraction_field TEXT(50) NULL," +
+                        "foreign key fk_equipment(snmp_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.snmpList;
     }

@@ -36,6 +36,21 @@ public class Equipment extends VarexpVariable {
         return "RIGHT JOIN  equipment on common.variable_id=equipment.equipment_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE equipment(" +
+                        "equipment_variable_id int unsigned  primary key," +
+                        "equipment_Card_Number TEXT(50) NOT NULL," +
+                        "Equipment_Name TEXT(50) NOT NULL," +
+                        "equipment_Frame_Name TEXT(50) NOT NULL," +
+                        "equipment_Format TEXT(50) NOT NULL," +
+                        "equipment_Equipment_Index TEXT(50) NOT NULL," +
+                        "equipment_Complementary_Index TEXT(50) NOT NULL," +
+                        "equipment_Size TEXT(50) NOT NULL," +
+                        "foreign key fk_equipment(equipment_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.equipmentList;
     }

@@ -72,6 +72,9 @@ public abstract class VarexpVariable {
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
 
+    //abstract method for getting commands to create table. You need this in order to create tables in a fresh install
+    public abstract String createTableCmd();
+
     public abstract void setArrayList(String varexpString, int dbIndex);
 
     //This function splits a varexp variable into its respective fields and then
@@ -83,7 +86,7 @@ public abstract class VarexpVariable {
         - Create a tempList arraylist<String> and copy all the crap from above to it
         - set varexpLIst to the new temp list
      */
-    public void setvarexpArrayList(String varexpString) {
+    protected void setvarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.replace("[", "").replace("]", "").split(",");
         this.varexpArrayList.clear();
@@ -92,6 +95,8 @@ public abstract class VarexpVariable {
                 for (int i = 0; i < temp.length; i++) {
                     this.varexpArrayList.add(i, temp[i]);
                 }
+                //This will pad the variable with extra commas until it reaches the field number.
+                //This will ensure that all variables have the exact number of fields as FIELD_NUM
                 for (int j = temp.length + 1; j <= FIELD_NUM; j++) {
                     this.varexpArrayList.add(" ");
                 }

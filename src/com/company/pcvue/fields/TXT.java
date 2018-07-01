@@ -37,6 +37,18 @@ public class TXT extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE txt(" +
+                        "txt_variable_id int unsigned  primary key," +
+                        "	txt_Maximum_number_of_characters TEXT(50) NULL," +
+                        "	txt_write_authorised TEXT(50) NULL," +
+                        "	txt_display_format TEXT(50) NULL," +
+                        "	txt_VCR TEXT(50) NULL ," +
+                        "foreign key fk_equipment(txt_variable_id) references common(variable_id));";
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> txtList = new ArrayList<>();

@@ -5,21 +5,24 @@ import com.company.pcvue.fields.*;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.*;
 
 /**
  * Created by Stephen on 6/23/2018.
  * <p>
  * This class imports the varexp.dat file into the Mysql database
  */
-public class Import {
+public class Import implements Runnable {
+    private String[] args;
+    private Buffer varQueue;
 
-    public Import() {
-
+    public Import(String[] args, Buffer buffer) throws IOException, SQLException {
+        this.args = args;
+        this.varQueue = buffer;
     }
 
-    public void importFile(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
+
+    public void importFile() throws IOException, ArrayIndexOutOfBoundsException, SQLException {
         try {
             if (args.length == 2) {
                 String path = args[0];
@@ -66,10 +69,7 @@ public class Import {
                 // stuff them into their respective tables
                 temp = 0;
                 VarexpFactory factoryVariable = new VarexpFactory();
-                ArrayList<VarexpVariable> queue = new ArrayList<>();
 
-
-                int queueCounter = 0;
                 /*
                 TODO: Review
                 ok. So there are a few issues here
@@ -77,19 +77,24 @@ public class Import {
                     1) The common table
                     2) The source table
                     3) The alarm table ( iff ALA, ACM, ATS)
+                    4) The variable table (you know, ALA, CHM, CMD, etc). There's six of these
 
                  */
                 for (List<String> subList : fullList) {
-                    System.out.println(subList);
+                    VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
+                    commonType.setArrayList(subList.toString(), temp);
+                    varQueue.put(commonType);
+                    temp++;
+                }
+                temp = 0;
+                for (List<String> subList : fullList) {
+                    //System.out.println(subList);
 
                     String type = subList.get(0).toUpperCase();
                     String source = subList.get(16).toUpperCase();
 
-                    VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
                     VarexpVariable variableType = factoryVariable.declareNewVariable(type);
                     VarexpVariable sourceType = factoryVariable.declareNewVariable(source);
-
-                    commonType.setArrayList(subList.toString(), temp);
 
                     variableType.setArrayList(subList.toString(), temp);
 
@@ -108,11 +113,19 @@ public class Import {
                     a certain size, I want to start a thread to another funciton that will gather up all the varibles
                     in a batch and then submit it to mysql
                      */
-
+                    varQueue.put(variableType);
+                    varQueue.put(sourceType);
+                    if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
+                        VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
+                        allAlarmType.setArrayList(subList.toString(), temp);
+                        varQueue.put(allAlarmType);
+                        //make a call to store in queue
+                    }
                     temp++;
                 }
 
                 System.out.println("rows handled: " + temp);
+                varQueue.setDoneFlag();
                 //sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -120,6 +133,16 @@ public class Import {
         }
     }
 
+    @Override
+    public void run() {
+        try {
+            importFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

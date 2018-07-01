@@ -43,6 +43,29 @@ public class BACnet extends VarexpVariable {
         return "RIGHT JOIN  bac on common.variable_id=bac.bac_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE bacnet(" +
+                        "bacnet_variable_id int unsigned  primary key," +
+                        "bacnet_Network_alias TEXT(50) NULL," +
+                        "bacnet_device_alias TEXT(50) NULL," +
+                        "bacnet_object_type TEXT(50) NULL," +
+                        "bacnet_object_instance TEXT(50) NULL," +
+                        "bacnet_property TEXT(50) NULL," +
+                        "bacnet_fields TEXT(50) NULL," +
+                        "bacnet_frequency TEXT(50) NULL," +
+                        "bacnet_change_of_value_type TEXT(50) NULL," +
+                        "bacnet_priority TEXT(50) NULL," +
+                        "bacnet_EDE_file TEXT(50) NULL," +
+                        "bacnet_Rserved TEXT(50) NULL," +
+                        "bacnet_EDE_file_name TEXT(50) NULL," +
+                        "bacnet_EDE_Keyname TEXT(50) NULL," +
+                        "BACnet_variable_type TEXT(50) NULL," +
+                        "BACnet_alarm_type TEXT(50) NULL," +
+                        "foreign key fk_equipment(bacnet_variable_id) references common(variable_id));";
+    }
+
     ;
 
     public ArrayList<List<String>> getArrayList() {

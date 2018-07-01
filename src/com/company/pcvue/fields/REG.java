@@ -40,6 +40,24 @@ public class REG extends VarexpVariable {
         return "RIGHT JOIN reg on common.variable_id = reg.reg_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+
+        return "CREATE TABLE reg(" +
+                "	reg_variable_id int unsigned  primary key," +
+                "	reg_Measurement_Units TEXT(50) NULL," +
+                "	reg_Deadband TEXT(50) NULL," +
+                "	reg_Minimium_display_value TEXT(50) NULL," +
+                "	reg_Maximum_display_value TEXT(50) NULL," +
+                "	reg_Scaling TEXT(50) NULL," +
+                "	reg_Minimum_equipment_value TEXT(50) NULL," +
+                "	reg_Maximum_equipment_value TEXT(50) NULL," +
+                "	reg_Display_format TEXT(50) NULL," +
+                "	reg_Deadband_type TEXT(50) NULL," +
+                "	reg_VCR TEXT(50) NULL ," +
+                "foreign key fk_equipment(reg_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.regList;
     }

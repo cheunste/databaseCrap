@@ -47,6 +47,30 @@ public class CHR extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE chr(" +
+                        "chr_variable_id int unsigned  primary key," +
+                        "	chr_Measurement_Units TEXT(50) NULL," +
+                        "	chr_Deadband TEXT(50) NULL," +
+                        "	chr_Minimium_display_value TEXT(50) NULL," +
+                        "	chr_Maximum_display_value TEXT(50) NULL," +
+                        "	chr_Scaling TEXT(50) NULL," +
+                        "	chr_Minimum_equipment_value TEXT(50) NULL," +
+                        "	chr_Maximum_equipment_value TEXT(50) NULL," +
+                        "	chr_Display_format TEXT(50) NULL," +
+                        "	chr_Chronometer_period TEXT(50) NULL," +
+                        "	chr_Chronometer_increment TEXT(50) NULL," +
+                        "	chr_chrono_enable_bit_variable TEXT(50) NULL," +
+                        "	chr_Enable_on TEXT(50) NULL," +
+                        "	chr_chrono_reset_bit_variable TEXT(50) NULL," +
+                        "	chr_reset_on_transition TEXT(50) NULL," +
+                        "	chr_deadband_type TEXT(50) NULL," +
+                        "	chr_VCR TEXT(50) NULL ," +
+                        "foreign key fk_equipment(chr_variable_id) references common(variable_id));";
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> chrList = new ArrayList<>();

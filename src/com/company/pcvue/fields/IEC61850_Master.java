@@ -39,6 +39,24 @@ public class IEC61850_Master extends VarexpVariable {
         return "RIGHT JOIN  iec61850_master on common.variable_id=iec61850_master.iec61850_master_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return "CREATE TABLE iec61850_master(" +
+                "iec61850_variable_id int unsigned  primary key," +
+                "iec61850_Mapping_Type TEXT(50) NULL," +
+                "iec61850_61850_master_network_alias TEXT(50) NULL," +
+                "iec61850_61850_master_physical_device_alias TEXT(50) NULL," +
+                "iec61850_61850_master_data_group_alias TEXT(50) NULL," +
+                "iec61850_master_data_group_alias TEXT(50) NULL," +
+                "iec61850_field TEXT(50) NULL," +
+                "iec61850_reserved11 TEXT(50) NULL," +
+                "iec61850_data_object_identifier TEXT(50) NULL," +
+                "iec61850_control_model TEXT(50) NULL," +
+                "iec61850_time_provided TEXT(50) NULL," +
+                "iec61850_quality_provided TEXT(50) NULL," +
+                "foreign key fk_equipment(iec61850_variable_id) references common(variable_id));";
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.iec61850_masterList;
     }
