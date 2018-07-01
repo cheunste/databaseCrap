@@ -22,7 +22,7 @@ public class DNP3_Master extends VarexpVariable {
         }
         varexpPositionList.add(212);
         varexpPositionList.add(214);
-        for (int i = 220; i <= 228; i++) {
+        for (int i = 219; i <= 228; i++) {
             varexpPositionList.add(i);
         }
     }
