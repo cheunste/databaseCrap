@@ -70,8 +70,6 @@ public class SQLHandler implements Runnable {
         }
         String finalQuery = query.substring(0, query.length() - 2) + ")";
         finalQuery.replace('[', ' ').replace(']', ' ');
-        System.out.println(finalQuery);
-        System.out.println(finalQuery.length());
         try {
             statement.addBatch(finalQuery);
         } catch (Exception e) {
@@ -154,15 +152,10 @@ public class SQLHandler implements Runnable {
     @Override
     public void run() {
         try {
-            while (buffer.isDone != true) {
-                if (buffer.isReady() && buffer.getSize() > 0) {
-                    //for (int i = 0; i <=buffer.getQueueLimit(); i++)
-                    for (int i = 0; i <= 1; i++) {
+            while (buffer.isDone != true || buffer.getSize() > 0) {
+                if (buffer.isReady()) {
+                    for (int i = 0; i <= buffer.getQueueLimit(); i++) {
                         VarexpVariable var = buffer.get();
-                        var.getArrayList();
-                        var.getTableName();
-                        var.getVarexpList();
-                        System.out.println(var.getArrayList());
 
                         //Add to batch
                         //writeDB(var.getArrayList(),"twin_buttes_2",var.getTableName());

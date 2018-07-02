@@ -13,11 +13,11 @@ public class Main {
         db.deleteDB("twin_buttes_2");
 
         db.createDB("twin_buttes_2");
+
         /*
         TODO: Add the linkedconcurrentqueue to both the Import() and SQLHandler classes
         while you're at it, create a buffer class
          */
-        /*
         Buffer buffer = new Buffer();
         ExecutorService executor = Executors.newFixedThreadPool(20);
 
@@ -29,7 +29,6 @@ public class Main {
 
         //Shtudown
         executor.shutdown();
-        */
     }
 
 }

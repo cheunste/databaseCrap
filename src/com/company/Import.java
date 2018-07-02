@@ -98,12 +98,6 @@ public class Import implements Runnable {
 
                     variableType.setArrayList(subList.toString(), temp);
 
-                    if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
-                        VarexpVariable varexpSource = factoryVariable.declareNewVariable("ALL");
-                        varexpSource.setArrayList(subList.toString(), temp);
-                        //make a call to store in queue
-                    }
-
                     sourceType = factoryVariable.declareNewVariable(source);
                     sourceType.setArrayList(subList.toString(), temp);
 
@@ -118,11 +112,12 @@ public class Import implements Runnable {
                     if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
                         VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
                         allAlarmType.setArrayList(subList.toString(), temp);
-                        varQueue.put(allAlarmType);
                         //make a call to store in queue
+                        varQueue.put(allAlarmType);
                     }
                     temp++;
                 }
+
 
                 System.out.println("rows handled: " + temp);
                 varQueue.setDoneFlag();
