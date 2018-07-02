@@ -153,7 +153,6 @@ public class dbConnector {
     }
 
     public void createDB(String dbName) {
-        openConnection(dbName);
         String createDBStatement = "CREATE DATABASE " + dbName;
         VarexpFactory factory = new VarexpFactory();
         String createTableStatement;
