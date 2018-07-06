@@ -54,8 +54,8 @@ public class REG extends VarexpVariable {
                 "	reg_Maximum_equipment_value TEXT(50) NULL," +
                 "	reg_Display_format TEXT(50) NULL," +
                 "	reg_Deadband_type TEXT(50) NULL," +
-                "	reg_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(reg_variable_id) references common(variable_id));";
+                "	reg_VCR TEXT(50) NULL);";
+                
     }
 
     public ArrayList<List<String>> getArrayList() {

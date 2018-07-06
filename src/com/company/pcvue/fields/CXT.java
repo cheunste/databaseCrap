@@ -48,8 +48,8 @@ public class CXT extends VarexpVariable {
                 "	cxt_Maximum_number_of_characters TEXT(50) NULL," +
                 "	cxt_write_authorised TEXT(50) NULL," +
                 "	cxt_authorisation_level TEXT(50) NULL," +
-                "	cxt_display_format TEXT(50) NULL, cxt_VCR TEXT(50) NULL," +
-                "foreign key fk_equipment(cxt_variable_id) references common(variable_id));";
+                "	cxt_display_format TEXT(50) NULL, cxt_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

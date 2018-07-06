@@ -51,7 +51,7 @@ public class Common extends VarexpVariable {
     public String createTableCmd() {
         return
                 "CREATE TABLE common(" +
-                        "variable_id	 			INT UNSIGNED  PRIMARY KEY AUTO_INCREMENT," +
+                        "variable_id	 			INT UNSIGNED  PRIMARY KEY," +
                         "variable_type	 		TEXT(50) NOT NULL	," +
                         "internal_id	 			TEXT(50) NOT NULL	," +
                         "1st_element	 			TEXT(50) NOT NULL	," +

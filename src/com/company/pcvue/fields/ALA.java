@@ -51,8 +51,8 @@ public class ALA extends VarexpVariable {
                 "	ala_acm_Alarm TEXT(50) NULL," +
                 "	ala_Name_of_mask_bit TEXT(50) NULL," +
                 "	alarm_temporization TEXT(50) NULL," +
-                "	ala_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(ala_variable_id) references common(variable_id));";
+                "	ala_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

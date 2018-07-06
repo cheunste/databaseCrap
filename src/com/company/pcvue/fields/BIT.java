@@ -48,8 +48,8 @@ public class BIT extends VarexpVariable {
                         "bit_Log_bit_0_to_1 TEXT(50) NULL," +
                         "bit_Log_bit_1_to_0 TEXT(50) NULL," +
                         "bit_reserved TEXT(50) NULL," +
-                        "bit_VCR TEXT(50) NULL ," +
-                        "foreign key fk_equipment(bit_variable_id) references common(variable_id));";
+                        "bit_VCR TEXT(50) NULL);";
+                        
     }
 
     @Override

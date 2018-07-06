@@ -65,8 +65,7 @@ public class DNP3_Master extends VarexpVariable {
                         "dnp3_options_val1 TEXT(50) NULL," +
                         "dnp3_onTimeMs_val1 TEXT(50) NULL," +
                         "dnp3_EnableWritingAdd_AOB TEXT(50) NULL," +
-                        "dnp3_Add_AOB TEXT(50) NULL ," +
-                        "foreign key fk_equipment(dnp3_variable_id) references common(variable_id));";
+                        "dnp3_Add_AOB TEXT(50) NULL);";
     }
 
     public ArrayList<List<String>> getArrayList() {

@@ -41,8 +41,8 @@ public class Internal extends VarexpVariable {
 
         return "CREATE TABLE internal(" +
                 "internal_variable_id int unsigned  primary key," +
-                "internal_indication TEXT(50) NULL ," +
-                "foreign key fk_equipment(internal_variable_id) references common(variable_id));";
+                "internal_indication TEXT(50) NULL);";
+               
     }
 
     public ArrayList<List<String>> getArrayList() {

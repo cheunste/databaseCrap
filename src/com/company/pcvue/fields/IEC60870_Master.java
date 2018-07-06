@@ -55,8 +55,8 @@ public class IEC60870_Master extends VarexpVariable {
                 "iec60870_Qualifier TEXT(50) NULL," +
                 "iec60870_write_time_tagged TEXT(50) NULL," +
                 "iec60870_mapping_bit TEXT(50) NULL," +
-                "iec60870_signed TEXT(50) NULL," +
-                "foreign key fk_equipment(iec60870_variable_id) references common(variable_id));";
+                "iec60870_signed TEXT(50) NULL);";
+                
     }
 
     public ArrayList<List<String>> getArrayList() {

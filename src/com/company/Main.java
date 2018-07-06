@@ -19,7 +19,7 @@ public class Main {
         while you're at it, create a buffer class
          */
         Buffer buffer = new Buffer();
-        ExecutorService executor = Executors.newFixedThreadPool(20);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
 
         //This will be the producer (see producer-consumer problem if you're not familiar with hte term)
         executor.execute(new Import(args,buffer));

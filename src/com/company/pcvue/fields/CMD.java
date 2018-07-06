@@ -46,8 +46,8 @@ public class CMD extends VarexpVariable {
                 "cmd_Log_bit_1_to_0 TEXT(50) NULL," +
                 "cmd_reserved TEXT(50) NULL," +
                 "cmd_Authorisation_Level TEXT(50) NULL," +
-                "cmd_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(cmd_variable_id) references common(variable_id));";
+                "cmd_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

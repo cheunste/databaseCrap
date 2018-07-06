@@ -39,8 +39,7 @@ public class External extends VarexpVariable {
         return
                 "CREATE TABLE external(" +
                         "external_variable_id int unsigned  primary key," +
-                        "external_Description TEXT(50) NOT NULL," +
-                        "foreign key fk_equipment(external_variable_id) references common(variable_id));";
+                        "external_Description TEXT(50) NOT NULL);";
 
     }
 

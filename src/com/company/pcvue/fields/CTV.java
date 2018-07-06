@@ -30,7 +30,7 @@ public class CTV extends VarexpVariable {
 
     @Override
     String empty() {
-        return null;
+        return "";
     }
 
     @Override
@@ -54,8 +54,8 @@ public class CTV extends VarexpVariable {
                 "	ctv_maximum_control_value TEXT(50) NULL," +
                 "	ctv_authorisation_level TEXT(50) NULL," +
                 "	ctv_deadband_type TEXT(50) NULL," +
-                "	ctv_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(ctv_variable_id) references common(variable_id));";
+                "	ctv_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

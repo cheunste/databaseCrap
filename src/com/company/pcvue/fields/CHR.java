@@ -66,8 +66,8 @@ public class CHR extends VarexpVariable {
                         "	chr_chrono_reset_bit_variable TEXT(50) NULL," +
                         "	chr_reset_on_transition TEXT(50) NULL," +
                         "	chr_deadband_type TEXT(50) NULL," +
-                        "	chr_VCR TEXT(50) NULL ," +
-                        "foreign key fk_equipment(chr_variable_id) references common(variable_id));";
+                        "	chr_VCR TEXT(50) NULL);";
+                        
     }
 
     @Override

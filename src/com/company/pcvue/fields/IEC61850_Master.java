@@ -53,8 +53,7 @@ public class IEC61850_Master extends VarexpVariable {
                 "iec61850_data_object_identifier TEXT(50) NULL," +
                 "iec61850_control_model TEXT(50) NULL," +
                 "iec61850_time_provided TEXT(50) NULL," +
-                "iec61850_quality_provided TEXT(50) NULL," +
-                "foreign key fk_equipment(iec61850_variable_id) references common(variable_id));";
+                "iec61850_quality_provided TEXT(50) NULL);";
     }
 
     public ArrayList<List<String>> getArrayList() {

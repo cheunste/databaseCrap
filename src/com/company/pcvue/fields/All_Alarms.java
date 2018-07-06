@@ -51,8 +51,8 @@ public class All_Alarms extends VarexpVariable {
                 "	all_alarms_Latch_behavior TEXT(50) NULL," +
                 "	all_alarms_Acknowledgement_level TEXT(50) NULL," +
                 "	all_alarms_Mask_level TEXT(50) NULL," +
-                "	all_alarms_Maintenance_level TEXT(50) NULL ," +
-                "foreign key fk_equipment(all_alarms_variable_id) references common(variable_id));";
+                "	all_alarms_Maintenance_level TEXT(50) NULL);";
+                
     }
 
     public ArrayList<List<String>> getArrayList() {

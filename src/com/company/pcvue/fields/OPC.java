@@ -52,8 +52,8 @@ public class OPC extends VarexpVariable {
                 "opc_access_path TEXT(50) NULL," +
                 "opc_array_item TEXT(50) NULL," +
                 "opc_array_item_index TEXT(50) NULL," +
-                "opc_customizaiton_expression TEXT(50) NULL," +
-                "foreign key fk_equipment(opc_variable_id) references common(variable_id));";
+                "opc_customizaiton_expression TEXT(50) NULL);";
+                
     }
 
     public ArrayList<List<String>> getArrayList() {

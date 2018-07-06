@@ -58,8 +58,8 @@ public class TSH extends VarexpVariable {
                 "	tsh_Name_of_REG TEXT(50) NULL," +
                 "	tsh_Threshold_system TEXT(50) NULL," +
                 "	tsh_Threshold_type TEXT(50) NULL," +
-                "	tsh_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(tsh_variable_id) references common(variable_id));";
+                "	tsh_VCR TEXT(50) NULL);";
+                
     }
 
     public ArrayList<List<String>> getArrayList() {

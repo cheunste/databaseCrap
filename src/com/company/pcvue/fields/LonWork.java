@@ -52,8 +52,8 @@ public class LonWork extends VarexpVariable {
                         "lonwork_network_variable_field_name TEXT(50) NULL," +
                         "lonwork_reserved10 TEXT(50) NULL," +
                         "lonwork_monitoring_definition TEXT(50) NULL," +
-                        "lonwork_monitoring_type TEXT(50) NULL," +
-                        "foreign key fk_equipment(lonwork_variable_id) references common(variable_id));";
+                        "lonwork_monitoring_type TEXT(50) NULL);";
+                        
     }
 
     public ArrayList<List<String>> getArrayList() {

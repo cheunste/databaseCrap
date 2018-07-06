@@ -51,8 +51,8 @@ public class ACM extends VarexpVariable {
                 "	acm_acm_Alarm_Level TEXT(50) NULL," +
                 "	acm_Alarm TEXT(50) NULL," +
                 "	acm_Name_of_mask_bit TEXT(50) NULL," +
-                "	acm_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(acm_variable_id) references common(variable_id));";
+                "	acm_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

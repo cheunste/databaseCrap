@@ -68,8 +68,8 @@ public class ATS extends VarexpVariable {
                 "	ats_Name_of_REG TEXT(50) NULL," +
                 "	ats_Threshold_system TEXT(50) NULL," +
                 "	ats_Threshold_type TEXT(50) NULL," +
-                "	ats_VCR TEXT(50) NULL ," +
-                "foreign key fk_equipment(ats_variable_id) references common(variable_id));";
+                "	ats_VCR TEXT(50) NULL);";
+                
     }
 
     @Override

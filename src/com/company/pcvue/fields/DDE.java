@@ -49,8 +49,8 @@ public class DDE extends VarexpVariable {
                 "dde_Item_format TEXT(50) NOT NULL," +
                 "dde_reserved TEXT(50) NOT NULL," +
                 "dde_Auto_Format_Flag TEXT(50) NOT NULL," +
-                "dde_Label  TEXT(50) NOT NULL," +
-                "foreign key fk_equipment(dde_variable_id) references common(variable_id));";
+                "dde_Label  TEXT(50) NOT NULL);"; 
+               
 
     }
 

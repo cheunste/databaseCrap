@@ -63,8 +63,8 @@ public class CNT extends VarexpVariable {
                         "	cnt_Name_of_bit_on_which_to_reset_count TEXT(50) NULL," +
                         "	cnt_reset_on_transition TEXT(50) NULL," +
                         "	cnt_deadband_type TEXT(50) NULL," +
-                        "	cnt_VCR TEXT(50) NULL ," +
-                        "foreign key fk_equipment(cnt_variable_id) references common(variable_id));";
+                        "	cnt_VCR TEXT(50) NULL);";
+                        
     }
 
     public ArrayList<List<String>> getArrayList() {

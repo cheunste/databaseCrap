@@ -28,7 +28,7 @@ public class TXT extends VarexpVariable {
 
     @Override
     String empty() {
-        return null;
+        return "";
     }
 
     @Override
@@ -44,8 +44,8 @@ public class TXT extends VarexpVariable {
                         "	txt_Maximum_number_of_characters TEXT(50) NULL," +
                         "	txt_write_authorised TEXT(50) NULL," +
                         "	txt_display_format TEXT(50) NULL," +
-                        "	txt_VCR TEXT(50) NULL ," +
-                        "foreign key fk_equipment(txt_variable_id) references common(variable_id));";
+                        "	txt_VCR TEXT(50) NULL);";
+                        
     }
 
     @Override
