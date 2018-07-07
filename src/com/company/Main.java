@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.Database.Buffer;
-import com.company.Database.Import;
-import com.company.Database.ImportHandler;
-import com.company.Database.dbConnector;
+import com.company.Database.*;
 
 import java.io.*;
 import java.sql.*;
@@ -14,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
 
-        /*
         dbConnector db = new dbConnector();
         db.deleteDB("twin_buttes_2");
 
@@ -30,14 +26,21 @@ public class Main {
 
         //Shtudown
         executor.shutdown();
-        */
 
+        //Export
+        /*
         dbConnector db = new dbConnector();
-        try {
-            db.readDatabase("twin_buttes_2");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Buffer buffer = new Buffer();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        //This will be the producer (see producer-consumer problem if you're not familiar with hte term)
+
+        //This is the consumer. It consumes data in the queue
+        executor.execute(new Export(args[1], buffer));
+
+        //Shtudown
+        executor.shutdown();
+        */
 
     }
 

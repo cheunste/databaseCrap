@@ -10,7 +10,9 @@ import java.util.*;
 /**
  * Created by Stephen on 6/23/2018.
  * <p>
- * This class imports the varexp.dat file into the Mysql database
+ * This class reads the varexp.dat file and creates different Arraylists based on the fields.
+ * Afterwards, it then pushes the ArrayLists into a queue that ImportHandler will read and write to the MySQL DB.
+ * This class is used in conjuncture with Import Hanlder and Buffer
  */
 public class Import implements Runnable {
     private String[] args;

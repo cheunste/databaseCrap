@@ -18,7 +18,8 @@ public class Buffer {
     //This flag is to communicate when one object is completely done
     public boolean isDone;
     public int QUEUE_LIMIT = 1000;
-    Queue<VarexpVariable> bufferQueue = new ConcurrentLinkedQueue<VarexpVariable>();
+    Queue<VarexpVariable> bufferImportQueue = new ConcurrentLinkedQueue<VarexpVariable>();
+    Queue<String> bufferExportQueue = new ConcurrentLinkedQueue<String>();
     //This flag is to let other objects know when the objects in the queue is ready to be consumed
     private boolean isReady;
 
@@ -28,20 +29,20 @@ public class Buffer {
     }
 
     public VarexpVariable get() {
-        VarexpVariable temp = bufferQueue.poll();
+        VarexpVariable temp = bufferImportQueue.poll();
         return temp;
     }
 
     public void put(VarexpVariable var) {
-        bufferQueue.add(var);
-        if (bufferQueue.size() >= QUEUE_LIMIT) {
+        bufferImportQueue.add(var);
+        if (bufferImportQueue.size() >= QUEUE_LIMIT) {
             ready();
         }
     }
 
     //return size of queue.
     public int getSize() {
-        return bufferQueue.size();
+        return bufferImportQueue.size();
     }
 
     //This is used to let the class know that another class is done with their job.
@@ -56,7 +57,7 @@ public class Buffer {
 
     //Is buffer empty
     public boolean isEmpty() {
-        return bufferQueue.isEmpty();
+        return bufferImportQueue.isEmpty();
     }
 
     public void ready() {

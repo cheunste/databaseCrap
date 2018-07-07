@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 /*
 The purpose of this class is to export the entire database from the user when the user gives an export command
  */
-public class Export {
+public class Export implements Runnable {
     /*
     General outline
     Take a DB name from the "user"
@@ -37,11 +37,12 @@ public class Export {
     write to a csv file
      */
 
+    //TODO: Use the BUffer class to pass on a ConcurrentLinkedQueue to this class and the dbConnector
     private String databaseName;
     private PrintWriter outputFile;
 
     //Constructor
-    public Export(String databaseName) {
+    public Export(String databaseName, Buffer buffer) {
         this.databaseName = databaseName;
     }
 
@@ -92,4 +93,8 @@ public class Export {
         this.outputFile.close();
     }
 
+    @Override
+    public void run() {
+
+    }
 }
