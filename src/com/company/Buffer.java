@@ -24,6 +24,7 @@ public class Buffer {
 
     public Buffer() {
         this.isDone = false;
+        this.isReady = false;
     }
 
     public VarexpVariable get() {
@@ -62,7 +63,11 @@ public class Buffer {
         this.isReady = true;
     }
 
-    public boolean isReady() {
+    public void notReady() {
+        this.isReady = false;
+    }
+
+    public boolean isBufferReady() {
         return this.isReady;
     }
 

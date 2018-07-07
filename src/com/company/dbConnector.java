@@ -58,7 +58,7 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connect = DriverManager .getConnection("jdbc:mysql://localhost/twin_buttes_2?" + "user=root&password=Gundam7seed");
-            System.out.println(insertToDBCmd);
+            //System.out.println(insertToDBCmd);
             preparedStatement = connection.prepareStatement(insertToDBCmd);
         } catch (Exception e) {
             e.printStackTrace();
