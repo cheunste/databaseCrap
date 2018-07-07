@@ -15,7 +15,7 @@ import java.util.List;
  * joining tables before performming reads or updates
  * Handling basic CRUD operations
  */
-public class SQLHandler implements Runnable {
+public class ImportHandler implements Runnable {
 
     //These are member variables that have to do with mysql connections
     dbConnector db;
@@ -24,11 +24,11 @@ public class SQLHandler implements Runnable {
     //These are used for Buffer class.
     private Buffer buffer;
 
-    public SQLHandler() {
+    public ImportHandler() {
 
     }
 
-    public SQLHandler(Buffer buffer, String databaseName) throws SQLException {
+    public ImportHandler(Buffer buffer, String databaseName) throws SQLException {
         this.buffer = buffer;
         this.db = new dbConnector();
         this.connection = db.openConnection(databaseName);
@@ -74,42 +74,7 @@ public class SQLHandler implements Runnable {
             e.printStackTrace();
         }
     }
-    public void writeDB(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
-        db = new dbConnector();
-        connection = db.openConnection(databaseName);
-        statement = db.getStatement(connection);
 
-
-        //use a loop to iterate through arraylist and stuff them into a batch statement
-        for (List<String> list : fileList) {
-
-            //You need to insert other queries here as well
-            //Recall the first 0 after VALUES is suppose to be the auto increment id for the common table
-            String query;
-            if (tableName.toLowerCase().equals("common")) {
-                query = "INSERT INTO " + tableName + " VALUES (";
-            } else {
-                query = "INSERT INTO " + tableName + " VALUES (";
-            }
-
-            for (String item : list) {
-                query += "'" + item + "',";
-            }
-            String finalQuery = query.substring(0, query.length() - 1) + ")";
-            //System.out.println(finalQuery);
-            try {
-                this.statement.addBatch(finalQuery);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /*
-    This function reads from the DB
-     */
-    public void read() {
-    }
 
     private void executeBatch() {
         try {

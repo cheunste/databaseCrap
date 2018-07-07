@@ -37,8 +37,8 @@ public class Import implements Runnable {
                 BufferedReader fileBR = fh.readInput(path);
                 int temp = 0;
 
-                //Reference to the sqlHandler
-                SQLHandler sqlHandler = new SQLHandler();
+                //Reference to the importHandler
+                ImportHandler importHandler = new ImportHandler();
 
 
                 /*
@@ -68,22 +68,9 @@ public class Import implements Runnable {
                 VarexpFactory factoryVariable = new VarexpFactory();
 
                 /*
-                TODO: Review
-                ok. So there are a few issues here
-                1) You essentually have to handle three to four cases
-                    1) The common table
-                    2) The source table
-                    3) The alarm table ( iff ALA, ACM, ATS)
-                    4) The variable table (you know, ALA, CHM, CMD, etc). There's six of these
-
-                 */
-                //for (List<String> subList : fullList) {
-                //    VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
-                //    commonType.setArrayList(subList.toString(), temp);
-                //    varQueue.put(commonType);
-                //    temp++;
-                //}
-                temp = 0;
+                 Traverse through the entire arraylist, handle each List<String> appropriately and throw them into a
+                 queue for the Import Handler to pick up
+                  */
                 for (List<String> subList : fullList) {
                     //For Common
                     VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
@@ -121,7 +108,7 @@ public class Import implements Runnable {
 
                 varQueue.setDoneFlag();
                 System.out.println("Done flag raised");
-                //sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
+                //importHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ArrayIndexOutOfBoundsException("Not enough arguments");
@@ -136,42 +123,6 @@ public class Import implements Runnable {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    private class commonHandler implements Runnable {
-        VarexpVariable common;
-        int position;
-        List<String> subList;
-
-        public commonHandler(List<String> subList, VarexpVariable commonType, int temp) {
-            this.subList = subList;
-            this.common = commonType;
-            this.position = temp;
-        }
-
-        @Override
-        public void run() {
-            this.common.setArrayList(subList.toString(), position);
-            varQueue.put(common);
-        }
-    }
-
-    private class sourceHanlder implements Runnable {
-        VarexpVariable source;
-        int position;
-        List<String> subList;
-
-        public sourceHanlder(List<String> subList, VarexpVariable sourceType, int temp) {
-            this.subList = subList;
-            this.position = temp;
-            this.source = sourceType;
-        }
-
-        @Override
-        public void run() {
-            this.source.setArrayList(subList.toString(), position);
-            varQueue.put(source);
         }
     }
 }
