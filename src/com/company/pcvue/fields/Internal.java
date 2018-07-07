@@ -36,6 +36,15 @@ public class Internal extends VarexpVariable {
         return "RIGHT JOIN  internal on common.variable_id=internal.internal_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+
+        return "CREATE TABLE internal(" +
+                "internal_variable_id int unsigned  primary key," +
+                "internal_indication TEXT(50) NULL);";
+               
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.internalList;
     }

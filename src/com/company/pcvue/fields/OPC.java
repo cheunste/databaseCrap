@@ -41,6 +41,21 @@ public class OPC extends VarexpVariable {
         return "RIGHT JOIN  opc on common.variable_id=opc.opc_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+
+        return "CREATE TABLE opc(" +
+                "opc_variable_id int unsigned  primary key," +
+                "opc_Server_alias TEXT(50) NULL," +
+                "opc_Group_name TEXT(50) NULL," +
+                "opc_Item_name TEXT(50) NULL," +
+                "opc_access_path TEXT(50) NULL," +
+                "opc_array_item TEXT(50) NULL," +
+                "opc_array_item_index TEXT(50) NULL," +
+                "opc_customizaiton_expression TEXT(50) NULL);";
+                
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.opcList;
     }

@@ -8,7 +8,13 @@ package com.company.pcvue.fields;
  */
 public class VarexpFactory {
 
-    public VarexpVariable declareNewClass(String newVarexpVariable) {
+    public String[] listOfTables = {"COMMON", "ACM", "ALA", "ATS", "BIT", "CHR", "CMD", "CNT", "CTV", "CXT",
+            "REG", "TXT", "TSH", "E", "I", "X", "D", "O", "L", "B",
+            "4", "8", "3", "S", "ALL"
+    };
+
+
+    public VarexpVariable declareNewVariable(String newVarexpVariable) {
         VarexpVariable varexpVariable = null;
 
         switch (newVarexpVariable) {
@@ -48,6 +54,9 @@ public class VarexpFactory {
             case "TSH":
                 return new TSH();
 
+            //For common:
+            case "COMMON":
+                return new Common();
             //For equpiment
             case "E":
                 return new Equipment();
@@ -96,11 +105,18 @@ public class VarexpFactory {
             case "S":
                 return new SNMP();
 
+            case "ALL":
+                return new All_Alarms();
             default:
                 //Handle other unexpect cases here
                 return null;
 
         }
+    }
+
+    public String createVariableTable() {
+
+        return "";
     }
 
 }

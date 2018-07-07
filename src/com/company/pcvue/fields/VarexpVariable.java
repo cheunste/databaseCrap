@@ -18,7 +18,7 @@ import java.util.List;
  * any sense, then you need to read the varexp manual.
  */
 
-abstract class VarexpVariable {
+public abstract class VarexpVariable {
     //The name of the table. This is limited to 12 options (BIT, CMD, ALA, ACM, TSH, ATS, REG, CTV, CNT, CHR, TXT ,CXT), etc. Refer to the SQL file for details
     protected String tableName;
     //This is the list you'll be using to keep track of what position a varexp variable uses;
@@ -38,6 +38,13 @@ abstract class VarexpVariable {
     public List<String> getVarexpList() {
         return this.varexpArrayList;
     }
+
+    public ArrayList<List<String>> getArrayList() {
+        return null;
+    }
+
+    ;
+
 
     //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
     public List<Integer> getVarexpPositionList() {
@@ -65,6 +72,9 @@ abstract class VarexpVariable {
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
 
+    //abstract method for getting commands to create table. You need this in order to create tables in a fresh install
+    public abstract String createTableCmd();
+
     public abstract void setArrayList(String varexpString, int dbIndex);
 
     //This function splits a varexp variable into its respective fields and then
@@ -76,15 +86,17 @@ abstract class VarexpVariable {
         - Create a tempList arraylist<String> and copy all the crap from above to it
         - set varexpLIst to the new temp list
      */
-    public void setvarexpArrayList(String varexpString) {
+    protected void setvarexpArrayList(String varexpString) {
 
-        String[] temp = varexpString.split(",");
+        String[] temp = varexpString.replace("[", "").replace("]", "").split(",");
         this.varexpArrayList.clear();
         if (temp.length < FIELD_NUM) {
             try {
                 for (int i = 0; i < temp.length; i++) {
                     this.varexpArrayList.add(i, temp[i]);
                 }
+                //This will pad the variable with extra commas until it reaches the field number.
+                //This will ensure that all variables have the exact number of fields as FIELD_NUM
                 for (int j = temp.length + 1; j <= FIELD_NUM; j++) {
                     this.varexpArrayList.add(" ");
                 }

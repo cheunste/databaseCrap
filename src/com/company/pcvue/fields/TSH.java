@@ -44,6 +44,24 @@ public class TSH extends VarexpVariable {
         return "RIGHT JOIN  tsh on common.variable_id=tsh.tsh_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+
+        return "CREATE TABLE tsh(" +
+                "tsh_variable_id int unsigned  primary key," +
+                "	tsh_Log_bit_0_to_1 TEXT(50) NULL," +
+                "	tsh_Log_bit_1_to_0 TEXT(50) NULL," +
+                "	tsh_reserved TEXT(50) NULL," +
+                "	tsh_Hysteresis TEXT(50) NULL," +
+                "	tsh_Value TEXT(50) NULL," +
+                "	tsh_Threshold TEXT(50) NULL," +
+                "	tsh_Name_of_REG TEXT(50) NULL," +
+                "	tsh_Threshold_system TEXT(50) NULL," +
+                "	tsh_Threshold_type TEXT(50) NULL," +
+                "	tsh_VCR TEXT(50) NULL);";
+                
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.tshList;
     }

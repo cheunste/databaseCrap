@@ -42,6 +42,17 @@ public class CXT extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return "CREATE TABLE cxt(" +
+                "	cxt_variable_id int unsigned  primary key," +
+                "	cxt_Maximum_number_of_characters TEXT(50) NULL," +
+                "	cxt_write_authorised TEXT(50) NULL," +
+                "	cxt_authorisation_level TEXT(50) NULL," +
+                "	cxt_display_format TEXT(50) NULL, cxt_VCR TEXT(50) NULL);";
+                
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> cxtList = new ArrayList<>();

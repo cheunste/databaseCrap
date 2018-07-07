@@ -34,6 +34,15 @@ public class External extends VarexpVariable {
         return "RIGHT JOIN  external on common.variable_id=external.external_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE external(" +
+                        "external_variable_id int unsigned  primary key," +
+                        "external_Description TEXT(50) NOT NULL);";
+
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.externalList;
     }

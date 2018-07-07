@@ -28,12 +28,24 @@ public class TXT extends VarexpVariable {
 
     @Override
     String empty() {
-        return null;
+        return "";
     }
 
     @Override
     String getJoinCmd() {
         return "RIGHT JOIN txt on common.variable_id = txt.txt_variable_id";
+    }
+
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE txt(" +
+                        "txt_variable_id int unsigned  primary key," +
+                        "	txt_Maximum_number_of_characters TEXT(50) NULL," +
+                        "	txt_write_authorised TEXT(50) NULL," +
+                        "	txt_display_format TEXT(50) NULL," +
+                        "	txt_VCR TEXT(50) NULL);";
+                        
     }
 
     @Override

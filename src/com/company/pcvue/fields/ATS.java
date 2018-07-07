@@ -53,6 +53,26 @@ public class ATS extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return "CREATE TABLE ats(" +
+                "ats_variable_id int unsigned  primary key," +
+                "	ats_Log_bit_0_to_1 TEXT(50) NULL," +
+                "	ats_Log_bit_1_to_0 TEXT(50) NULL," +
+                "	ats_reserved TEXT(50) NULL," +
+                "	ats_Alarm_Level TEXT(50) NULL," +
+                "	ats_Alarm TEXT(50) NULL," +
+                "	ats_Name_of_mask_bit TEXT(50) NULL," +
+                "	ats_Hysteresis TEXT(50) NULL," +
+                "	ats_Value TEXT(50) NULL," +
+                "	ats_Threshold TEXT(50) NULL," +
+                "	ats_Name_of_REG TEXT(50) NULL," +
+                "	ats_Threshold_system TEXT(50) NULL," +
+                "	ats_Threshold_type TEXT(50) NULL," +
+                "	ats_VCR TEXT(50) NULL);";
+                
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> atsList = new ArrayList<>();

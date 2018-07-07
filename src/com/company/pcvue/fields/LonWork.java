@@ -39,6 +39,23 @@ public class LonWork extends VarexpVariable {
         return "RIGHT JOIN  lonwork on common.variable_id=lonwork.lonwork_variable_id";
     }
 
+    @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE lonwork(" +
+                        "lonwork_variable_id int unsigned  primary key," +
+                        "lonwork_Network_alias TEXT(50) NULL," +
+                        "lonwork_Node_alias TEXT(50) NULL," +
+                        "lonwork_variable_name TEXT(50) NULL," +
+                        "lonwork_network_scanning_mode TEXT(50) NULL," +
+                        "lonwork_reserved9 TEXT(50) NULL," +
+                        "lonwork_network_variable_field_name TEXT(50) NULL," +
+                        "lonwork_reserved10 TEXT(50) NULL," +
+                        "lonwork_monitoring_definition TEXT(50) NULL," +
+                        "lonwork_monitoring_type TEXT(50) NULL);";
+                        
+    }
+
     public ArrayList<List<String>> getArrayList() {
         return this.lonworkList;
     }

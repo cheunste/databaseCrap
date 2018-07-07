@@ -4,16 +4,24 @@ import com.company.pcvue.fields.*;
 
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 /**
  * Created by Stephen on 6/23/2018.
  * <p>
  * This class imports the varexp.dat file into the Mysql database
  */
-public class Import {
-    public void importFile(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
+public class Import implements Runnable {
+    private String[] args;
+    private Buffer varQueue;
+    private int THREAD_LIMIT = 4;
+
+    public Import(String[] args, Buffer buffer) throws IOException, SQLException {
+        this.args = args;
+        this.varQueue = buffer;
+    }
+
+    public void importFile() throws IOException, ArrayIndexOutOfBoundsException, SQLException {
         try {
             if (args.length == 2) {
                 String path = args[0];
@@ -28,41 +36,6 @@ public class Import {
                 BufferedReader fileBR = fh.readInput(path);
                 int temp = 0;
 
-
-                //initiate the reference to the Type variables
-                //Recall this only sets up the table, but you need to handle the variable elsewhere
-                Common common_field = new Common();
-                ACM acm = new ACM();
-                ALA ala = new ALA();
-                ATS ats = new ATS();
-                BIT bit = new BIT();
-                CHR chr = new CHR();
-                CMD cmd = new CMD();
-                CNT cnt = new CNT();
-                CTV ctv = new CTV();
-                CXT cxt = new CXT();
-                REG reg = new REG();
-                TXT txt = new TXT();
-                TSH tsh = new TSH();
-
-                //References to the source variables
-                All_Alarms allAlarms = new All_Alarms();
-
-                Equipment equipment = new Equipment();
-                External external = new External();
-                Internal internal = new Internal();
-                External ext = new External();
-                DDE dde = new DDE();
-                OPC opc = new OPC();
-
-                LonWork lonWork = new LonWork();
-                BACnet bac = new BACnet();
-
-                IEC61850_Master iec61850_master = new IEC61850_Master();
-                IEC60870_Master iec60870Master = new IEC60870_Master();
-                DNP3_Master dnp3 = new DNP3_Master();
-                SNMP smnp = new SNMP();
-
                 //Reference to the sqlHandler
                 SQLHandler sqlHandler = new SQLHandler();
 
@@ -76,165 +49,130 @@ public class Import {
                  */
 
                 //Create a fileLIst arrayList to hold all varexp variables
-                ArrayList<List<String>> fileList = new ArrayList();
                 ArrayList<List<String>> fullList = new ArrayList();
+
                 while ((line = fileBR.readLine()) != null) {
                     String appendedString = line;
-                    //System.out.println(appendedString);
-
-                    //Common common_field = new Common(appendedString);
-                    //1) This method should split the line from string to fields and store them in a list
-                    common_field.setArrayList(appendedString, temp);
-
-                    //2) Add the newly converted list to another list. Will need a get method
-                    fileList.add(common_field.getCommonList());
-                    //For other non-common variables
                     List<String> tempItem = Arrays.asList(appendedString.split(","));
                     fullList.add(tempItem);
-
                     temp++;
                 }
+                //close file
+                fh.closeFile(fileBR);
+                System.out.println("Done with Reading file");
 
                 //Consider handling the other varexp elements here
                 //TODO: Research to see if you can handle other varexp elements here and then
                 // stuff them into their respective tables
+                VarexpFactory factoryVariable = new VarexpFactory();
 
+                /*
+                TODO: Review
+                ok. So there are a few issues here
+                1) You essentually have to handle three to four cases
+                    1) The common table
+                    2) The source table
+                    3) The alarm table ( iff ALA, ACM, ATS)
+                    4) The variable table (you know, ALA, CHM, CMD, etc). There's six of these
+
+                 */
+                //for (List<String> subList : fullList) {
+                //    VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
+                //    commonType.setArrayList(subList.toString(), temp);
+                //    varQueue.put(commonType);
+                //    temp++;
+                //}
                 temp = 0;
                 for (List<String> subList : fullList) {
-                    System.out.println(subList);
-                    switch (subList.get(0).toUpperCase()) {
-                        case "ACM":
-                            System.out.println("Do acm Stuff");
-                            acm.setArrayList(subList.toString(), temp);
-                            break;
-                        case "ALA":
-                            System.out.println("Do ala Stuff");
-                            ala.setArrayList(subList.toString(), temp);
-                            break;
-                        case "ATS":
-                            System.out.println("Do ats Stuff");
-                            ats.setArrayList(subList.toString(), temp);
-                            break;
-                        case "BIT":
-                            System.out.println("Do bit Stuff");
-                            bit.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CHR":
-                            System.out.println("Do ctr Stuff");
-                            chr.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CMD":
-                            System.out.println("Do cmd Stuff");
-                            cmd.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CNT":
-                            System.out.println("Do cnt stuff");
-                            cnt.setArrayList(subList.toString(), temp);
-                        case "CTV":
-                            System.out.println("Do ctv Stuff");
-                            ctv.setArrayList(subList.toString(), temp);
-                            break;
-                        case "CXT":
-                            System.out.println("Do cxt Stuff");
-                            cxt.setArrayList(subList.toString(), temp);
-                            break;
-                        case "REG":
-                            System.out.println("Do reg Stuff");
-                            reg.setArrayList(subList.toString(), temp);
-                            break;
-                        case "TXT":
-                            System.out.println("Do txt Stuff");
-                            txt.setArrayList(subList.toString(), temp);
-                            break;
-                        case "TSH":
-                            System.out.println("Do tsh Stuff");
-                            tsh.setArrayList(subList.toString(), temp);
-                            break;
-                    }
-                    allAlarms.setArrayList(subList.toString(), temp);
-                    switch (subList.get(16).toUpperCase()) {
-                        //For equpiment
-                        case "E":
-                            equipment.setArrayList(subList.toString(), temp);
-                            break;
-                        //For Internal
-                        case "I":
-                            internal.setArrayList(subList.toString(), temp);
-                            break;
-                        //For external
-                        case "X":
-                            external.setArrayList(subList.toString(), temp);
-                            break;
-                        //For DDE
-                        case "D":
-                            dde.setArrayList(subList.toString(), temp);
-                            break;
-                        //For OPC
-                        case "O":
-                            opc.setArrayList(subList.toString(), temp);
-                            break;
-                        //For Lonwork
-                        case "L":
-                            lonWork.setArrayList(subList.toString(), temp);
-                            break;
-                        //For BACnet
-                        case "B":
-                            bac.setArrayList(subList.toString(), temp);
-                            break;
-                        //For 60870-5-104
-                        case "4":
-                            iec60870Master.setArrayList(subList.toString(), temp);
-                            break;
-                        //For 61850
-                        case "8":
-                            iec61850_master.setArrayList(subList.toString(), temp);
-                            break;
-                        //For DNP3
-                        case "3":
-                            dnp3.setArrayList(subList.toString(), temp);
-                            break;
-                        //For SNMP Manager
-                        case "S":
-                            smnp.setArrayList(subList.toString(), temp);
-                            break;
-                        default:
-                            //Handle other unexpect cases here
-                            break;
-                    }
-                    //This following case statemnets determine the "source"  of the tag and then assign it to their
-                    //respective table. See page 11 of the varexp format manual for detail
+                    //For Common
+                    VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
+                    commonType.setArrayList(subList.toString(), temp);
+                    varQueue.put(commonType);
+                    //new Thread(new commonHandler(subList,commonType,temp)).start();
 
+                    /* For Source */
+                    String source = subList.get(16).toUpperCase();
+                    VarexpVariable sourceType = factoryVariable.declareNewVariable(source);
+                    sourceType.setArrayList(subList.toString(), temp);
+                    varQueue.put(sourceType);
+                    // new Thread(new sourceHanlder(subList,sourceType,temp)).start();
+
+                    //For Type and alarms
+                    String type = subList.get(0).toUpperCase();
+                    VarexpVariable variableType = factoryVariable.declareNewVariable(type);
+                    variableType.setArrayList(subList.toString(), temp);
+                    varQueue.put(variableType);
+                    if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
+                        VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
+                        allAlarmType.setArrayList(subList.toString(), temp);
+                        //make a call to store in queue
+                        varQueue.put(allAlarmType);
+                    }
                     temp++;
+
+                    if (temp >= varQueue.getQueueLimit()) {
+                        varQueue.ready();
+                        //System.out.println("Queue is ready to read. Size: "+varQueue.getSize());
+                    }
                 }
 
                 System.out.println("rows handled: " + temp);
-                //acm.getArrayList();
 
-                //3) This is a simple case, let's assume this is for common
-
-                //4) Doing the write to DB stuff
-                //Open up a DB connection
-
-                sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
-                //System.out.println("Done with wrting common to DB");
-                sqlHandler.writeDB(acm.getArrayList(), "twin_buttes_2", acm.getTableName());
-                sqlHandler.writeDB(ala.getArrayList(), "twin_buttes_2", ala.getTableName());
-                sqlHandler.writeDB(ats.getArrayList(), "twin_buttes_2", ats.getTableName());
-                sqlHandler.writeDB(bit.getArrayList(), "twin_buttes_2", bit.getTableName());
-                sqlHandler.writeDB(chr.getArrayList(), "twin_buttes_2", chr.getTableName());
-                sqlHandler.writeDB(cmd.getArrayList(), "twin_buttes_2", cmd.getTableName());
-                sqlHandler.writeDB(ctv.getArrayList(), "twin_buttes_2", ctv.getTableName());
-                sqlHandler.writeDB(cxt.getArrayList(), "twin_buttes_2", cxt.getTableName());
-                sqlHandler.writeDB(reg.getArrayList(), "twin_buttes_2", reg.getTableName());
-                sqlHandler.writeDB(txt.getArrayList(), "twin_buttes_2", txt.getTableName());
-                sqlHandler.writeDB(allAlarms.getArrayList(), "twin_buttes_2", allAlarms.getTableName());
-                //close file
-                fh.closeFile(fileBR);
-
-
+                varQueue.setDoneFlag();
+                System.out.println("Done flag raised");
+                //sqlHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ArrayIndexOutOfBoundsException("Not enough arguments");
         }
     }
+
+    @Override
+    public void run() {
+        try {
+            importFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private class commonHandler implements Runnable {
+        VarexpVariable common;
+        int position;
+        List<String> subList;
+
+        public commonHandler(List<String> subList, VarexpVariable commonType, int temp) {
+            this.subList = subList;
+            this.common = commonType;
+            this.position = temp;
+        }
+
+        @Override
+        public void run() {
+            this.common.setArrayList(subList.toString(), position);
+            varQueue.put(common);
+        }
+    }
+
+    private class sourceHanlder implements Runnable {
+        VarexpVariable source;
+        int position;
+        List<String> subList;
+
+        public sourceHanlder(List<String> subList, VarexpVariable sourceType, int temp) {
+            this.subList = subList;
+            this.position = temp;
+            this.source = sourceType;
+        }
+
+        @Override
+        public void run() {
+            this.source.setArrayList(subList.toString(), position);
+            varQueue.put(source);
+        }
+    }
 }
+
+

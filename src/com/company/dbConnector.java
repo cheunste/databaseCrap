@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.pcvue.fields.VarexpFactory;
+import com.company.pcvue.fields.VarexpVariable;
 import com.mysql.cj.protocol.Resultset;
 
 import java.sql.*;
@@ -23,6 +25,9 @@ public class dbConnector {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+
+    public dbConnector() {
+    }
 
     public void readDatabase() throws Exception {
         try {
@@ -53,7 +58,7 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //connect = DriverManager .getConnection("jdbc:mysql://localhost/twin_buttes_2?" + "user=root&password=Gundam7seed");
-            System.out.println(insertToDBCmd);
+            //System.out.println(insertToDBCmd);
             preparedStatement = connection.prepareStatement(insertToDBCmd);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,6 +92,17 @@ public class dbConnector {
             //In the case where you get an error opening, this might mean the database does not exist, In this case
             //it will build you a new DATABAES instead
 
+        }
+        return this.connect;
+    }
+
+    private Connection newConnection(String site) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.connect = DriverManager
+                    .getConnection("jdbc:mysql://localhost/", "root", "Gundam7seed");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return this.connect;
     }
@@ -136,7 +152,73 @@ public class dbConnector {
         }
     }
 
-    public void createDB(String DBName, Connection connection) {
+    public void createDB(String dbName) {
+        String createDBStatement = "CREATE DATABASE " + dbName;
+        VarexpFactory factory = new VarexpFactory();
+        String createTableStatement;
+        String[] variableList = factory.listOfTables;
 
+        try {
+            connect = newConnection(dbName);
+            statement = connect.createStatement();
+            statement.executeUpdate(createDBStatement);
+
+            connect = openConnection(dbName);
+            statement = connect.createStatement();
+            for (String var : variableList) {
+                VarexpVariable temp = factory.declareNewVariable(var);
+                createTableStatement = temp.createTableCmd();
+                statement.executeUpdate(createTableStatement);
+            }
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (statement != null)
+                    connect.close();
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (connect != null)
+                    connect.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+    }
+
+    public void deleteDB(String DBName) {
+
+        String deleteStatement = "DROP DATABASE IF EXISTS " + DBName;
+
+        try {
+            connect = openConnection(DBName);
+            statement = connect.createStatement();
+            statement.executeUpdate(deleteStatement);
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (statement != null)
+                    connect.close();
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (connect != null)
+                    connect.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
     }
 }

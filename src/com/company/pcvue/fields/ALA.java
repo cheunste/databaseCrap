@@ -41,6 +41,21 @@ public class ALA extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return "CREATE TABLE ala(" +
+                "ala_variable_id int unsigned  primary key," +
+                "	ala_Log_bit_0_to_1 TEXT(50) NULL," +
+                "	ala_Log_bit_1_to_0 TEXT(50) NULL," +
+                "	ala_reserved TEXT(50) NULL," +
+                "	ala_Alarm_Level TEXT(50) NULL," +
+                "	ala_acm_Alarm TEXT(50) NULL," +
+                "	ala_Name_of_mask_bit TEXT(50) NULL," +
+                "	alarm_temporization TEXT(50) NULL," +
+                "	ala_VCR TEXT(50) NULL);";
+                
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
 
         setvarexpArrayList(varexpString);

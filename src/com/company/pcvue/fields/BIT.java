@@ -41,6 +41,18 @@ public class BIT extends VarexpVariable {
     }
 
     @Override
+    public String createTableCmd() {
+        return
+                "CREATE TABLE bit(" +
+                        "bit_variable_id int unsigned  primary key," +
+                        "bit_Log_bit_0_to_1 TEXT(50) NULL," +
+                        "bit_Log_bit_1_to_0 TEXT(50) NULL," +
+                        "bit_reserved TEXT(50) NULL," +
+                        "bit_VCR TEXT(50) NULL);";
+                        
+    }
+
+    @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);
         List<String> bitList = new ArrayList<>();
