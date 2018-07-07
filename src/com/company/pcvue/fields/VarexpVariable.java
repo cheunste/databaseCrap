@@ -127,19 +127,6 @@ public abstract class VarexpVariable {
         return isEmpty;
     }
 
-    /*
-    This function is to read EVERYTHING in a DB. This is what I would call 'a bad idea'
-     */
-    public void read() {
-        dbConnector db = new dbConnector();
-        try {
-            db.readDatabase();
-            db.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     //This method is to add the query to the database queue. However, ti does NOT execute the batch itesm.
     public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
 

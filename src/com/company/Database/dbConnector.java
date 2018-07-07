@@ -29,12 +29,12 @@ public class dbConnector {
     public dbConnector() {
     }
 
-    public void readDatabase() throws Exception {
+    public void readDatabase(String databaseName, String sqlCmd) throws Exception {
         try {
             //This will load the MYSQL driver, each DB has its own driver
             Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/twin_buttes_2?"
+                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?"
                             + "user=root&password=Gundam7seed");
 
 
@@ -45,12 +45,13 @@ public class dbConnector {
             statement = connect.createStatement();
 
             //Result set the result of  the     SQL query
-            resultSet = statement.executeQuery("select * from Common limit 1000");
+            resultSet = statement.executeQuery(sqlCmd);
             writeResultSet(resultSet);
             System.out.println("Done with 'reading'");
         } catch (Exception e) {
             throw e;
         } finally {
+            close();
         }
     }
 
@@ -73,9 +74,13 @@ public class dbConnector {
         int columnNum = rsmd.getColumnCount();
         int temp = 0;
         while (resultSet.next()) {
+            String common = "";
             for (int i = 1; i <= columnNum; i++) {
-                //   System.out.print(columnValue+ " "+rsmd.getColumnName(i));
+                //System.out.println(" "+rsmd.getColumnName(i));
+                common += resultSet.getString(i) + ",";
+                //System.out.println(" "+rsmd.getString(i));
             }
+            System.out.println(common);
             //System.out.println("");
             temp++;
         }

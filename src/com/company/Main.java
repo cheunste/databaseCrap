@@ -14,15 +14,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
 
+        /*
         dbConnector db = new dbConnector();
         db.deleteDB("twin_buttes_2");
 
         db.createDB("twin_buttes_2");
 
-        /*
-        TODO: Add the linkedconcurrentqueue to both the Import() and ImportHandler classes
-        while you're at it, create a buffer class
-         */
         Buffer buffer = new Buffer();
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -33,6 +30,15 @@ public class Main {
 
         //Shtudown
         executor.shutdown();
+        */
+
+        dbConnector db = new dbConnector();
+        try {
+            db.readDatabase("twin_buttes_2");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
