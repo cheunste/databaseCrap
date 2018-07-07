@@ -3,12 +3,10 @@ package com.company;
 import com.company.pcvue.fields.VarexpVariable;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * This class handles the formatting of sql requests before passing them onto the dbConnector class.
@@ -25,7 +23,6 @@ public class SQLHandler implements Runnable {
     Statement statement;
     //These are used for Buffer class.
     private Buffer buffer;
-    private int BUFFER_LIMIT = 3000;
 
     public SQLHandler() {
 
@@ -70,23 +67,12 @@ public class SQLHandler implements Runnable {
         }
         String finalQuery = query.substring(0, query.length() - 2) + ")";
         finalQuery.replace('[', ' ').replace(']', ' ');
+        //System.out.println(finalQuery);
         try {
             statement.addBatch(finalQuery);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*
-        try {
-            //then execute said batch statement
-            statement.executeBatch();
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
-        //Close the DB Connection
-        db.close(connection);
-        */
     }
     public void writeDB(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
         db = new dbConnector();
@@ -116,19 +102,7 @@ public class SQLHandler implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-        /*
-        try {
-            //then execute said batch statement
-            statement.executeBatch();
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
-        //Close the DB Connection
-        db.close(connection);
-        */
     }
 
     /*
@@ -144,7 +118,7 @@ public class SQLHandler implements Runnable {
             this.connection.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e);
+            //System.out.println(e);
         }
 
     }
@@ -152,24 +126,53 @@ public class SQLHandler implements Runnable {
     @Override
     public void run() {
         try {
-            while (buffer.isDone != true || buffer.getSize() > 0) {
-                if (buffer.isReady()) {
-                    for (int i = 0; i <= buffer.getQueueLimit(); i++) {
-                        VarexpVariable var = buffer.get();
+            //Thread.sleep(SLEEP_TIME);
+            //while (buffer.isBufferReady() && buffer.getSize() > 0) {
+            while (true) {
 
-                        //Add to batch
-                        //writeDB(var.getArrayList(),"twin_buttes_2",var.getTableName());
-                        addToBatch(var.getArrayList(), "twin_buttes_2", var.getTableName());
+                if (buffer.getSize() >= buffer.getQueueLimit()) {
+                    for (int i = 0; i <= buffer.getQueueLimit(); i++) {
+                        //for(int i = 0; i<=THREAD_LIMIT; i++){
+                        try {
+                            VarexpVariable var = buffer.get();
+                            if (var != null) {
+                                addToBatch(var.getArrayList(), "twin_buttes_2", var.getTableName());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                    //Then execute batch
-                    executeBatch();
-                    //Then close the connection
+                    try {
+                        executeBatch();
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    //Add to batch
+                    try {
+                        VarexpVariable var = buffer.get();
+                        if (var != null) {
+                            addToBatch(var.getArrayList(), "twin_buttes_2", var.getTableName());
+                            executeBatch();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("SQL Handler Buffer Size: " + buffer.getSize());
+                if (buffer.isDone == true && buffer.isEmpty()) {
+                    System.out.println("SQL Handler: Done");
+                    break;
                 }
             }
-            db.close(connection);
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
-
         }
+
     }
 }
