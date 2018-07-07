@@ -1,8 +1,7 @@
 package com.company.pcvue.fields;
 
-import com.company.dbConnector;
+import com.company.Database.dbConnector;
 
-import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

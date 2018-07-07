@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Database;
 
 import com.company.pcvue.fields.VarexpVariable;
 
