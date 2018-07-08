@@ -13,10 +13,10 @@ public class Main {
         if (args.length == 2) {
             String fileLocation = args[0];
             String databaseName = args[1];
-            dbConnector db = new dbConnector();
-            db.deleteDB(databaseName);
 
-            db.createDB(databaseName);
+            deleteDB(databaseName);
+            createDB(databaseName);
+
 
             Buffer buffer = new Buffer();
             ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -33,16 +33,33 @@ public class Main {
         }
     }
 
-    public static void exportFile(String[] args) {
+    public static void deleteDB(String databaseName) {
+        dbConnector db = new dbConnector();
+        db.deleteDB(databaseName);
+        db.close();
+    }
+
+    public static void createDB(String databaseName) {
+        dbConnector db = new dbConnector();
+        db.createDB(databaseName);
+        db.close();
+    }
+
+    public static void exportFile(String[] args) throws SQLException {
+
+        String path = args[0];
+        String databaseName = args[1];
         //Export
         dbConnector db = new dbConnector();
         Buffer buffer = new Buffer();
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         //This will be the producer (see producer-consumer problem if you're not familiar with hte term)
+        ExportHandler exh = new ExportHandler(null, databaseName);
+        exh.addToBatch(databaseName);
 
         //This is the consumer. It consumes data in the queue
-        executor.execute(new Export(args[1], buffer));
+        //executor.execute(new Export(args[1], buffer));
 
         //Shtudown
         executor.shutdown();
