@@ -9,26 +9,32 @@ import java.util.concurrent.Executors;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
+    public static void importFile(String[] args) throws IOException, SQLException {
+        if (args.length == 2) {
+            String fileLocation = args[0];
+            String databaseName = args[1];
+            dbConnector db = new dbConnector();
+            db.deleteDB(databaseName);
 
-        dbConnector db = new dbConnector();
-        db.deleteDB("twin_buttes_2");
+            db.createDB(databaseName);
 
-        db.createDB("twin_buttes_2");
+            Buffer buffer = new Buffer();
+            ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        Buffer buffer = new Buffer();
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+            //This is the consumer. It consumes data in the queue
+            executor.execute(new ImportHandler(buffer, databaseName));
+            //This will be the producer (see producer-consumer problem if you're not familiar with hte term)
+            executor.execute(new Import(args, buffer));
 
-         //This is the consumer. It consumes data in the queue
-        executor.execute(new ImportHandler(buffer, args[1]));
-        //This will be the producer (see producer-consumer problem if you're not familiar with hte term)
-        executor.execute(new Import(args, buffer));
+            //Shtudown
+            executor.shutdown();
+        } else {
+            System.out.println("Not enough parameters. Either the file path or the databaseName is missing");
+        }
+    }
 
-        //Shtudown
-        executor.shutdown();
-
+    public static void exportFile(String[] args) {
         //Export
-        /*
         dbConnector db = new dbConnector();
         Buffer buffer = new Buffer();
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -40,7 +46,12 @@ public class Main {
 
         //Shtudown
         executor.shutdown();
-        */
+    }
+
+    public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException, SQLException {
+        //importFile(args);
+        exportFile(args);
+
 
     }
 
