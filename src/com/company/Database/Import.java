@@ -73,6 +73,8 @@ public class Import implements Runnable {
              Traverse through the entire arraylist, handle each List<String> appropriately and throw them into a
              queue for the Import Handler to pick up
               */
+            //Set to zero. I still need a temp counter
+            temp = 0;
             for (List<String> subList : fullList) {
                 //For Common
                 VarexpVariable commonType = factoryVariable.declareNewVariable("COMMON");
