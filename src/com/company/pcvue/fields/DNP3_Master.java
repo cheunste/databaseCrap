@@ -48,24 +48,24 @@ public class DNP3_Master extends VarexpVariable {
     public String createTableCmd() {
         return
                 "CREATE TABLE dnp3_master(" +
-                        "dnp3_variable_id int unsigned  primary key," +
-                        "dnp3_Network_name TEXT(50) NULL," +
-                        "dnp3_device_name TEXT(50) NULL," +
-                        "dnp3_type TEXT(50) NULL," +
-                        "dnp3_point_address TEXT(50) NULL," +
-                        "dnp3_AOB_PointVariation TEXT(50) NULL," +
-                        "dnp3_Time_Tagging TEXT(50) NULL," +
-                        "dnp3_Select_before_operate TEXT(50) NULL," +
-                        "dnp3_enable_writing_add_val0 TEXT(50) NULL," +
-                        "dnp3_add_val_0 TEXT(50) NULL," +
-                        "dnp3_options_val0 TEXT(50) NULL," +
-                        "dnp3_onTimeMs_val0 TEXT(50) NULL," +
-                        "dnp3_EnableWriting_add_val_1 TEXT(50) NULL," +
-                        "dnp3_add_val1 TEXT(50) NULL," +
-                        "dnp3_options_val1 TEXT(50) NULL," +
-                        "dnp3_onTimeMs_val1 TEXT(50) NULL," +
-                        "dnp3_EnableWritingAdd_AOB TEXT(50) NULL," +
-                        "dnp3_Add_AOB TEXT(50) NULL);";
+                        "dnp3_master_variable_id int unsigned  primary key," +
+                        "dnp3_master_Network_name TEXT(50) NULL," +
+                        "dnp3_master_device_name TEXT(50) NULL," +
+                        "dnp3_master_type TEXT(50) NULL," +
+                        "dnp3_master_point_address TEXT(50) NULL," +
+                        "dnp3_master_AOB_PointVariation TEXT(50) NULL," +
+                        "dnp3_master_Time_Tagging TEXT(50) NULL," +
+                        "dnp3_master_Select_before_operate TEXT(50) NULL," +
+                        "dnp3_master_enable_writing_add_val0 TEXT(50) NULL," +
+                        "dnp3_master_add_val_0 TEXT(50) NULL," +
+                        "dnp3_master_options_val0 TEXT(50) NULL," +
+                        "dnp3_master_onTimeMs_val0 TEXT(50) NULL," +
+                        "dnp3_master_EnableWriting_add_val_1 TEXT(50) NULL," +
+                        "dnp3_master_add_val1 TEXT(50) NULL," +
+                        "dnp3_master_options_val1 TEXT(50) NULL," +
+                        "dnp3_master_onTimeMs_val1 TEXT(50) NULL," +
+                        "dnp3_master_EnableWritingAdd_AOB TEXT(50) NULL," +
+                        "dnp3_master_Add_AOB TEXT(50) NULL);";
     }
 
     public ArrayList<List<String>> getArrayList() {
