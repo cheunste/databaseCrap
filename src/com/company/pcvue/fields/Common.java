@@ -22,7 +22,7 @@ public class Common extends VarexpVariable {
     @Override
     void setPositionList() {
 
-        for (int i = 0; i <= 28; i++) {
+        for (int i = 0; i <= 29; i++) {
             varexpPositionList.add(i);
         }
         varexpPositionList.add(39);
