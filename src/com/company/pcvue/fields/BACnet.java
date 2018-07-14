@@ -12,7 +12,7 @@ public class BACnet extends VarexpVariable {
 
     public BACnet() {
         this.bacList = new ArrayList<>();
-        setTableName("bac");
+        setTableName("bacnet");
         setPositionList();
     }
 
