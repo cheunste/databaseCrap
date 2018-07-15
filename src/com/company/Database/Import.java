@@ -94,12 +94,20 @@ public class Import implements Runnable {
                 VarexpVariable variableType = factoryVariable.declareNewVariable(type);
                 variableType.setArrayList(subList.toString(), temp);
                 varQueue.put(variableType);
+                /*
                 if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
                     VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
                     allAlarmType.setArrayList(subList.toString(), temp);
                     //make a call to store in queue
                     varQueue.put(allAlarmType);
                 }
+                */
+                //For "All Types of Alarms"
+                VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
+                allAlarmType.setArrayList(subList.toString(), temp);
+                //make a call to store in queue
+                varQueue.put(allAlarmType);
+
                 temp++;
 
                 if (temp >= varQueue.getQueueLimit()) {
