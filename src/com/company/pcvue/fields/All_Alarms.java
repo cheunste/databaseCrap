@@ -19,10 +19,10 @@ public class All_Alarms extends VarexpVariable {
 
     @Override
     void setPositionList() {
-        for (int i = 158; i <= 160; i++) {
+        for (int i = 157; i <= 159; i++) {
             varexpPositionList.add(i);
         }
-        for (int i = 175; i <= 177; i++) {
+        for (int i = 174; i <= 176; i++) {
             varexpPositionList.add(i);
         }
     }
