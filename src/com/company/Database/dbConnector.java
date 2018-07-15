@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,33 +26,48 @@ public class dbConnector {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    private ArrayList<ArrayList<String>> resultSetArray;
 
     public dbConnector() {
     }
 
-    public void readDatabase(String databaseName, String sqlCmd) throws Exception {
+    public ArrayList<ArrayList<String>> readDatabase(String databaseName, String sqlCmd) {
+
+        resultSetArray = new ArrayList<>();
+        String temp = "";
+        //ArrayList<String> tempArrayList = new ArrayList<>();
         try {
-            //This will load the MYSQL driver, each DB has its own driver
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?"
-                            + "user=root&password=Gundam7seed");
+            openConnection(databaseName);
+            setStatement(connect);
 
-
-            //This line should make it ignore duplicate entry
-            connect.setAutoCommit(false);
-
-            // Statements allow to isuse SQl qwuesries to the DB
-            statement = connect.createStatement();
-
-            //Result set the result of  the     SQL query
             resultSet = statement.executeQuery(sqlCmd);
-            writeResultSet(resultSet);
-            System.out.println("Done with 'reading'");
+
+            resultSetArray = new ArrayList<>();
+            System.out.println(temp);
+            System.out.println(temp);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int colNum = rsmd.getColumnCount();
+
+            while (resultSet.next()) {
+                ArrayList<String> tempArrayList = new ArrayList<>();
+                tempArrayList.clear();
+                for (int j = 1; j <= colNum; j++) {
+                    tempArrayList.add(resultSet.getString(j));
+                }
+                //System.out.println(tempArrayList);
+                resultSetArray.add(tempArrayList);
+                if (tempArrayList.size() == 0) {
+                    System.out.println("Break");
+                }
+            }
+            //System.out.println(resultSetArray);
+            return resultSetArray;
+
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
+            return null;
         } finally {
-            close();
+            close(this.connect);
         }
     }
 
@@ -87,11 +103,12 @@ public class dbConnector {
 
     }
 
-    public Connection openConnection(String site) {
+    public Connection openConnection(String databaseName) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/" + site + "?" + "user=root&password=Gundam7seed");
+                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=root&password=Gundam7seed");
+
         } catch (Exception e) {
             e.printStackTrace();
             //In the case where you get an error opening, this might mean the database does not exist, In this case
@@ -106,14 +123,19 @@ public class dbConnector {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
                     .getConnection("jdbc:mysql://localhost/", "root", "Gundam7seed");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this.connect;
     }
 
-    public void setStatement(Connection connection) throws SQLException {
-        this.statement = connection.createStatement();
+    public void setStatement(Connection connection) {
+        try {
+            this.statement = connection.createStatement();
+        } catch (Exception e) {
+
+        }
     }
 
     public Statement getStatement(Connection connection) {
@@ -153,8 +175,61 @@ public class dbConnector {
                 connection.close();
             }
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
+    }
+
+    public ResultSet sqlQuery(String sqlCmd) {
+
+        try {
+            return statement.executeQuery(sqlCmd);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+
+        }
+
+    }
+
+    public String getTableSize(String databaseName) {
+        openConnection(databaseName);
+        setStatement(connect);
+        String sqlCmd = "SELECT COUNT(common.variable_id) FROM common;";
+        try {
+            ResultSet rs = statement.executeQuery(sqlCmd);
+            System.out.println(rs);
+            rs.next();
+            String numVarexpVariable = rs.getString(1);
+            return numVarexpVariable;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            close();
+        }
+
+        return "0";
+    }
+
+    public boolean verifyDBExists(String dbName) {
+        openConnection(dbName);
+        setStatement(connect);
+        try {
+            ResultSet rs = this.connect.getMetaData().getCatalogs();
+            while (rs.next()) {
+                String databaseName = rs.getString(1);
+                if (databaseName.equals(dbName)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        } finally {
+            close();
+        }
+        return false;
     }
 
     public void createDB(String dbName) {

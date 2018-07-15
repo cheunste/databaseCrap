@@ -15,33 +15,12 @@ import java.util.ArrayList;
 The purpose of this class is to export the entire database from the user when the user gives an export command
  */
 public class Export implements Runnable {
-    /*
-    General outline
-    Take a DB name from the "user"
-    Check if DB does exist
-    If it does, create a varexp.dat file
-
-    Create a new Varexp Variable object Temp
-    select * from common
-    remove
-    Store the output from the above into a Temp object
-
-    Select * from the Type Table (Common position 0)
-    Store the output from the above into Temp
-
-    Select * from the Soure table
-    Store the output from the above into Temp
-
-    if alarm
-    Store the output from the above into Temp
-
-    write to a csv file
-     */
 
     //TODO: Use the BUffer class to pass on a ConcurrentLinkedQueue to this class and the dbConnector
     private String databaseName;
     private PrintWriter outputFile;
     private ArrayList<ArrayList<String>> outptuVarexpVariableList;
+    private String encoding = "UTF-8";
 
     //Constructor
     public Export(String databaseName, Buffer buffer) {
@@ -50,16 +29,17 @@ public class Export implements Runnable {
 
     //Removes '[', ']' and removes all empty spaces after a single comma
     private static String removeUnwantedCharacters(String varexpVariable) {
-        return varexpVariable.replace("[", "").replace("]", "").replaceAll(",\\ *", ",");
+        return varexpVariable.replace("[", "").replace("]", "").replaceAll(",\\ *", ",").replace("\"", "");
     }
 
-    public void exportDB(String databaseName) throws Exception {
+    public void exportDB() {
 
         //Verify that the DB exists first
         dbConnector dbConnector = new dbConnector();
         boolean exists = dbConnector.verifyDBExists(databaseName);
 
         if (exists) {
+            createFile();
             fetch(databaseName);
         } else {
         }
@@ -73,7 +53,9 @@ public class Export implements Runnable {
      */
     private void fetch(String databaseName) {
         dbConnector db = new dbConnector();
-        String sqlCmd = "SELECT * FROM common";
+
+        String numVarexpVariable = db.getTableSize(databaseName);
+        String sqlCmd = "SELECT * FROM common ";
         ArrayList<ArrayList<String>> resultList = db.readDatabase(databaseName, sqlCmd);
         ArrayList<ArrayList<String>> csvListOutput = new ArrayList<ArrayList<String>>();
 
@@ -135,13 +117,15 @@ public class Export implements Runnable {
             }
         }
         for (ArrayList<String> outputList : csvListOutput) {
-            System.out.println(removeUnwantedCharacters(outputList.toString()));
+            writeLine(removeUnwantedCharacters(outputList.toString()));
+            //System.out.println(removeUnwantedCharacters(outputList.toString()));
         }
+        closeFile();
     }
 
     private void createFile() {
         try {
-            this.outputFile = new PrintWriter("Varexp.dat", "UTF-8");
+            this.outputFile = new PrintWriter("C:\\Users\\Stephen\\Desktop\\varexp tool project\\Test-Varexp.csv", encoding);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -151,7 +135,7 @@ public class Export implements Runnable {
 
     //This function writes a VarexpVariable line into the varexp file
     private void writeLine(String varexpLine) {
-        outputFile.println(varexpLine);
+        this.outputFile.println(varexpLine);
     }
 
     private String formatVarexp(VarexpVariable varexp) {
