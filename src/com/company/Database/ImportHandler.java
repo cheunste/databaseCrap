@@ -94,7 +94,6 @@ public class ImportHandler implements Runnable {
             //Thread.sleep(SLEEP_TIME);
             //while (buffer.isBufferReady() && buffer.getSize() > 0) {
             while (true) {
-
                 if (buffer.getSize() >= buffer.getQueueLimit()) {
                     for (int i = 0; i <= buffer.getQueueLimit(); i++) {
                         //for(int i = 0; i<=THREAD_LIMIT; i++){

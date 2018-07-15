@@ -21,10 +21,9 @@ public class Import implements Runnable {
     private String dbName;
     private int THREAD_LIMIT = 4;
 
-    public Import(String[] args, Buffer buffer) throws IOException, SQLException {
-        this.args = args;
-        this.path = args[0];
-        this.dbName = args[1];
+    public Import(String filePath, String dbName, Buffer buffer) throws IOException, SQLException {
+        this.path = filePath;
+        this.dbName = dbName;
         this.varQueue = buffer;
     }
 
