@@ -19,7 +19,6 @@ public class Import implements Runnable {
     private Buffer varQueue;
     private String path;
     private String dbName;
-    private int THREAD_LIMIT = 4;
 
     public Import(String filePath, String dbName, Buffer buffer) throws IOException, SQLException {
         this.path = filePath;
@@ -29,18 +28,11 @@ public class Import implements Runnable {
 
     public void importFile() throws IOException, ArrayIndexOutOfBoundsException, SQLException {
         try {
-            System.out.println(path);
-            System.out.println(dbName);
-
             String line;
             fileHandler fh = new fileHandler();
             //open file
             BufferedReader fileBR = fh.readInput(path);
             int temp = 0;
-
-            //Reference to the importHandler
-            ImportHandler importHandler = new ImportHandler();
-
 
             /*
             For each line in the file do the following:
@@ -61,7 +53,6 @@ public class Import implements Runnable {
             }
             //close file
             fh.closeFile(fileBR);
-            System.out.println("Done with Reading file");
 
             //Consider handling the other varexp elements here
             //TODO: Research to see if you can handle other varexp elements here and then
@@ -93,14 +84,7 @@ public class Import implements Runnable {
                 VarexpVariable variableType = factoryVariable.declareNewVariable(type);
                 variableType.setArrayList(subList.toString(), temp);
                 varQueue.put(variableType);
-                /*
-                if (type.equals("ALA") || type.equals("ACM") || type.equals("ATS")) {
-                    VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
-                    allAlarmType.setArrayList(subList.toString(), temp);
-                    //make a call to store in queue
-                    varQueue.put(allAlarmType);
-                }
-                */
+
                 //For "All Types of Alarms"
                 VarexpVariable allAlarmType = factoryVariable.declareNewVariable("ALL");
                 allAlarmType.setArrayList(subList.toString(), temp);
@@ -111,14 +95,10 @@ public class Import implements Runnable {
 
                 if (temp >= varQueue.getQueueLimit()) {
                     varQueue.ready();
-                    //System.out.println("Queue is ready to read. Size: "+varQueue.getSize());
                 }
             }
 
-            System.out.println("rows handled: " + temp);
-
             varQueue.setDoneFlag();
-            System.out.println("Done flag raised");
             //importHandler.writeDB(fileList, "twin_buttes_2", common_field.getTableName());
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ArrayIndexOutOfBoundsException("Not enough arguments");

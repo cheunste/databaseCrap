@@ -24,6 +24,9 @@ public class ImportHandler implements Runnable {
     //These are used for Buffer class.
     private Buffer buffer;
 
+    //Member varible
+    private String databaseName;
+
     public ImportHandler() {
 
     }
@@ -34,6 +37,7 @@ public class ImportHandler implements Runnable {
         this.connection = db.openConnection(databaseName);
         this.connection.setAutoCommit(false);
         this.statement = db.getStatement(connection);
+        this.databaseName = databaseName;
     }
 
     /*
@@ -41,12 +45,6 @@ public class ImportHandler implements Runnable {
     insert
      */
     public void addToBatch(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
-        /*
-        db = new dbConnector();
-        connection = db.openConnection(databaseName);
-        connection.setAutoCommit(false);
-        statement = db.getStatement(connection);
-        */
 
         //You need to insert other queries here as well
         //Recall the first 0 after VALUES is suppose to be the auto increment id for the common table
@@ -62,8 +60,6 @@ public class ImportHandler implements Runnable {
 
                 query += "" + temp + "','";
             }
-            //query += "" + item + "','";
-
         }
         String finalQuery = query.substring(0, query.length() - 2) + ")";
         finalQuery.replace('[', ' ').replace(']', ' ');
@@ -83,16 +79,12 @@ public class ImportHandler implements Runnable {
             this.connection.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            //System.out.println(e);
         }
-
     }
 
     @Override
     public void run() {
         try {
-            //Thread.sleep(SLEEP_TIME);
-            //while (buffer.isBufferReady() && buffer.getSize() > 0) {
             while (true) {
                 if (buffer.getSize() >= buffer.getQueueLimit()) {
                     for (int i = 0; i <= buffer.getQueueLimit(); i++) {
@@ -100,7 +92,7 @@ public class ImportHandler implements Runnable {
                         try {
                             VarexpVariable var = buffer.get();
                             if (var != null) {
-                                addToBatch(var.getArrayList(), "twin_buttes_2", var.getTableName());
+                                addToBatch(var.getArrayList(), databaseName, var.getTableName());
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -116,16 +108,17 @@ public class ImportHandler implements Runnable {
                     try {
                         VarexpVariable var = buffer.get();
                         if (var != null) {
-                            addToBatch(var.getArrayList(), "twin_buttes_2", var.getTableName());
+                            addToBatch(var.getArrayList(), databaseName, var.getTableName());
                             executeBatch();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-                System.out.println("SQL Handler Buffer Size: " + buffer.getSize());
+                //System.out.println("SQL Handler Buffer Size: " + buffer.getSize());
                 if (buffer.isDone == true && buffer.isEmpty()) {
-                    System.out.println("SQL Handler: Done");
+                    //System.out.println("SQL Handler: Done");
+                    System.out.println("Done with Importing to database.");
                     break;
                 }
             }
