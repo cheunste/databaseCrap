@@ -2,6 +2,8 @@ package com.company.Database;
 
 import com.company.pcvue.fields.VarexpFactory;
 import com.company.pcvue.fields.VarexpVariable;
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.groovy.util.StringUtil;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -108,8 +110,19 @@ public class Export implements Runnable {
 
                     int a = 0;
                     for (int position : tempVar.getVarexpPositionList()) {
-                        //System.out.println(commonTemp);
-                        commonTemp.set(position, innerList.get(a));
+                        String difference = StringUtils.difference(commonTemp.get(position), innerList.get(a));
+                        //Only set value at commonTemp if and only if innerList.get is NOT empty
+                        if (!innerList.get(a).equals("")) {
+                            commonTemp.set(position, innerList.get(a));
+                        }
+                        /*
+                        if (!difference.equals("")){
+                            System.out.println("CommonTemp["+position+"]: "+commonTemp.get(position));
+                            System.out.println("innerList["+a+"]: "+innerList.get(a));
+                            System.out.println("difference: "+StringUtils.difference(commonTemp.get(position),innerList.get(a)));
+                        }
+                        */
+                        //commonTemp.set(position, innerList.get(a));
                         a++;
                     }
 
