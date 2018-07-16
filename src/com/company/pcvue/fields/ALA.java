@@ -52,7 +52,7 @@ public class ALA extends VarexpVariable {
                 "	ala_Name_of_mask_bit TEXT(50) NULL," +
                 "	alarm_temporization TEXT(50) NULL," +
                 "	ala_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

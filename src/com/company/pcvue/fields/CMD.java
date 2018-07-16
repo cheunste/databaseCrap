@@ -47,7 +47,7 @@ public class CMD extends VarexpVariable {
                 "cmd_reserved TEXT(50) NULL," +
                 "cmd_Authorisation_Level TEXT(50) NULL," +
                 "cmd_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

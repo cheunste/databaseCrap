@@ -49,7 +49,7 @@ public class BIT extends VarexpVariable {
                         "bit_Log_bit_1_to_0 TEXT(50) NULL," +
                         "bit_reserved TEXT(50) NULL," +
                         "bit_VCR TEXT(50) NULL);";
-                        
+
     }
 
     @Override

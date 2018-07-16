@@ -16,7 +16,6 @@ public class ACM extends VarexpVariable {
     }
 
 
-
     @Override
     void setPositionList() {
         for (int i = 40; i <= 46; i++) {
@@ -52,7 +51,7 @@ public class ACM extends VarexpVariable {
                 "	acm_Alarm TEXT(50) NULL," +
                 "	acm_Name_of_mask_bit TEXT(50) NULL," +
                 "	acm_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

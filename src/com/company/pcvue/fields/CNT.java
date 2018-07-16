@@ -64,7 +64,7 @@ public class CNT extends VarexpVariable {
                         "	cnt_reset_on_transition TEXT(50) NULL," +
                         "	cnt_deadband_type TEXT(50) NULL," +
                         "	cnt_VCR TEXT(50) NULL);";
-                        
+
     }
 
     public ArrayList<List<String>> getArrayList() {

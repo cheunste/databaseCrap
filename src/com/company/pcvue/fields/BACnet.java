@@ -63,7 +63,7 @@ public class BACnet extends VarexpVariable {
                         "bacnet_EDE_Keyname TEXT(50) NULL," +
                         "BACnet_variable_type TEXT(50) NULL," +
                         "BACnet_alarm_type TEXT(50) NULL);";
-                        
+
     }
 
     ;

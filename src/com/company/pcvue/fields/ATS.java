@@ -47,6 +47,7 @@ public class ATS extends VarexpVariable {
     public ArrayList<List<String>> getArrayList() {
         return this.atsList;
     }
+
     @Override
     String getJoinCmd() {
         return "RIGHT JOIN ats on common.variable_id = ats.ats_variable_id";
@@ -69,7 +70,7 @@ public class ATS extends VarexpVariable {
                 "	ats_Threshold_system TEXT(50) NULL," +
                 "	ats_Threshold_type TEXT(50) NULL," +
                 "	ats_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

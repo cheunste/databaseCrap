@@ -49,7 +49,7 @@ public class CXT extends VarexpVariable {
                 "	cxt_write_authorised TEXT(50) NULL," +
                 "	cxt_authorisation_level TEXT(50) NULL," +
                 "	cxt_display_format TEXT(50) NULL, cxt_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

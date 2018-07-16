@@ -55,12 +55,13 @@ public class REG extends VarexpVariable {
                 "	reg_Display_format TEXT(50) NULL," +
                 "	reg_Deadband_type TEXT(50) NULL," +
                 "	reg_VCR TEXT(50) NULL);";
-                
+
     }
 
     public ArrayList<List<String>> getArrayList() {
         return this.regList;
     }
+
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
         setvarexpArrayList(varexpString);

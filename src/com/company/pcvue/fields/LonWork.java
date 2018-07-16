@@ -53,7 +53,7 @@ public class LonWork extends VarexpVariable {
                         "lonwork_reserved10 TEXT(50) NULL," +
                         "lonwork_monitoring_definition TEXT(50) NULL," +
                         "lonwork_monitoring_type TEXT(50) NULL);";
-                        
+
     }
 
     public ArrayList<List<String>> getArrayList() {

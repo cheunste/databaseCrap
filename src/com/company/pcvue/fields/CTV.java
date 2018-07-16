@@ -55,7 +55,7 @@ public class CTV extends VarexpVariable {
                 "	ctv_authorisation_level TEXT(50) NULL," +
                 "	ctv_deadband_type TEXT(50) NULL," +
                 "	ctv_VCR TEXT(50) NULL);";
-                
+
     }
 
     @Override

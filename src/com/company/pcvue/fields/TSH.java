@@ -59,7 +59,7 @@ public class TSH extends VarexpVariable {
                 "	tsh_Threshold_system TEXT(50) NULL," +
                 "	tsh_Threshold_type TEXT(50) NULL," +
                 "	tsh_VCR TEXT(50) NULL);";
-                
+
     }
 
     public ArrayList<List<String>> getArrayList() {

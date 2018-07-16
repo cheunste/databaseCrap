@@ -54,7 +54,7 @@ public class SNMP extends VarexpVariable {
                         "snmp_initial_value TEXT(50) NULL," +
                         "snmp_offset TEXT(50) NULL," +
                         "snmp_extraction_field TEXT(50) NULL);";
-                        
+
     }
 
     public ArrayList<List<String>> getArrayList() {

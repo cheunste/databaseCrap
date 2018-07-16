@@ -45,7 +45,7 @@ public class TXT extends VarexpVariable {
                         "	txt_write_authorised TEXT(50) NULL," +
                         "	txt_display_format TEXT(50) NULL," +
                         "	txt_VCR TEXT(50) NULL);";
-                        
+
     }
 
     @Override

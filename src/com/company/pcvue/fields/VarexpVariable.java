@@ -62,6 +62,7 @@ public abstract class VarexpVariable {
 
     //This is the method all sub class will have to implement in order to get an array of position indexes
     abstract void setPositionList();
+
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
 

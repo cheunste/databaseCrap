@@ -67,7 +67,7 @@ public class CHR extends VarexpVariable {
                         "	chr_reset_on_transition TEXT(50) NULL," +
                         "	chr_deadband_type TEXT(50) NULL," +
                         "	chr_VCR TEXT(50) NULL);";
-                        
+
     }
 
     @Override
