@@ -107,7 +107,7 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=root&password=Gundam7seed");
+                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=root&password=Gundam7seed&useSSL=false");
 
         } catch (Exception e) {
             e.printStackTrace();

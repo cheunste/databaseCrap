@@ -53,12 +53,6 @@ class MainTest {
                     //outputFile.println("difference between original:");
                     //outputFile.println(difference);
                 }
-                /*
-                outputFile.println("Original:");
-                outputFile.println(originalLine);
-                outputFile.println("Export:");
-                outputFile.println(exportLine);
-                */
             }
         }
         //close file
