@@ -18,15 +18,18 @@ The purpose of this class is to export the entire database from the user when th
  */
 public class Export implements Runnable {
 
+    private static String encoding = "UTF-8";
+    private static String fileName = "\\testVarexp.csv";
     //TODO: Use the BUffer class to pass on a ConcurrentLinkedQueue to this class and the dbConnector
     private String databaseName;
     private PrintWriter outputFile;
     private ArrayList<ArrayList<String>> outptuVarexpVariableList;
-    private String encoding = "UTF-8";
+    private String outputFilePath;
 
     //Constructor
-    public Export(String databaseName, Buffer buffer) {
+    public Export(String databaseName, Buffer buffer, String outputFilepath) {
         this.databaseName = databaseName;
+        this.outputFilePath = outputFilepath;
     }
 
     //Removes '[', ']' and removes all empty spaces after a single comma
@@ -64,9 +67,6 @@ public class Export implements Runnable {
 
         VarexpFactory newVariable = new VarexpFactory();
         VarexpVariable common = newVariable.declareNewVariable("COMMON");
-        System.out.println("FIELD NUM: " + common.getFieldNum());
-
-
         for (ArrayList<String> innerList : resultList) {
 
             //Remove the id, which is always position 0
@@ -86,9 +86,6 @@ public class Export implements Runnable {
                 y++;
             }
             csvListOutput.add(outputVarexpVariable);
-            //This removes all the unnecessary characters and strings. Probably should be moved to a separate function
-            //String temp =removeUnwantedCharacters(outputVarexpVariable.toString());
-            //System.out.println(temp);
         }
 
         for (String table : newVariable.listOfTables) {
@@ -96,17 +93,14 @@ public class Export implements Runnable {
             if (table == "COMMON") {
 
             } else {
-                System.out.println(table);
                 VarexpVariable tempVar = newVariable.declareNewVariable(table);
                 String tableSqlCmd = "SELECT * FROM " + tempVar.getTableName();
 
                 ArrayList<ArrayList<String>> tableList = db.readDatabase(databaseName, tableSqlCmd);
 
                 for (ArrayList<String> innerList : tableList) {
-                    //System.out.println(innerList);
                     String id = innerList.remove(0);
                     ArrayList<String> commonTemp = csvListOutput.get(Integer.parseInt(id));
-                    //System.out.println(commonTemp);
 
                     int a = 0;
                     for (int position : tempVar.getVarexpPositionList()) {
@@ -115,14 +109,6 @@ public class Export implements Runnable {
                         if (!innerList.get(a).equals("")) {
                             commonTemp.set(position, innerList.get(a));
                         }
-                        /*
-                        if (!difference.equals("")){
-                            System.out.println("CommonTemp["+position+"]: "+commonTemp.get(position));
-                            System.out.println("innerList["+a+"]: "+innerList.get(a));
-                            System.out.println("difference: "+StringUtils.difference(commonTemp.get(position),innerList.get(a)));
-                        }
-                        */
-                        //commonTemp.set(position, innerList.get(a));
                         a++;
                     }
 
@@ -131,14 +117,15 @@ public class Export implements Runnable {
         }
         for (ArrayList<String> outputList : csvListOutput) {
             writeLine(removeUnwantedCharacters(outputList.toString()));
-            //System.out.println(removeUnwantedCharacters(outputList.toString()));
         }
         closeFile();
     }
 
     private void createFile() {
         try {
-            this.outputFile = new PrintWriter("C:\\Users\\Stephen\\Desktop\\varexp tool project\\Test-Varexp.csv", encoding);
+            //this.outputFile = new PrintWriter("C:\\Users\\Stephen\\Desktop\\varexp tool project\\Test-Varexp.csv", encoding);
+            System.out.println(outputFilePath + fileName);
+            this.outputFile = new PrintWriter(outputFilePath + fileName, encoding);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
