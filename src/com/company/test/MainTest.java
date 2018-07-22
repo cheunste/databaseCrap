@@ -1,16 +1,12 @@
 package com.company.test;
 
-import com.company.Database.ImportHandler;
 import com.company.Main;
 import com.company.fileHandler;
-import com.mysql.cj.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by Stephen on 7/8/2018.
@@ -21,8 +17,8 @@ class MainTest {
         Main.exportFile("twin_buttes_2", "C:\\Users\\Stephen\\Desktop\\varexp tool project");
         String originalLine;
         String exportLine;
-        String originalVarexpPath = "C:\\Users\\Stephen\\Desktop\\varexp tool project\\TWIN2_Varexp.txt";
-        String exportVarexpPath = "C:\\Users\\Stephen\\Desktop\\varexp tool project\\Test-Varexp.csv";
+        String originalVarexpPath = "C:\\Users\\Stephen\\Desktop\\varexp tool project\\Varexp.txt";
+        String exportVarexpPath = "C:\\Users\\Stephen\\Desktop\\varexp tool project\\test\\testVarexp.csv";
         fileHandler fh = new fileHandler();
         //open file
         BufferedReader originalFileBR = fh.readInput(originalVarexpPath);
