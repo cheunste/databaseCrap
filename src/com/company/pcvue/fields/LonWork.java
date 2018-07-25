@@ -68,7 +68,7 @@ public class LonWork extends VarexpVariable {
 
         lonworkList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            lonworkList.add(varexpArraySplit.get(i));
+            lonworkList.add(varexpArraySplit.get(i).trim());
         }
         this.lonworkList.add(lonworkList);
 

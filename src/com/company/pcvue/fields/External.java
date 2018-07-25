@@ -55,7 +55,7 @@ public class External extends VarexpVariable {
 
         externalList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            externalList.add(varexpArraySplit.get(i).toString());
+            externalList.add(varexpArraySplit.get(i).trim().toString());
         }
 
         this.externalList.add(externalList);

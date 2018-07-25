@@ -79,7 +79,7 @@ public class CNT extends VarexpVariable {
 
         cntList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            cntList.add(varexpArraySplit.get(i).toString());
+            cntList.add(varexpArraySplit.get(i).trim().toString());
         }
 
         this.cntList.add(cntList);

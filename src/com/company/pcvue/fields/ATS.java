@@ -81,7 +81,7 @@ public class ATS extends VarexpVariable {
 
         atsList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            atsList.add(varexpArraySplit.get(i));
+            atsList.add(varexpArraySplit.get(i).trim());
         }
         this.atsList.add(atsList);
     }

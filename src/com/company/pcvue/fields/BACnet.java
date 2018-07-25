@@ -81,7 +81,7 @@ public class BACnet extends VarexpVariable {
         bacList.add("" + dbIndex);
 
         for (int i : getVarexpPositionList()) {
-            bacList.add(varexpArraySplit.get(i));
+            bacList.add(varexpArraySplit.get(i).trim());
         }
 
         this.bacList.add(bacList);

@@ -68,7 +68,7 @@ public class OPC extends VarexpVariable {
 
         opcList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            opcList.add(varexpArraySplit.get(i));
+            opcList.add(varexpArraySplit.get(i).trim());
         }
 
         this.opcList.add(opcList);

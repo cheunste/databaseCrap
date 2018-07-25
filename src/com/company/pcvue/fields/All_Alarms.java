@@ -67,7 +67,7 @@ public class All_Alarms extends VarexpVariable {
 
         all_alarmsList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            all_alarmsList.add(varexpArraySplit.get(i));
+            all_alarmsList.add(varexpArraySplit.get(i).trim());
         }
         this.allAlarmsList.add(all_alarmsList);
     }

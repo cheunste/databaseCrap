@@ -74,7 +74,7 @@ public class TSH extends VarexpVariable {
 
         tshList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            tshList.add(varexpArraySplit.get(i));
+            tshList.add(varexpArraySplit.get(i).trim());
         }
         this.tshList.add(tshList);
 

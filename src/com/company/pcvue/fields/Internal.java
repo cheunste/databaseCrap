@@ -57,7 +57,7 @@ public class Internal extends VarexpVariable {
 
         internalList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            internalList.add(varexpArraySplit.get(i));
+            internalList.add(varexpArraySplit.get(i).trim());
         }
 
         this.internalList.add(internalList);

@@ -67,7 +67,7 @@ public class ACM extends VarexpVariable {
 
         acmList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            acmList.add(varexpArraySplit.get(i));
+            acmList.add(varexpArraySplit.get(i).trim());
         }
         this.acmList.add(acmList);
 

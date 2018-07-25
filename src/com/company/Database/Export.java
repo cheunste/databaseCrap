@@ -35,6 +35,7 @@ public class Export implements Runnable {
     //Removes '[', ']' and removes all empty spaces after a single comma
     private static String removeUnwantedCharacters(String varexpVariable) {
         return varexpVariable.replace("[", "").replace("]", "").replaceAll(",\\ *", ",").replace("\"", "");
+        //return varexpVariable.replace("[", "").replace("]", "").trim();
     }
 
     public void exportDB() {

@@ -60,7 +60,7 @@ public class CXT extends VarexpVariable {
 
         cxtList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            cxtList.add(varexpArraySplit.get(i).toString());
+            cxtList.add(varexpArraySplit.get(i).trim().toString());
         }
         this.cxtList.add(cxtList);
     }

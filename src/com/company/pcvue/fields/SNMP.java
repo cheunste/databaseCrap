@@ -69,7 +69,7 @@ public class SNMP extends VarexpVariable {
 
         snmpList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            snmpList.add(varexpArraySplit.get(i));
+            snmpList.add(varexpArraySplit.get(i).trim());
         }
 
         this.snmpList.add(snmpList);

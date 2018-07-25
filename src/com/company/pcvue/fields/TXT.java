@@ -56,7 +56,7 @@ public class TXT extends VarexpVariable {
 
         txtList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            txtList.add(varexpArraySplit.get(i));
+            txtList.add(varexpArraySplit.get(i).trim());
         }
         this.txtList.add(txtList);
     }

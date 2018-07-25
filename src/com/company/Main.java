@@ -149,8 +149,6 @@ public class Main {
 
 
     public static void exportFile(String databaseName, String outputFilePath) {
-
-
         //Shtudown
         Buffer buffer = new Buffer();
         Export exp = new Export(databaseName, buffer, outputFilePath);
