@@ -12,10 +12,13 @@
       prefWidth="479.0" xmlns="http://javafx.com/javafx/8.0.171">
     <children>
         <ListView fx:id="databaseListView" layoutX="23.0" layoutY="84.0" prefHeight="295.0" prefWidth="276.0"/>
-        <Button layoutX="332.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" text="Open"/>
-        <Button layoutX="332.0" layoutY="142.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0"
+        <Button fx:id="openBtn" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="122.0" text="Open"/>
+        <Button fx:id="importBtn" layoutX="332.0" layoutY="142.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="122.0"
                 text="Import"/>
-        <Button layoutX="332.0" layoutY="212.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0"
+        <Button fx:id="exportBtn" layoutX="332.0" layoutY="212.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="122.0"
                 text="Export"/>
         <Text layoutX="23.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varexp Database"
               wrappingWidth="176.919921875">
