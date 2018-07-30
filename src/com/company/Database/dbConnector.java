@@ -2,7 +2,6 @@ package com.company.Database;
 
 import com.company.pcvue.fields.VarexpFactory;
 import com.company.pcvue.fields.VarexpVariable;
-import com.mysql.cj.protocol.Resultset;
 
 import java.sql.*;
 import java.sql.Connection;
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -230,6 +228,32 @@ public class dbConnector {
             close();
         }
         return false;
+    }
+
+    //public ArrayList<ArrayList<String>> showDatabases(){
+    public ArrayList<String> showDatabases() {
+        String showDBSQL = "Show Databases;";
+        ArrayList<String> listOfDatabase = new ArrayList<>();
+        try {
+            connect = newConnection("");
+            setStatement(connect);
+
+            resultSet = statement.executeQuery(showDBSQL);
+            resultSet = statement.getResultSet();
+
+            while (resultSet.next()) {
+                String database = resultSet.getString("Database");
+                listOfDatabase.add(database);
+            }
+
+            return listOfDatabase;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            close(this.connect);
+        }
     }
 
     public void createDB(String dbName) {
