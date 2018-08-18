@@ -1,6 +1,8 @@
 package com.company.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -11,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.company.Database.dbConnector;
 
 /**
  * Created by Stephen on 8/5/2018.
@@ -23,7 +27,13 @@ public class DBSelectorController implements Initializable {
     JFXListView<String> listPane;
 
     @FXML
-    private AnchorPane dbSelectorPane;
+    private JFXButton importBtn;
+    @FXML
+    private JFXButton exportBtn;
+    @FXML
+    private JFXButton openBtn;
+    @FXML
+    private JFXButton settingsBtn;
 
     @FXML
     private void openMenu() {
@@ -32,9 +42,8 @@ public class DBSelectorController implements Initializable {
     @FXML
     private void exportMenu() throws Exception {
         String selectedDB = listPane.getSelectionModel().getSelectedItem();
-        //ExportVarexpScene.display(selectedDB);
         if (selectedDB == null) {
-
+            //Nothing happens here. Either Do nothing or show a popup informing user
         } else {
             ExportSceneController exportScene = new ExportSceneController();
             exportScene.display(selectedDB);
@@ -53,16 +62,48 @@ public class DBSelectorController implements Initializable {
     }
 
 
+    //Initialize the window by adding listeners and other binding calls
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Add some dummy data. Needs to be an arraylist. In the future, this will be where you call the getDatabase method
+        //Add list of DB from MYSQL
         listofDB = new ArrayList<>();
-        String[] temp = new String[]{"information_schema", "feedback", "mysql", "performance_schema", "sakila", "sys", "test2", "testdb", "twin_buttes_2", "world"};
+        dbConnector db = new dbConnector();
+        ArrayList<String> temp = db.showDatabases();
         for (String item : temp) {
             listofDB.add(item);
         }
         listPane.getItems().addAll(listofDB);
 
+
+        //Button mapping
+        importBtn.setOnAction((ActionEvent e) -> {
+            try {
+                importMenu();
+            } catch (Exception x) {
+            }
+        });
+
+        exportBtn.setOnAction(e -> {
+            try {
+                exportMenu();
+            } catch (Exception x) {
+
+            }
+        });
+        openBtn.setOnAction(e -> {
+            try {
+                openMenu();
+            } catch (Exception x) {
+
+            }
+        });
+        settingsBtn.setOnAction(e -> {
+            try {
+                settingsMenu();
+            } catch (Exception x) {
+
+            }
+        });
         listPane.setOnMouseClicked(e -> {
             if (e.getButton().equals(MouseButton.PRIMARY)) {
                 listPane.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

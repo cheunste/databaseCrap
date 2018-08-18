@@ -41,14 +41,14 @@
                         <Font size="21.0"/>
                     </font>
                 </Label>
-                <JFXButton fx:id="importBtn" buttonType="RAISED" mnemonicParsing="false" onAction="#importMenu"
+                <JFXButton fx:id="importBtn" buttonType="RAISED" mnemonicParsing="false"
                            prefHeight="37.0" prefWidth="150.0" styleClass="button" text="Import"/>
                 <JFXButton fx:id="exportBtn" buttonType="RAISED" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
-                           onAction="#exportMenu" prefHeight="37.0" prefWidth="80.0" styleClass="button" text="Export"/>
+                           prefHeight="37.0" prefWidth="80.0" styleClass="button" text="Export"/>
                 <JFXButton fx:id="openBtn" buttonType="RAISED" layoutX="10.0" layoutY="35.0" mnemonicParsing="false"
-                           onAction="#openMenu" styleClass="button" text="Open"/>
-                <JFXButton fx:id="isettingsBtn" buttonType="RAISED" layoutX="10.0" layoutY="60.0"
-                           mnemonicParsing="false" onAction="#settingsMenu" styleClass="button" text="Settings"/>
+                           styleClass="button" text="Open"/>
+                <JFXButton fx:id="settingsBtn" buttonType="RAISED" layoutX="10.0" layoutY="60.0"
+                           mnemonicParsing="false" styleClass="button" text="Settings"/>
             </children>
             <opaqueInsets>
                 <Insets/>
