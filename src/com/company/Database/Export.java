@@ -3,7 +3,6 @@ package com.company.Database;
 import com.company.pcvue.fields.VarexpFactory;
 import com.company.pcvue.fields.VarexpVariable;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.groovy.util.StringUtil;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -19,7 +18,7 @@ The purpose of this class is to export the entire database from the user when th
 public class Export implements Runnable {
 
     private static String encoding = "UTF-8";
-    private static String fileName = "\\testVarexp.csv";
+    private static String fileName = "\\Varexp.txt";
     //TODO: Use the BUffer class to pass on a ConcurrentLinkedQueue to this class and the dbConnector
     private String databaseName;
     private PrintWriter outputFile;
