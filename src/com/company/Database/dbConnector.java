@@ -72,7 +72,6 @@ public class dbConnector {
     public void writeDatabase(Connection connection, String insertToDBCmd, List<String> subArrayList) throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //connect = DriverManager .getConnection("jdbc:mysql://localhost/twin_buttes_2?" + "user=root&password=Gundam7seed");
             //System.out.println(insertToDBCmd);
             preparedStatement = connection.prepareStatement(insertToDBCmd);
         } catch (Exception e) {
@@ -105,7 +104,8 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=root&password=Gundam7seed&useSSL=false");
+                    //.getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=production&password=ZAQ!xsw2CDE#&useSSL=false");
+                    .getConnection("jdbc:mysql://localhost/" + databaseName, "production", "ZAQ!xsw2CDE#");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,7 +120,7 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/", "root", "Gundam7seed");
+                    .getConnection("jdbc:mysql://localhost/", "production", "ZAQ!xsw2CDE#");
 
         } catch (Exception e) {
             e.printStackTrace();
