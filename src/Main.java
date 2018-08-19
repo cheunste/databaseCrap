@@ -1,4 +1,4 @@
-package com.company; /**
+/**
  * Created by Stephen on 7/28/2018.
  */
 
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 
-public class GUI extends Application {
+public class Main extends Application {
 
     ListView<String> listView;
     ArrayList<String> listofDB;
@@ -36,8 +36,8 @@ public class GUI extends Application {
 
         //Create an FXMLLoader object
         //Load the document
-        //Parent root = FXMLLoader.load(getClass().getResource("com.company.View/DBSelector.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("View/DBSelector.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("View/DBSelector.fxml"));
 
         window.setScene(new Scene(root, 600, 400));
 
