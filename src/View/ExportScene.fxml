@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
-<?import com.jfoenix.controls.JFXDialog?>
-<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import java.net.URL?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="230.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8.0.171"
-      fx:controller="com.company.Controller.ExportSceneController">
+      fx:controller="Controller.ExportSceneController">
     <stylesheets>
         <URL value="@CSS/defaultTheme.css"/>
     </stylesheets>
