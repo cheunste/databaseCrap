@@ -1,4 +1,4 @@
-package com.company.Controller;
+package Controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class ExportSceneController {
     private final int WINDOW_WIDTH = 250;
     private final int SPACING = 10;
-    private final String PATH_TO_SCENE = "../View/ExportScene.fxml";
+    private final String PATH_TO_SCENE = "/View/ExportScene.fxml";
     private Stage exportWindow;
     private String outputDirectory;
 

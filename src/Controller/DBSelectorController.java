@@ -1,5 +1,6 @@
-package com.company.Controller;
+package Controller;
 
+import com.company.Database.dbConnector;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
@@ -8,13 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import com.company.Database.dbConnector;
 
 /**
  * Created by Stephen on 8/5/2018.
@@ -80,6 +78,7 @@ public class DBSelectorController implements Initializable {
             try {
                 importMenu();
             } catch (Exception x) {
+                x.printStackTrace();
             }
         });
 
@@ -87,14 +86,14 @@ public class DBSelectorController implements Initializable {
             try {
                 exportMenu();
             } catch (Exception x) {
-
+                x.printStackTrace();
             }
         });
         openBtn.setOnAction(e -> {
             try {
                 openMenu();
             } catch (Exception x) {
-
+                x.printStackTrace();
             }
         });
         settingsBtn.setOnAction(e -> {

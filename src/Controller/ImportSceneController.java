@@ -1,4 +1,4 @@
-package com.company.Controller;
+package Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -20,7 +20,7 @@ import java.io.File;
 public class ImportSceneController {
 
     private Stage importWindow;
-    private String PATH_TO_SCENE = "../View/ImportScene.fxml";
+    private String PATH_TO_SCENE = "/View/ImportScene.fxml";
     private String databaseName;
     private boolean databaseNameBoolean;
     private boolean chosenFileBoolean;
