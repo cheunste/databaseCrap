@@ -2,6 +2,7 @@
  * Created by Stephen on 7/28/2018.
  */
 
+import Controller.DBSelectorController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,12 +37,16 @@ public class Main extends Application {
 
         //Create an FXMLLoader object
         //Load the document
-        Parent root = FXMLLoader.load(getClass().getResource("View/DBSelector.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("View/DBSelector.fxml"));
 
-        window.setScene(new Scene(root, 600, 400));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("View/DBSelector.fxml"));
+        Parent root = loader.load();
+        DBSelectorController dbSelectorController = loader.getController();
+        dbSelectorController.setCurrentWindow(window);
 
+        window.setScene(new Scene(root, 600, 400));
         window.show();
+
     }
 
 }

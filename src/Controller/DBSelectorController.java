@@ -5,10 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +23,8 @@ import java.util.ResourceBundle;
  */
 public class DBSelectorController implements Initializable {
     private static final int DOUBLE_CLICK = 2;
+
+    Stage currentWindow;
     ListView<String> listView;
     ArrayList<String> listofDB;
     @FXML
@@ -121,7 +127,29 @@ public class DBSelectorController implements Initializable {
         });
     }
 
+    //This is used to keep track of prvevious stages so I can close them later
+    public void setCurrentWindow(Stage window) {
+        this.currentWindow = window;
+    }
+
     public void openTagEditScene() {
 
+
+        Stage newWindow = new Stage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/TagEdit.fxml"));
+            newWindow.setScene(new Scene(root, 800, 1000));
+            newWindow.show();
+            currentWindow.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+        }
+        //Parent root = FXMLLoader.load(getClass().getResource("View/DBSelector.fxml"));
+
+
     }
+
+
 }
