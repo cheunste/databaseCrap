@@ -2,12 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import java.net.URL?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="230.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8.0.171"
-      fx:controller="Controller.ExportSceneController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+           minWidth="-Infinity" prefHeight="230.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8.0.171"
+>
+    <!--fx:controller="Controller.ExportSceneController">-->
     <stylesheets>
         <URL value="@CSS/defaultTheme.css"/>
     </stylesheets>
@@ -17,13 +18,11 @@
             <children>
                 <Label text="Select an output"/>
                 <Label fx:id="outputLabel" text=""/>
-                <JFXButton buttonType="RAISED" onAction="#directorySelector" text="Select Output"/>
-                <JFXButton fx:id="exportButton" buttonType="RAISED" disable="true" text="Export"
-                           onAction="#exportButtonEvent"/>
-                <JFXButton fx:id="cancelButton" buttonType="RAISED" styleClass="cancelButton" text="Cancel"
-                           onAction="#cancelButtonEvent"/>
+                <JFXButton fx:id="selectButton" buttonType="RAISED" text="Select Output"/>
+                <JFXButton fx:id="exportButton" buttonType="RAISED" disable="true" text="Export"/>
+                <JFXButton fx:id="cancelButton" buttonType="RAISED" styleClass="cancelButton" text="Cancel"/>
             </children>
         </VBox>
     </children>
 
-</Pane>
+</StackPane>

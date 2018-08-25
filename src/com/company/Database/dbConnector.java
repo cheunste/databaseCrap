@@ -4,12 +4,6 @@ import com.company.pcvue.fields.VarexpFactory;
 import com.company.pcvue.fields.VarexpVariable;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -223,7 +217,6 @@ public class dbConnector {
                 }
             }
         } catch (SQLException e1) {
-            e1.printStackTrace();
         } finally {
             close();
         }

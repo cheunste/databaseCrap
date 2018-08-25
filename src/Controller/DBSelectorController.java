@@ -23,7 +23,7 @@ public class DBSelectorController implements Initializable {
     ArrayList<String> listofDB;
     @FXML
     JFXListView<String> listPane;
-
+    private String selectedDB;
     @FXML
     private JFXButton importBtn;
     @FXML
@@ -39,12 +39,12 @@ public class DBSelectorController implements Initializable {
 
     @FXML
     private void exportMenu() throws Exception {
-        String selectedDB = listPane.getSelectionModel().getSelectedItem();
+        selectedDB = listPane.getSelectionModel().getSelectedItem();
         if (selectedDB == null) {
             //Nothing happens here. Either Do nothing or show a popup informing user
         } else {
-            ExportSceneController exportScene = new ExportSceneController();
-            exportScene.display(selectedDB);
+            ExportSceneController exportScene = new ExportSceneController(selectedDB);
+            exportScene.display();
         }
     }
 
