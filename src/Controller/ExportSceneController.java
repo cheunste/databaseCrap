@@ -1,15 +1,20 @@
 package Controller;
 
+import com.company.Database.Buffer;
+import com.company.Database.Export;
 import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * Created by Stephen on 8/12/2018.
@@ -18,8 +23,13 @@ public class ExportSceneController {
     private final int WINDOW_WIDTH = 250;
     private final int SPACING = 10;
     private final String PATH_TO_SCENE = "/View/ExportScene.fxml";
+
     private Stage exportWindow;
+    private String databaseSelected = "";
     private String outputDirectory;
+    private StackPane rootScene;
+    private JFXDialog dialog;
+    private StackPane dialogPane;
 
     @FXML
     private Label outputLabel;
@@ -28,15 +38,45 @@ public class ExportSceneController {
     private JFXButton exportButton;
 
     @FXML
+    private JFXButton selectButton;
+
+    @FXML
     private JFXButton cancelButton;
 
-    public static void confirmButtonEvent() {
-        //At this point, call the Export method in the Main class and then close this window
-        //TODO: Implement this
+    public ExportSceneController(String database) {
+
+        this.databaseSelected = database;
 
     }
 
-    private static String directorySelector(Stage stage) {
+    @FXML
+    /*
+    private void initialize(){
+        databaseSelected=getdatabaseSelected();
+        outputDirectory=null;
+        exportButton.disableProperty().bind(
+            outputLabel.textProperty().isEmpty()
+        );
+        exportButton.setOnAction(e->{
+            Buffer buffer = new Buffer();
+            Export exp = new Export(getdatabaseSelected(), buffer, outputDirectory);
+            exp.exportDB();
+        });
+
+        selectButton.setOnAction(e->{
+            outputDirectory=directorySelector(exportWindow);
+            outputLabel.setText(outputDirectory);
+        });
+
+        cancelButton.setOnAction(e->{
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        });
+    }
+    */
+
+
+    private String directorySelector(Stage stage) {
         String chosenDirectory = "";
         //Using the try catch block because if the user hits cancel, then that throws a nullpointerexception
         try {
@@ -51,60 +91,111 @@ public class ExportSceneController {
         }
     }
 
-    public void display(String databaseSelected) throws Exception {
+    public void display() throws Exception {
 
+        System.out.println(databaseSelected);
         exportWindow = new Stage();
+        exportWindow.initModality(Modality.APPLICATION_MODAL);
+        //Parent rootScene = FXMLLoader.load(getClass().getResource(PATH_TO_SCENE));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(PATH_TO_SCENE));
+        //loader.setController(this);
+        rootScene = loader.load();
 
-        if (databaseSelected == null) {
+        exportButton = (JFXButton) rootScene.lookup("#exportButton");
+        selectButton = (JFXButton) rootScene.lookup("#selectButton");
+        cancelButton = (JFXButton) rootScene.lookup("#cancelButton");
+        outputLabel = (Label) rootScene.lookup("#outputLabel");
 
-            /*
-           JFXDialog dialog = new JFXDialog();
-           dialog.setContent(new Label("Content"));
-           dialog.show();
-           */
+        exportButton.disableProperty().bind(
+                outputLabel.textProperty().isEmpty()
+        );
+        exportButton.setOnAction(e -> {
+            Buffer buffer = new Buffer();
+            Export exp = new Export(getdatabaseSelected(), buffer, outputDirectory);
+            exp.exportDB();
 
-        } else {
+            showDialog();
+            //closeStage(exportButton.getScene().getWindow());
+        });
 
-            exportWindow.initModality(Modality.APPLICATION_MODAL);
+        selectButton.setOnAction(e -> {
+            outputDirectory = directorySelector(exportWindow);
+            outputLabel.setText(outputDirectory);
+        });
 
-            Parent root = FXMLLoader.load(getClass().getResource(PATH_TO_SCENE));
-            exportWindow.setScene(new Scene(root));
-            exportWindow.setTitle("Choose Export Directory:");
-            exportWindow.setTitle("Export Varexp");
-            exportWindow.showAndWait();
-        }
+        cancelButton.setOnAction(e -> {
 
+            closeStage(cancelButton.getScene().getWindow());
+        });
+
+        loadDialog();
+        exportWindow.setScene(new Scene(rootScene));
+        exportWindow.setTitle("Choose Export Directory:");
+        exportWindow.setTitle("Export Varexp");
+        exportWindow.showAndWait();
     }
 
-    public void closeButtonEvent() {
-        exportWindow.close();
-
+    public String getdatabaseSelected() {
+        System.out.println(this.databaseSelected);
+        return this.databaseSelected;
     }
 
-    public void directorySelector(ActionEvent actionEvent) {
-        String chosenDirectory = "";
-        //Using the try catch block because if the user hits cancel, then that throws a nullpointerexception
-        try {
-            DirectoryChooser exportDirectoryChooser = new DirectoryChooser();
-            exportDirectoryChooser.setTitle("Export Varexp File");
-            exportDirectoryChooser.getInitialDirectory();
-            chosenDirectory = exportDirectoryChooser.showDialog(exportWindow).getAbsolutePath();
-            System.out.println(chosenDirectory);
-            outputLabel.setText(chosenDirectory);
-            outputDirectory = chosenDirectory;
-            exportButton.setDisable(false);
-        } catch (NullPointerException e) {
-            //Ignore all exception. It just means the user clicked cancel
-        } finally {
-        }
-    }
-
-    public void exportButtonEvent(ActionEvent actionEvent) {
-
-    }
-
-    public void cancelButtonEvent(ActionEvent actionEvent) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+    private void closeStage(Window window) {
+        Stage stage = (Stage) window;
         stage.close();
+
     }
+
+    private void showDialog() {
+        //create a new dialogLayout along with its content
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Heading"));
+        content.setBody(new Text(" Body"));
+
+        //Create a new stackpane just for the dialog
+        StackPane dialogPane = new StackPane();
+
+        //Create a dialog container, which contains the dialog's layout, the stackpane and its transition)
+        dialog = new JFXDialog(dialogPane, content, JFXDialog.DialogTransition.CENTER);
+
+        //This is to add a button to the dialog
+        JFXButton button = new JFXButton("OK");
+        button.setOnAction(e -> {
+            dialog.close();
+            rootScene.getChildren().remove(dialogPane);
+        });
+        content.setActions(button);
+
+        //Add the dialog to its stackpane
+        rootScene.getChildren().add(dialogPane);
+        dialog.show();
+    }
+
+    private void loadDialog() {
+        //create a new dialogLayout along with its content
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Heading"));
+        content.setBody(new Text(" Body"));
+
+        //Create a new stackpane just for the dialog
+        StackPane dialogPane = new StackPane();
+
+        //Create a dialog container, which contains the dialog's layout, the stackpane and its transition)
+        dialog = new JFXDialog(dialogPane, content, JFXDialog.DialogTransition.CENTER);
+
+        //This is to add a button to the dialog
+        JFXButton button = new JFXButton("OK");
+        button.setOnAction(e -> {
+            dialog.close();
+        });
+        content.setActions(button);
+
+
+    }
+
+    public void setDatabaseSelected(String databaseSelected) {
+        this.databaseSelected = databaseSelected;
+        System.out.println(databaseSelected);
+    }
+
 }
