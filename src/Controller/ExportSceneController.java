@@ -128,7 +128,6 @@ public class ExportSceneController {
             closeStage(cancelButton.getScene().getWindow());
         });
 
-        loadDialog();
         exportWindow.setScene(new Scene(rootScene));
         exportWindow.setTitle("Choose Export Directory:");
         exportWindow.setTitle("Export Varexp");
@@ -149,8 +148,8 @@ public class ExportSceneController {
     private void showDialog() {
         //create a new dialogLayout along with its content
         JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Heading"));
-        content.setBody(new Text(" Body"));
+        content.setHeading(new Text("Export"));
+        content.setBody(new Text(" File successfully exported"));
 
         //Create a new stackpane just for the dialog
         StackPane dialogPane = new StackPane();
@@ -169,28 +168,6 @@ public class ExportSceneController {
         //Add the dialog to its stackpane
         rootScene.getChildren().add(dialogPane);
         dialog.show();
-    }
-
-    private void loadDialog() {
-        //create a new dialogLayout along with its content
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Heading"));
-        content.setBody(new Text(" Body"));
-
-        //Create a new stackpane just for the dialog
-        StackPane dialogPane = new StackPane();
-
-        //Create a dialog container, which contains the dialog's layout, the stackpane and its transition)
-        dialog = new JFXDialog(dialogPane, content, JFXDialog.DialogTransition.CENTER);
-
-        //This is to add a button to the dialog
-        JFXButton button = new JFXButton("OK");
-        button.setOnAction(e -> {
-            dialog.close();
-        });
-        content.setActions(button);
-
-
     }
 
     public void setDatabaseSelected(String databaseSelected) {

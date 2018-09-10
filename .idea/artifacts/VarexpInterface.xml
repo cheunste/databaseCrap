@@ -15,8 +15,8 @@
       </options>
     </properties>
     <root id="root">
-      <element id="archive" name="databaseCrap.jar">
-        <element id="module-output" name="databaseCrap" />
+      <element id="archive" name="VarexpInterface.jar">
+        <element id="module-output" name="VarexpInterface" />
         <element id="dir-copy" path="$PROJECT_DIR$/src" />
         <element id="directory" name="Libaries">
           <element id="library" level="project" name="lib" />
