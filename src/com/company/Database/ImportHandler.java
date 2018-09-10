@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * This class handles the formatting of sql requests before passing them onto the dbConnector class.
@@ -15,7 +16,7 @@ import java.util.List;
  * joining tables before performming reads or updates
  * Handling basic CRUD operations
  */
-public class ImportHandler implements Runnable {
+public class ImportHandler implements Callable<Boolean> {
 
     //These are member variables that have to do with mysql connections
     dbConnector db;
@@ -83,7 +84,7 @@ public class ImportHandler implements Runnable {
     }
 
     @Override
-    public void run() {
+    public Boolean call() {
         try {
             while (true) {
                 if (buffer.getSize() >= buffer.getQueueLimit()) {
@@ -115,21 +116,26 @@ public class ImportHandler implements Runnable {
                         e.printStackTrace();
                     }
                 }
-                //System.out.println("SQL Handler Buffer Size: " + buffer.getSize());
+
+                //If all the items have been processed, then we're done and this call should return true
                 if (buffer.isDone == true && buffer.isEmpty()) {
+
                     //System.out.println("SQL Handler: Done");
                     System.out.println("Done with Importing to database.");
-                    break;
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        return true;
+                    }
                 }
-            }
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return false;
     }
+
 }
