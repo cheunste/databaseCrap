@@ -2,17 +2,9 @@ package com.company.Database;
 
 import com.company.pcvue.fields.VarexpFactory;
 import com.company.pcvue.fields.VarexpVariable;
-import com.mysql.cj.protocol.Resultset;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -74,7 +66,6 @@ public class dbConnector {
     public void writeDatabase(Connection connection, String insertToDBCmd, List<String> subArrayList) throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //connect = DriverManager .getConnection("jdbc:mysql://localhost/twin_buttes_2?" + "user=root&password=Gundam7seed");
             //System.out.println(insertToDBCmd);
             preparedStatement = connection.prepareStatement(insertToDBCmd);
         } catch (Exception e) {
@@ -107,7 +98,8 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=root&password=Gundam7seed&useSSL=false");
+                    //.getConnection("jdbc:mysql://localhost/" + databaseName + "?" + "user=production&password=ZAQ!xsw2CDE#&useSSL=false");
+                    .getConnection("jdbc:mysql://localhost/" + databaseName, "production", "ZAQ!xsw2CDE#");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +114,7 @@ public class dbConnector {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/", "root", "Gundam7seed");
+                    .getConnection("jdbc:mysql://localhost/", "production", "ZAQ!xsw2CDE#");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,11 +217,36 @@ public class dbConnector {
                 }
             }
         } catch (SQLException e1) {
-            e1.printStackTrace();
         } finally {
             close();
         }
         return false;
+    }
+
+    //public ArrayList<ArrayList<String>> showDatabases(){
+    public ArrayList<String> showDatabases() {
+        String showDBSQL = "Show Databases;";
+        ArrayList<String> listOfDatabase = new ArrayList<>();
+        try {
+            connect = newConnection("");
+            setStatement(connect);
+
+            resultSet = statement.executeQuery(showDBSQL);
+            resultSet = statement.getResultSet();
+
+            while (resultSet.next()) {
+                String database = resultSet.getString("Database");
+                listOfDatabase.add(database);
+            }
+
+            return listOfDatabase;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            close(this.connect);
+        }
     }
 
     public void createDB(String dbName) {

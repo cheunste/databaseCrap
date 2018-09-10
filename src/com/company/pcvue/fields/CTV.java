@@ -66,7 +66,7 @@ public class CTV extends VarexpVariable {
 
         ctvList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            ctvList.add(varexpArraySplit.get(i));
+            ctvList.add(varexpArraySplit.get(i).trim());
         }
 
         this.ctvList.add(ctvList);

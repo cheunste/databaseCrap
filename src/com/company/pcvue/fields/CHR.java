@@ -78,7 +78,7 @@ public class CHR extends VarexpVariable {
 
         chrList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            chrList.add(varexpArraySplit.get(i).toString());
+            chrList.add(varexpArraySplit.get(i).trim().toString());
         }
         this.chrList.add(chrList);
     }

@@ -1,7 +1,8 @@
 package com.company.test;
 
-import com.company.Main;
+import com.company.MainCmd;
 import com.company.fileHandler;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,10 +12,10 @@ import java.sql.SQLException;
 /**
  * Created by Stephen on 7/8/2018.
  */
-class MainTest {
-    @org.junit.jupiter.api.Test
+class MainCmdTest {
+    @Test
     void compareTest() throws IOException, ArrayIndexOutOfBoundsException, SQLException {
-        Main.exportFile("twin_buttes_2", "C:\\Users\\Stephen\\Desktop\\varexp tool project");
+        MainCmd.exportFile("twin_buttes_2", "C:\\Users\\Stephen\\Desktop\\varexp tool project");
         String originalLine;
         String exportLine;
         String originalVarexpPath = "C:\\Users\\Stephen\\Desktop\\varexp tool project\\Varexp.txt";

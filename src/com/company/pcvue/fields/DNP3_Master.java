@@ -80,7 +80,7 @@ public class DNP3_Master extends VarexpVariable {
 
         dnp3_masterList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            dnp3_masterList.add(varexpArraySplit.get(i));
+            dnp3_masterList.add(varexpArraySplit.get(i).trim());
         }
 
         this.dnp3_masterList.add(dnp3_masterList);

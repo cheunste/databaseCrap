@@ -58,7 +58,7 @@ public class CMD extends VarexpVariable {
 
         cmdList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            cmdList.add(varexpArraySplit.get(i));
+            cmdList.add(varexpArraySplit.get(i).trim());
         }
 
         this.cmdList.add(cmdList);

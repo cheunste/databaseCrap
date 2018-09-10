@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/databaseCrap.iml" filepath="$PROJECT_DIR$/databaseCrap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VarexpInterface.iml" filepath="$PROJECT_DIR$/VarexpInterface.iml" />
     </modules>
   </component>
 </project>

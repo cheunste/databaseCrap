@@ -66,7 +66,7 @@ public class DDE extends VarexpVariable {
 
         ddeList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            ddeList.add(varexpArraySplit.get(i));
+            ddeList.add(varexpArraySplit.get(i).trim());
         }
 
         this.ddeList.add(ddeList);

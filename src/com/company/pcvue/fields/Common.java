@@ -115,7 +115,7 @@ public class Common extends VarexpVariable {
         commonArrayList.add("" + dbIndex);
 
         for (int i : varexpPositionList) {
-            commonArrayList.add(varexpArraySplit.get(i));
+            commonArrayList.add(varexpArraySplit.get(i).trim());
         }
 
         this.commonList.add(commonArrayList);

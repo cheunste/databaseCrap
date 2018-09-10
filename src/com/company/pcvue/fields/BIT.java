@@ -60,7 +60,7 @@ public class BIT extends VarexpVariable {
 
         bitList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            bitList.add(varexpArraySplit.get(i).toString());
+            bitList.add(varexpArraySplit.get(i).trim().toString());
         }
         this.bitList.add(bitList);
     }

@@ -71,7 +71,7 @@ public class IEC60870_Master extends VarexpVariable {
 
         iec60870_masterList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            iec60870_masterList.add(varexpArraySplit.get(i));
+            iec60870_masterList.add(varexpArraySplit.get(i).trim());
         }
 
         this.iec60870_masterList.add(iec60870_masterList);

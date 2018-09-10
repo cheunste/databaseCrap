@@ -64,7 +64,7 @@ public class ALA extends VarexpVariable {
 
         alaList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            alaList.add(varexpArraySplit.get(i));
+            alaList.add(varexpArraySplit.get(i).trim());
         }
         this.alaList.add(alaList);
 

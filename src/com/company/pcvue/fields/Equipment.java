@@ -64,7 +64,7 @@ public class Equipment extends VarexpVariable {
 
         equipmentList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            equipmentList.add(varexpArraySplit.get(i));
+            equipmentList.add(varexpArraySplit.get(i).trim());
         }
 
         this.equipmentList.add(equipmentList);

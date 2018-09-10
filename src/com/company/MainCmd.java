@@ -2,14 +2,14 @@ package com.company;
 
 import com.company.Database.*;
 
-import java.io.*;
-import java.sql.*;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
-public class Main {
+public class MainCmd {
 
     //Function to import the varexp file. Ask a user if they want to overwrite a DB first and then actually import it
     private static void importFile(String fileLocation, String databaseName) throws IOException, SQLException {
@@ -68,11 +68,10 @@ public class Main {
         final Map<String, List<String>> params = new HashMap<>();
 
         //For logging
-        Logger logger = Logger.getLogger(Main.class.getName());
+        Logger logger = Logger.getLogger(MainCmd.class.getName());
 
 
         List<String> options = null;
-        ;
         for (int i = 0; i < args.length; i++) {
             final String a = args[i];
 
@@ -149,8 +148,6 @@ public class Main {
 
 
     public static void exportFile(String databaseName, String outputFilePath) {
-
-
         //Shtudown
         Buffer buffer = new Buffer();
         Export exp = new Export(databaseName, buffer, outputFilePath);
