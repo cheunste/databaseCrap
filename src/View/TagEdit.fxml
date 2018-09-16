@@ -66,10 +66,10 @@
                         <!-- Command Variable View-->
                         <HBox>
                             <VBox fx:id="CommonView">
-                                <GridPane fx:id="leftGridPane">
+                                <GridPane fx:id="leftGridPane" VBox.vgrow="ALWAYS">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="NEVER" minWidth="-Infinity"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
@@ -79,11 +79,11 @@
                                     <Insets right="10.0"/>
                                 </HBox.margin>
                             </VBox>
-                            <VBox fx:id="CommonView2">
+                            <VBox fx:id="CommonView2" HBox.hgrow="ALWAYS">
                                 <GridPane fx:id="rightGridPane">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="NEVER" minWidth="-Infinity"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER"/>
