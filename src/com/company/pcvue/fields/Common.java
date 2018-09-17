@@ -36,52 +36,6 @@ public class Common extends VarexpVariable {
         varexpPositionList.add(240);
     }
 
-    //This returns a list of all fields that should be text inputs
-    public ArrayList<String> getTextFieldItems() {
-        ArrayList<String> textfieldItems = new ArrayList<>();
-        textfieldItems.add("Variable Type");
-        textfieldItems.add("Variable Internal ID");
-        textfieldItems.add("1st element of Variable");
-        textfieldItems.add("2nd element of Variable");
-        textfieldItems.add("3rd element of Variable");
-        textfieldItems.add("4th element of Variable");
-        textfieldItems.add("5th element of Variable");
-        textfieldItems.add("6th element of Variable");
-        textfieldItems.add("7th-12th element of Variable");
-        textfieldItems.add("Variable description (1st lang)");
-        textfieldItems.add("Varialbe description (2nd lang)");
-        textfieldItems.add("Domain");
-        textfieldItems.add("Nature");
-        textfieldItems.add("reserved");
-        textfieldItems.add("reserved2");
-        textfieldItems.add("reserved3");
-        textfieldItems.add("reserved4");
-        textfieldItems.add("Topology: Server list name");
-        textfieldItems.add("Topology: Client list name");
-        textfieldItems.add("Name of associated label");
-        textfieldItems.add("Binary attributes");
-        textfieldItems.add("Text Attribute 3");
-        textfieldItems.add("Text Attribute 4");
-        textfieldItems.add("Text Attribute 5");
-        textfieldItems.add("Text Attribute 6");
-        textfieldItems.add("Text Attribute 7");
-        textfieldItems.add("Text Attribute 8");
-        textfieldItems.add("Text Attribute 9");
-        textfieldItems.add("Text Attribute 10");
-        textfieldItems.add("Text Attribute 11");
-        textfieldItems.add("Text Attribute 12");
-        textfieldItems.add("Text Attribute 13");
-        textfieldItems.add("Text Attribute 14");
-        textfieldItems.add("Text Attribute 15");
-        textfieldItems.add("Text Attribute 16");
-        textfieldItems.add("Visualization Level");
-        textfieldItems.add("Initial Value");
-        textfieldItems.add("reserved5");
-
-        return textfieldItems;
-
-    }
-
     //This returns a list of all fields that are combo boxes
     public ArrayList<String> getComboBoxItems() {
         ArrayList<String> comboBoxItems = new ArrayList();
@@ -153,21 +107,42 @@ public class Common extends VarexpVariable {
         return thisMap;
     }
 
-    public LinkedHashMap<String, String[]> getComboBoxChoices() {
+    public LinkedHashMap<String, VarexpTuple> getComboBoxChoices() {
+        LinkedHashMap<String, VarexpTuple> comboBoxChoicesMap = new LinkedHashMap<>();
+        comboBoxChoicesMap.put("Inhibit flag", new VarexpTuple(14, new String[]{"Yes", "NA"}, new String[]{"I", ""}));
+        comboBoxChoicesMap.put("Simulated flag", new VarexpTuple(15, new String[]{"Yes", "NA"}, new String[]{"S", ""}));
+        comboBoxChoicesMap.put("Permanent flag", new VarexpTuple(16, new String[]{"Yes", "NA"}, new String[]{"P", ""}));
+        comboBoxChoicesMap.put("Source of Variable",
+                new VarexpTuple(17,
+                        new String[]{"Equipment", "Internal", "External",
+                                "DDE", "OPC", "LonWorks", "BACnet", "60870-5-104", "61850", "DNP3", "SNMP"},
+                        new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"}));
+        comboBoxChoicesMap.put("Diffusion Indicator",
+                new VarexpTuple(18,
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"}));
+        comboBoxChoicesMap.put("Permanent subscription for mimics",
+                new VarexpTuple(21,
+                        new String[]{"0: All Stations", "1: None", "2: Server station"},
+                        new String[]{"0", "1", "2"}
+                ));
+        comboBoxChoicesMap.put("Object Root",
+                new VarexpTuple(22,
+                        new String[]{"Local", "Customized Layer"},
+                        new String[]{"0", "1"}));
 
-        LinkedHashMap<String, String[]> comboBoxChoicesMap = new LinkedHashMap<>();
-
-        comboBoxChoicesMap.put("Inhibit flag", new String[]{"I", "NA"});
-        comboBoxChoicesMap.put("Simulated flag", new String[]{"S", "NA"});
-        comboBoxChoicesMap.put("Permanent flag", new String[]{"P", "NA"});
-        comboBoxChoicesMap.put("Source of Variable", new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"});
-        comboBoxChoicesMap.put("Diffusion Indicator", new String[]{"N", "Y"});
-        comboBoxChoicesMap.put("Permanent subscription for mimics", new String[]{"0: All Stations", "1: None", "2: Server station"});
-        comboBoxChoicesMap.put("Object Root", new String[]{"Local", "Customized Layer"});
-        comboBoxChoicesMap.put("Variable with Extended Attributes", new String[]{"Columns 130 to 140", "Columns 137 to 146"});
-        comboBoxChoicesMap.put("Remote Access", new String[]{"N", "Y"});
-        comboBoxChoicesMap.put("Is Initial Value", new String[]{"N", "Y"});
-
+        comboBoxChoicesMap.put("Variable with Extended Attributes",
+                new VarexpTuple(23,
+                        new String[]{"Columns 130 to 140", "Columns 137 to 146"},
+                        new String[]{"0", "1"}));
+        comboBoxChoicesMap.put("Remote Access",
+                new VarexpTuple(25,
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"}));
+        comboBoxChoicesMap.put("Is Initial Value",
+                new VarexpTuple(178,
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"}));
         return comboBoxChoicesMap;
     }
 
