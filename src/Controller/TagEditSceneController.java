@@ -251,6 +251,7 @@ public class TagEditSceneController {
             textFieldInput.getTextField().textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    //TODO: Implement the change listener so that the textfield turns red whenever the user goes over the text limit
                     System.out.println(textFieldInput.getName() + " " + newValue);
                 }
             });
@@ -259,6 +260,7 @@ public class TagEditSceneController {
             comboBoxInput.getComboBox().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                 @Override
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    //TODO: Implement the change listener so that whenever a certain choice is clicked, different things happens
                     System.out.println(comboBoxInput.getName() + " " + newValue);
                 }
             });
