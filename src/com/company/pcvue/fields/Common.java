@@ -36,26 +36,9 @@ public class Common extends VarexpVariable {
         varexpPositionList.add(240);
     }
 
-    //This returns a list of all fields that are combo boxes
-    public ArrayList<String> getComboBoxItems() {
-        ArrayList<String> comboBoxItems = new ArrayList();
-        comboBoxItems.add("Inhibit flag");
-        comboBoxItems.add("Simulated flag");
-        comboBoxItems.add("Permanent flag");
-        comboBoxItems.add("Source of Variable");
-        comboBoxItems.add("Diffusion Indicator");
-        comboBoxItems.add("Permanent subscription for mimics");
-        comboBoxItems.add("Object Root");
-        comboBoxItems.add("Variable with Extended Attributes");
-        comboBoxItems.add("Remote Access");
-        comboBoxItems.add("Is Initial Value");
-        return comboBoxItems;
-    }
-
     //This returns a map of all text field items, along with their VarexpTuple
     public Map<String, VarexpTuple> getFieldMap() {
         Map<String, VarexpTuple> thisMap = new LinkedHashMap<>();
-
 
         thisMap.put("Variable Type", new VarexpTuple(1, "TF", "", "", true));
         thisMap.put("Variable Internal ID", new VarexpTuple(2, "TF", "", "3", true));
@@ -140,59 +123,7 @@ public class Common extends VarexpVariable {
         thisMap.put("Initial Value", new VarexpTuple(179, "TF", "", "255", true));
         thisMap.put("resevered5", new VarexpTuple(241, "TF", "", "0", false));
 
-
-
-
-
         return thisMap;
-    }
-
-    public LinkedHashMap<String, VarexpTuple> getComboBoxChoices() {
-        LinkedHashMap<String, VarexpTuple> comboBoxChoicesMap = new LinkedHashMap<>();
-        comboBoxChoicesMap.put("Inhibit flag", new VarexpTuple(14, "CB", new String[]{"Yes", "NA"}, new String[]{"I", ""}, true));
-        comboBoxChoicesMap.put("Simulated flag", new VarexpTuple(15, "CB", new String[]{"Yes", "NA"}, new String[]{"S", ""}, true));
-        comboBoxChoicesMap.put("Permanent flag", new VarexpTuple(16, "CB", new String[]{"Yes", "NA"}, new String[]{"P", ""}, true));
-        comboBoxChoicesMap.put("Source of Variable",
-                new VarexpTuple(17, "CB",
-                        new String[]{"Equipment", "Internal", "External",
-                                "DDE", "OPC", "LonWorks", "BACnet", "60870-5-104", "61850", "DNP3", "SNMP"},
-                        new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"},
-                        true));
-        comboBoxChoicesMap.put("Diffusion Indicator",
-                new VarexpTuple(18, "CB",
-                        new String[]{"N", "Y"},
-                        new String[]{"0", "1"},
-                        true));
-        comboBoxChoicesMap.put("Permanent subscription for mimics",
-                new VarexpTuple(21, "CB",
-                        new String[]{"0: All Stations", "1: None", "2: Server station"},
-                        new String[]{"0", "1", "2"},
-                        true
-                ));
-        comboBoxChoicesMap.put("Object Root",
-                new VarexpTuple(22, "CB",
-                        new String[]{"Local", "Customized Layer"},
-                        new String[]{"0", "1"},
-                        true
-                ));
-
-        comboBoxChoicesMap.put("Variable with Extended Attributes",
-                new VarexpTuple(23, "CB",
-                        new String[]{"Columns 130 to 140", "Columns 137 to 146"},
-                        new String[]{"0", "1"},
-                        true
-                ));
-        comboBoxChoicesMap.put("Remote Access",
-                new VarexpTuple(25, "CB",
-                        new String[]{"N", "Y"},
-                        new String[]{"0", "1"},
-                        true));
-        comboBoxChoicesMap.put("Is Initial Value",
-                new VarexpTuple(178, "CB",
-                        new String[]{"N", "Y"},
-                        new String[]{"0", "1"},
-                        true));
-        return comboBoxChoicesMap;
     }
 
     @Override

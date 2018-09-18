@@ -13,6 +13,9 @@ package com.company.pcvue.fields;
  * <p>
  * pcVueWriteOptions: This will be the choices that will write to PcVue or a limitation on a particular field. This MUST match the exact format as the userText.
  * This is a list of Strings (Combobox), but this should be the value limit for text fields. However, it can also be blank (also for TextField)
+ *
+ * visibility: This will determine if an item shows up on the GUI. The reason this exists is because certain items should never show up (ex: reserved tags)
+ * and some item shows up only if a specific choice is made in another field
  */
 public class VarexpTuple<Position, WidgetType, UserDisplayText, PcVueWriteOptions, Visibility> {
     public final Position position;
