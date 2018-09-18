@@ -52,97 +52,146 @@ public class Common extends VarexpVariable {
         return comboBoxItems;
     }
 
-    //This returns a map of all text field items, along with their varexp Array position
-    public Map<String, Integer> getFieldMap() {
-        Map<String, Integer> thisMap = new LinkedHashMap<>();
-        thisMap.put("Variable Type", 2);
-        thisMap.put("Variable Internal ID", 3);
-        thisMap.put("1st element of Variable", 4);
-        thisMap.put("2nd element of Variable", 5);
-        thisMap.put("3rd element of Variable", 6);
-        thisMap.put("4th element of Variable", 7);
-        thisMap.put("5th element of Variable", 8);
-        thisMap.put("6th element of Variable", 9);
-        thisMap.put("7th-12th element of Variable", 10);
-        thisMap.put("Variable description (1st lang)", 11);
-        thisMap.put("Varialbe description (2nd lang)", 12);
-        thisMap.put("Domain", 13);
-        thisMap.put("Nature", 14);
-        thisMap.put("Inhibit flag", 15);
-        thisMap.put("Simulated flag", 16);
-        thisMap.put("Permanent flag", 17);
-        thisMap.put("Source of Variable", 18);
-        thisMap.put("Diffusion Indicator", 19);
-        thisMap.put("Number of station", 20);
-        thisMap.put("reserved", 21);
-        thisMap.put("Permanent subscription for mimics", 22);
-        thisMap.put("Object Root", 23);
-        thisMap.put("Variable with Extended Attributes", 24);
-        thisMap.put("reserved2", 25);
-        thisMap.put("Remote Access", 26);
-        thisMap.put("reserved3", 27);
-        thisMap.put("reserved4", 28);
-        thisMap.put("Topology: Server list name", 29);
-        thisMap.put("Topology: Client list name", 30);
-        thisMap.put("Name of associated label", 41);
-        thisMap.put("Binary attributes", 131);
-        thisMap.put("Text Attribute 3", 132);
-        thisMap.put("Text Attribute 4", 133);
-        thisMap.put("Text Attribute 5", 134);
-        thisMap.put("Text Attribute 6", 135);
-        thisMap.put("Text Attribute 7", 136);
-        thisMap.put("Text Attribute 8", 137);
-        thisMap.put("Text Attribute 9", 138);
-        thisMap.put("Text Attribute 10", 139);
-        thisMap.put("Text Attribute 11", 140);
-        thisMap.put("Text Attribute 12", 141);
-        thisMap.put("Text Attribute 13", 142);
-        thisMap.put("Text Attribute 14", 143);
-        thisMap.put("Text Attribute 15", 144);
-        thisMap.put("Text Attribute 16", 145);
-        thisMap.put("Visualization Level", 175);
-        thisMap.put("Is Initial Value", 179);
-        thisMap.put("Initial Value", 180);
-        thisMap.put("reserved5", 242);
+    //This returns a map of all text field items, along with their VarexpTuple
+    public Map<String, VarexpTuple> getFieldMap() {
+        Map<String, VarexpTuple> thisMap = new LinkedHashMap<>();
+
+
+        thisMap.put("Variable Type", new VarexpTuple(1, "TF", "", "", true));
+        thisMap.put("Variable Internal ID", new VarexpTuple(2, "TF", "", "3", true));
+        thisMap.put("1st element of Variable", new VarexpTuple(3, "TF", "", "300000", true));
+        thisMap.put("2nd element of Variable", new VarexpTuple(4, "TF", "", "255", true));
+        thisMap.put("3rd element of Variable", new VarexpTuple(5, "TF", "", "255", true));
+        thisMap.put("4th element of Variable", new VarexpTuple(6, "TF", "", "255", true));
+        thisMap.put("5th element of Variable", new VarexpTuple(7, "TF", "", "255", true));
+        thisMap.put("6th element of Variable", new VarexpTuple(8, "TF", "", "255", true));
+        thisMap.put("7th-12th element of Variable", new VarexpTuple(9, "TF", "", "255", true));
+        thisMap.put("Variable description (1st lang)", new VarexpTuple(10, "TF", "", "255", true));
+        thisMap.put("Varialbe description (2nd lang)", new VarexpTuple(11, "TF", "", "255", true));
+        thisMap.put("Domain", new VarexpTuple(12, "TF", "", "100", true));
+        thisMap.put("Nature", new VarexpTuple(13, "TF", "", "100", true));
+        thisMap.put("Inhibit flag", new VarexpTuple(14, "CB", new String[]{"Yes", "NA"}, new String[]{"I", ""}, true));
+        thisMap.put("Simulated flag", new VarexpTuple(15, "CB", new String[]{"Yes", "NA"}, new String[]{"S", ""}, true));
+        thisMap.put("Permanent flag", new VarexpTuple(16, "CB", new String[]{"Yes", "NA"}, new String[]{"P", ""}, true));
+        thisMap.put("Source of Variable",
+                new VarexpTuple(17, "CB",
+                        new String[]{"Equipment", "Internal", "External",
+                                "DDE", "OPC", "LonWorks", "BACnet", "60870-5-104", "61850", "DNP3", "SNMP"},
+                        new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"},
+                        true));
+        thisMap.put("Diffusion Indicator",
+                new VarexpTuple(18, "CB",
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"},
+                        true));
+        thisMap.put("Number of station", new VarexpTuple(19, "TF", "", "253", true));
+        thisMap.put("reserved", new VarexpTuple(20, "TF", "", "0", false));
+        thisMap.put("Permanent subscription for mimics",
+                new VarexpTuple(21, "CB",
+                        new String[]{"0: All Stations", "1: None", "2: Server station"},
+                        new String[]{"0", "1", "2"},
+                        true
+                ));
+        thisMap.put("Object Root",
+                new VarexpTuple(22, "CB",
+                        new String[]{"Local", "Customized Layer"},
+                        new String[]{"0", "1"},
+                        true
+                ));
+
+        thisMap.put("Variable with Extended Attributes",
+                new VarexpTuple(23, "CB",
+                        new String[]{"Columns 130 to 140", "Columns 137 to 146"},
+                        new String[]{"0", "1"},
+                        true
+                ));
+        thisMap.put("reserved2", new VarexpTuple(24, "TF", "", "0", false));
+        thisMap.put("Remote Access",
+                new VarexpTuple(25, "CB",
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"},
+                        true));
+        thisMap.put("reserved3", new VarexpTuple(26, "TF", "", "0", false));
+        thisMap.put("reserved4", new VarexpTuple(27, "TF", "", "0", false));
+        thisMap.put("Topology: Server list name", new VarexpTuple(28, "TF", "", "40", true));
+        thisMap.put("Topology: Client list name", new VarexpTuple(29, "TF", "", "40", true));
+        thisMap.put("Name of associated label", new VarexpTuple(40, "TF", "", "255", true));
+        thisMap.put("Binary attributes", new VarexpTuple(130, "TF", "", "4294967295", true));
+        thisMap.put("Text Attribute 3", new VarexpTuple(131, "TF", "", "100", true));
+        thisMap.put("Text Attribute 4", new VarexpTuple(132, "TF", "", "100", true));
+        thisMap.put("Text Attribute 5", new VarexpTuple(133, "TF", "", "100", true));
+        thisMap.put("Text Attribute 6", new VarexpTuple(134, "TF", "", "100", true));
+        thisMap.put("Text Attribute 7", new VarexpTuple(135, "TF", "", "100", true));
+        thisMap.put("Text Attribute 8", new VarexpTuple(136, "TF", "", "100", true));
+        thisMap.put("Text Attribute 9", new VarexpTuple(137, "TF", "", "100", true));
+        thisMap.put("Text Attribute 10", new VarexpTuple(138, "TF", "", "100", true));
+        thisMap.put("Text Attribute 11", new VarexpTuple(139, "TF", "", "100", true));
+        thisMap.put("Text Attribute 12", new VarexpTuple(140, "TF", "", "100", true));
+        thisMap.put("Text Attribute 13", new VarexpTuple(141, "TF", "", "100", true));
+        thisMap.put("Text Attribute 14", new VarexpTuple(142, "TF", "", "100", true));
+        thisMap.put("Text Attribute 15", new VarexpTuple(143, "TF", "", "100", true));
+        thisMap.put("Text Attribute 16", new VarexpTuple(144, "TF", "", "100", true));
+        thisMap.put("Visualization Level", new VarexpTuple(174, "TF", "", "29", true));
+        thisMap.put("Is Initial Value",
+                new VarexpTuple(178, "CB",
+                        new String[]{"N", "Y"},
+                        new String[]{"0", "1"},
+                        true));
+        thisMap.put("Initial Value", new VarexpTuple(179, "TF", "", "255", true));
+        thisMap.put("resevered5", new VarexpTuple(241, "TF", "", "0", false));
+
+
+
+
+
         return thisMap;
     }
 
     public LinkedHashMap<String, VarexpTuple> getComboBoxChoices() {
         LinkedHashMap<String, VarexpTuple> comboBoxChoicesMap = new LinkedHashMap<>();
-        comboBoxChoicesMap.put("Inhibit flag", new VarexpTuple(14, new String[]{"Yes", "NA"}, new String[]{"I", ""}));
-        comboBoxChoicesMap.put("Simulated flag", new VarexpTuple(15, new String[]{"Yes", "NA"}, new String[]{"S", ""}));
-        comboBoxChoicesMap.put("Permanent flag", new VarexpTuple(16, new String[]{"Yes", "NA"}, new String[]{"P", ""}));
+        comboBoxChoicesMap.put("Inhibit flag", new VarexpTuple(14, "CB", new String[]{"Yes", "NA"}, new String[]{"I", ""}, true));
+        comboBoxChoicesMap.put("Simulated flag", new VarexpTuple(15, "CB", new String[]{"Yes", "NA"}, new String[]{"S", ""}, true));
+        comboBoxChoicesMap.put("Permanent flag", new VarexpTuple(16, "CB", new String[]{"Yes", "NA"}, new String[]{"P", ""}, true));
         comboBoxChoicesMap.put("Source of Variable",
-                new VarexpTuple(17,
+                new VarexpTuple(17, "CB",
                         new String[]{"Equipment", "Internal", "External",
                                 "DDE", "OPC", "LonWorks", "BACnet", "60870-5-104", "61850", "DNP3", "SNMP"},
-                        new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"}));
+                        new String[]{"E", "I", "X", "D", "O", "L", "B", "4", "8", "3", "S"},
+                        true));
         comboBoxChoicesMap.put("Diffusion Indicator",
-                new VarexpTuple(18,
+                new VarexpTuple(18, "CB",
                         new String[]{"N", "Y"},
-                        new String[]{"0", "1"}));
+                        new String[]{"0", "1"},
+                        true));
         comboBoxChoicesMap.put("Permanent subscription for mimics",
-                new VarexpTuple(21,
+                new VarexpTuple(21, "CB",
                         new String[]{"0: All Stations", "1: None", "2: Server station"},
-                        new String[]{"0", "1", "2"}
+                        new String[]{"0", "1", "2"},
+                        true
                 ));
         comboBoxChoicesMap.put("Object Root",
-                new VarexpTuple(22,
+                new VarexpTuple(22, "CB",
                         new String[]{"Local", "Customized Layer"},
-                        new String[]{"0", "1"}));
+                        new String[]{"0", "1"},
+                        true
+                ));
 
         comboBoxChoicesMap.put("Variable with Extended Attributes",
-                new VarexpTuple(23,
+                new VarexpTuple(23, "CB",
                         new String[]{"Columns 130 to 140", "Columns 137 to 146"},
-                        new String[]{"0", "1"}));
+                        new String[]{"0", "1"},
+                        true
+                ));
         comboBoxChoicesMap.put("Remote Access",
-                new VarexpTuple(25,
+                new VarexpTuple(25, "CB",
                         new String[]{"N", "Y"},
-                        new String[]{"0", "1"}));
+                        new String[]{"0", "1"},
+                        true));
         comboBoxChoicesMap.put("Is Initial Value",
-                new VarexpTuple(178,
+                new VarexpTuple(178, "CB",
                         new String[]{"N", "Y"},
-                        new String[]{"0", "1"}));
+                        new String[]{"0", "1"},
+                        true));
         return comboBoxChoicesMap;
     }
 

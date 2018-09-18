@@ -2,8 +2,11 @@ package Controller;
 
 import com.company.Database.dbConnector;
 import com.company.pcvue.fields.Common;
+import com.company.pcvue.fields.VarexpTuple;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -29,6 +32,9 @@ public class TagEditSceneController {
     List<TextInput> textInputs = new ArrayList<>();
     //Member variables
     private String databaseName;
+    private String TEXT_FIELD = "TF";
+    private String COMBO_BOX = "CB";
+
     private ObservableList<String> tagList;
     private Map<String, String> idMap;
     private Stage currentWindow;
@@ -80,26 +86,33 @@ public class TagEditSceneController {
     @FXML
     void initialize() {
 
+        //Get the tagnames and load them to observable list
         getVariableNames();
+
+        //Set up the filter
         filterSetUp();
 
         //Here we will generate 40 new TextINput objects
         Common common = new Common();
 
         //Call the Common Varexp's fieldMap.
-        Map<String, Integer> commonMap = common.getFieldMap();
+        Map<String, VarexpTuple> commonMap = common.getFieldMap();
 
         //Traverse its map for its keys and then using the key values, create text input as well as their labels.
         //Note that the fxid is the varexp position
         int columnCount = 0;
-        ArrayList<String> cbItems = common.getComboBoxItems();
+
         for (String key : commonMap.keySet()) {
-            //Create text field itmes
-            if (!cbItems.contains(key)) {
+            String widgetType = (String) commonMap.get(key).getWidgetType();
+            int position = (Integer) commonMap.get(key).getPosition();
+            Boolean visible = (Boolean) commonMap.get(key).getVisibility();
+            //Create text Field items for common variable fields
+            if (widgetType.equals(TEXT_FIELD) && visible) {
                 TextInput input = new TextInput(
-                        "Input" + columnCount,
+                        "" + position,
                         new Label(key),
                         new JFXTextField(),
+                        (Integer) commonMap.get(key).getPosition(),
                         commonMap.get(key)
                 );
                 if (columnCount < COMMON_ITEM_LIMIT) {
@@ -117,12 +130,13 @@ public class TagEditSceneController {
                 }
                 textFieldList.add(input);
             }
-            //Create comboBox items
-            else {
+            //Create Combobox Item for common variable fields
+            else if (widgetType.equals(COMBO_BOX) && visible) {
                 ComboBox cb = new ComboBox(
-                        "Input" + columnCount,
+                        "" + position,
                         new Label(key),
                         new JFXComboBox(),
+                        (Integer) commonMap.get(key).getPosition(),
                         commonMap.get(key)
                 );
                 if (columnCount < COMMON_ITEM_LIMIT) {
@@ -138,15 +152,14 @@ public class TagEditSceneController {
                 }
                 comboBoxList.add(cb);
             }
+
             columnCount++;
         }
 
-
         //Implement the choices in the comboboxes
-        //TODO: Implement this
         fillComboBoxChoices(common.getComboBoxChoices());
 
-        //Now load the variable's common fields. This should be a function as you'll need to call it everytime
+        //Now load the variable's common fields and set up the listeners. This should be a function as you'll need to call it everytime
         //another variable is clicked on the listview
         //TODO: Implement this
 
@@ -169,7 +182,7 @@ public class TagEditSceneController {
         this.currentWindow = stage;
     }
 
-    public void setCommonScene() {
+    public void saveCurrentTag() {
 
     }
 
@@ -177,8 +190,11 @@ public class TagEditSceneController {
     // It returns a void as it will be set to a member variable dictionary (You'll need this when making edits)
     private void getVariableNames() {
         dbConnector conn = new dbConnector();
+        //Form the variable name
         String getTagNameCmd = "select variable_id,1st_element, 2nd_element, 3rd_element,4th_element,5th_element,6th_element,7th_to_12th from common;";
         ArrayList<ArrayList<String>> temp;
+
+        //Query the tag name in the selected DB
         temp = conn.readDatabase(databaseName, getTagNameCmd);
 
         //Traverse the arraylist
@@ -192,9 +208,7 @@ public class TagEditSceneController {
             tagName = tagName.replaceAll("\\.{1,}\\Z", "");
             idMap.put(tagName, item.get(0));
             tagList.add(tagName);
-            //TagListView.getItems().add(tagName);
         }
-        //TagListView.setItems(tagList);
     }
 
     /*
@@ -215,14 +229,29 @@ public class TagEditSceneController {
     }
 
     //This function fills out the comboBox Choices for the Common Varexp Variable
-    private void fillComboBoxChoices(LinkedHashMap<String, String[]> comboBoxChoicesMap) {
+    private void fillComboBoxChoices(LinkedHashMap<String, VarexpTuple> comboBoxChoicesMap) {
 
         for (ComboBox comboBoxItems : comboBoxList) {
             String id = comboBoxItems.getComboBox().getId();
             String text = comboBoxItems.getLabel().getText();
-            for (String choices : comboBoxChoicesMap.get(text)) {
-                comboBoxItems.addDropDownChoice(choices);
+            for (String choice : (String[]) comboBoxChoicesMap.get(text).getUserText()) {
+                comboBoxItems.addDropDownChoice(choice);
             }
+        }
+    }
+
+    //This function sets up listeners to all the Common Variable's textfield and combo boxes
+    private void setUpCommonVariableListener() {
+        for (TextInput textFieldInput : textFieldList) {
+            textFieldInput.getTextField().textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                }
+            });
+        }
+        for (ComboBox comboBoxInput : comboBoxList) {
+            comboBoxInput.getComboBox().getValue();
         }
     }
 
@@ -231,13 +260,15 @@ public class TagEditSceneController {
         private final String name;
         private final Label label;
         private final JFXTextField textField;
+        private final VarexpTuple tupleData;
 
-        public TextInput(String name, Label label, JFXTextField textField, int varexpId) {
+        public TextInput(String name, Label label, JFXTextField textField, int varexpId, VarexpTuple tupleData) {
             this.name = name;
             this.label = label;
             this.textField = textField;
             this.textField.setId(String.valueOf(varexpId));
             this.textField.setPrefWidth(PREF_SIZE_WIDTH);
+            this.tupleData = tupleData;
         }
 
         public String getName() {
@@ -251,6 +282,10 @@ public class TagEditSceneController {
         public TextField getTextField() {
             return textField;
         }
+
+        public VarexpTuple getTupleData() {
+            return tupleData;
+        }
     }
 
 //This is a public inner class  to create a combobox item along with its assocated label.
@@ -263,13 +298,15 @@ public class TagEditSceneController {
         private final String name;
         private final Label label;
         private final JFXComboBox comboBox;
+        private final VarexpTuple tupleData;
 
-        public ComboBox(String name, Label label, JFXComboBox comboBox, int varexpId) {
+        public ComboBox(String name, Label label, JFXComboBox comboBox, int varexpId, VarexpTuple tupleData) {
             this.name = name;
             this.label = label;
             this.comboBox = comboBox;
             this.comboBox.setId(String.valueOf(varexpId));
             this.comboBox.setPrefWidth(PREF_SIZE_WIDTH);
+            this.tupleData = tupleData;
         }
 
         public String getName() {
@@ -289,6 +326,10 @@ public class TagEditSceneController {
 
         public void addDropDownChoice(String choice) {
             comboBox.getItems().add(choice);
+        }
+
+        public VarexpTuple getTupleData() {
+            return tupleData;
         }
     }
 }
