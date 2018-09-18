@@ -19,7 +19,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 8/25/2018.
@@ -157,11 +160,12 @@ public class TagEditSceneController {
         }
 
         //Implement the choices in the comboboxes
-        fillComboBoxChoices(common.getComboBoxChoices());
+        fillComboBoxChoices();
 
         //Now load the variable's common fields and set up the listeners. This should be a function as you'll need to call it everytime
         //another variable is clicked on the listview
         //TODO: Implement this
+        setUpCommonVariableListener();
 
         //Now using the variable's command and source field, load the Source and Command textfields
         //TODO: Implement this
@@ -229,12 +233,13 @@ public class TagEditSceneController {
     }
 
     //This function fills out the comboBox Choices for the Common Varexp Variable
-    private void fillComboBoxChoices(LinkedHashMap<String, VarexpTuple> comboBoxChoicesMap) {
+    private void fillComboBoxChoices() {
+
 
         for (ComboBox comboBoxItems : comboBoxList) {
             String id = comboBoxItems.getComboBox().getId();
             String text = comboBoxItems.getLabel().getText();
-            for (String choice : (String[]) comboBoxChoicesMap.get(text).getUserText()) {
+            for (String choice : (String[]) comboBoxItems.getTupleData().getUserText()) {
                 comboBoxItems.addDropDownChoice(choice);
             }
         }
@@ -246,12 +251,17 @@ public class TagEditSceneController {
             textFieldInput.getTextField().textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+                    System.out.println(textFieldInput.getName() + " " + newValue);
                 }
             });
         }
         for (ComboBox comboBoxInput : comboBoxList) {
-            comboBoxInput.getComboBox().getValue();
+            comboBoxInput.getComboBox().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    System.out.println(comboBoxInput.getName() + " " + newValue);
+                }
+            });
         }
     }
 
