@@ -17,19 +17,21 @@ package com.company.pcvue.fields;
  * visibility: This will determine if an item shows up on the GUI. The reason this exists is because certain items should never show up (ex: reserved tags)
  * and some item shows up only if a specific choice is made in another field
  */
-public class VarexpTuple<Position, WidgetType, UserDisplayText, PcVueWriteOptions, Visibility> {
+public class VarexpTuple<Position, WidgetType, UserDisplayText, PcVueWriteOptions, Visibility, ByteSize> {
     public final Position position;
     public final UserDisplayText userText;
     public final WidgetType widgetType;
     public final PcVueWriteOptions pcVueWriteOptions;
     public final Visibility visibility;
+    public final ByteSize byteSize;
 
-    public VarexpTuple(Position position, WidgetType widgetType, UserDisplayText userText, PcVueWriteOptions pcVueWriteOptions, Visibility visibility) {
+    public VarexpTuple(Position position, WidgetType widgetType, UserDisplayText userText, PcVueWriteOptions pcVueWriteOptions, Visibility visibility, ByteSize byteSize) {
         this.position = position;
         this.userText = userText;
         this.widgetType = widgetType;
         this.pcVueWriteOptions = pcVueWriteOptions;
         this.visibility = visibility;
+        this.byteSize = byteSize;
     }
 
     public Position getPosition() {
@@ -50,5 +52,9 @@ public class VarexpTuple<Position, WidgetType, UserDisplayText, PcVueWriteOption
 
     public Visibility getVisibility() {
         return visibility;
+    }
+
+    public ByteSize getByteSize() {
+        return byteSize;
     }
 }

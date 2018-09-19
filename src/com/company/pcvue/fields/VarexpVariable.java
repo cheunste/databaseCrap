@@ -1,10 +1,8 @@
 package com.company.pcvue.fields;
 
-import com.company.Database.dbConnector;
-
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 4/20/2018.
@@ -34,6 +32,9 @@ public abstract class VarexpVariable {
         return this.FIELD_NUM;
     }
 
+    //This is a member variable to the VarexpMap, fieldMap. This is used to store and pass certain details of the VarexpVariable
+    public Map<String, VarexpTuple> fieldMap;
+
     public List<String> getVarexpList() {
         return this.varexpArrayList;
     }
@@ -41,8 +42,6 @@ public abstract class VarexpVariable {
     public ArrayList<List<String>> getArrayList() {
         return null;
     }
-
-    ;
 
 
     //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
@@ -75,7 +74,12 @@ public abstract class VarexpVariable {
     //abstract method for getting commands to create table. You need this in order to create tables in a fresh install
     public abstract String createTableCmd();
 
+    //abstract method to set the ArrayList of the varexpString
     public abstract void setArrayList(String varexpString, int dbIndex);
+
+    //abstract method that sets up a variable. This function returns a Map that contains the Varexp Variable's Name
+    // Along with its VarexpTuple (essetially, its important data such as widget Type, comoboBox choices, etc.
+    public abstract Map<String, VarexpTuple> getFieldMap();
 
     //This function splits a varexp variable into its respective fields and then
     //set the varexpArrayPlist variable
@@ -129,7 +133,7 @@ public abstract class VarexpVariable {
     }
 
     //This method is to add the query to the database queue. However, ti does NOT execute the batch itesm.
-    public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) throws SQLException {
+    public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) {
 
     }
 }

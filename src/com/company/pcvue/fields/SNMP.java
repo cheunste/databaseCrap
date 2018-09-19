@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -74,5 +75,11 @@ public class SNMP extends VarexpVariable {
 
         this.snmpList.add(snmpList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        //TODO: Impliment this when user actually uses this
+        return null;
     }
 }

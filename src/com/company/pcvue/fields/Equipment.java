@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -69,5 +70,26 @@ public class Equipment extends VarexpVariable {
 
         this.equipmentList.add(equipmentList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Card Number", new VarexpTuple(30, "TF", new String[]{""}, new String[]{""}, true, 8));
+        fieldMap.put("Network Name", new VarexpTuple(31, "TF", new String[]{""}, new String[]{""}, true, 8));
+        fieldMap.put("Equipment Name", new VarexpTuple(32, "TF", new String[]{""}, new String[]{""}, true, 12));
+        fieldMap.put("Frame Name", new VarexpTuple(33, "TF", new String[]{""}, new String[]{""}, true, 20));
+        fieldMap.put("Format", new VarexpTuple(34, "CB",
+                new String[]{"B:Bit (positive logic)", "b:Bit (negative logic)", "I:Integer 16 bits signed (capital i)",
+                        "U:Integer 16 bits unsigned", "l:Integer 32 bits signed (lower case L)", "m:Integer 32 bits signed (swapped word)",
+                        "L:Integer 32 bits unsigned", "M:Integer 32 bits unsigned (swapped word)", "F:Float 32 bits signed", "c:Byte 8 bits signed",
+                        "C:Byte 8 bits unsigned", "S:Variable length string delimited by \0", "s:Variable length string delimited by \0 (swapped)",
+                        "T:Fixed length string (=Size/8)", "t:Fixed length string (=Size/8) (swapped)", "d:Integer 2 bits unsigned (readonly)",
+                        "Q:Integer 4 bits unsigned(readonly)", "q:Integer 4 bits signed(readonly)", "D:Float 64 bits signed"},
+                new String[]{"B", "b", "I", "U", "I", "m", "L", "M", "F", "c", "C", "S", "s", "T", "t", "d", "Q", "q", "D"}, true, 1));
+        fieldMap.put("Index", new VarexpTuple(35, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Complementary Index", new VarexpTuple(36, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Size", new VarexpTuple(37, "TF", new String[]{""}, new String[]{""}, true, 2));
+
+        return fieldMap;
     }
 }

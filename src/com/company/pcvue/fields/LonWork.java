@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -72,5 +73,11 @@ public class LonWork extends VarexpVariable {
         }
         this.lonworkList.add(lonworkList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        //TODO: Impliment this when user actually uses this
+        return null;
     }
 }

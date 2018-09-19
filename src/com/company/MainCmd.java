@@ -23,8 +23,8 @@ public class MainCmd {
 
             System.out.println("Database already exists. Overwrite? (Y/N)");
             Scanner sc = new Scanner(System.in);
-            String choice = sc.next().toString().toLowerCase();
-            if (choice.equals("y")) {
+            String choice = sc.next().toLowerCase();
+            if (choice.equals("userText")) {
                 deleteDB(databaseName);
                 createDB(databaseName);
                 importHelper(fileLocation, databaseName);

@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/2/2018.
@@ -71,6 +72,20 @@ public class ACM extends VarexpVariable {
         }
         this.acmList.add(acmList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Log bit (0 to 1)", new VarexpTuple(41, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Log bit (1 to 0)", new VarexpTuple(42, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("", new VarexpTuple(43, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("Authorisation Level", new VarexpTuple(44, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("Alarm Level", new VarexpTuple(45, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("Alarm", new VarexpTuple(46, "CB", new String[]{"Y", "N"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Name of bit for mask", new VarexpTuple(47, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+
+        return fieldMap;
     }
 
 }

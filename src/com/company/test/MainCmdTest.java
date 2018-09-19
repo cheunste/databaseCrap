@@ -2,19 +2,16 @@ package com.company.test;
 
 import com.company.MainCmd;
 import com.company.fileHandler;
-import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 /**
  * Created by Stephen on 7/8/2018.
  */
 class MainCmdTest {
-    @Test
-    void compareTest() throws IOException, ArrayIndexOutOfBoundsException, SQLException {
+    void compareTest() throws IOException, ArrayIndexOutOfBoundsException {
         MainCmd.exportFile("twin_buttes_2", "C:\\Users\\Stephen\\Desktop\\varexp tool project");
         String originalLine;
         String exportLine;

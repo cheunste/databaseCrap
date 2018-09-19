@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/21/2018.
@@ -70,5 +71,16 @@ public class All_Alarms extends VarexpVariable {
             all_alarmsList.add(varexpArraySplit.get(i).trim());
         }
         this.allAlarmsList.add(all_alarmsList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("", new VarexpTuple(158, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("", new VarexpTuple(159, "TF", new String[]{""}, new String[]{""}, true, 80));
+        fieldMap.put("", new VarexpTuple(160, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("", new VarexpTuple(175, "TF", new String[]{""}, new String[]{"-1", "29"}, true, 2));
+        fieldMap.put("", new VarexpTuple(176, "TF", new String[]{""}, new String[]{"-2", "29"}, true, 2));
+        fieldMap.put("", new VarexpTuple(177, "TF", new String[]{""}, new String[]{"-2", "29"}, true, 2));
+        return fieldMap;
     }
 }

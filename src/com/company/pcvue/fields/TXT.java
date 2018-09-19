@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -59,6 +60,15 @@ public class TXT extends VarexpVariable {
             txtList.add(varexpArraySplit.get(i).trim());
         }
         this.txtList.add(txtList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Max. Characters", new VarexpTuple(100, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Write Authorized", new VarexpTuple(101, "CB", new String[]{"Y", "N"}, new String[]{"1", "0"}, true, 2));
+        fieldMap.put("Display Format", new VarexpTuple(103, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 
     public ArrayList<List<String>> getArrayList() {

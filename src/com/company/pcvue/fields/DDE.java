@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -71,5 +72,19 @@ public class DDE extends VarexpVariable {
 
         this.ddeList.add(ddeList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Conversation Name", new VarexpTuple(120, "TF", new String[]{""}, new String[]{""}, true, 20));
+        fieldMap.put("Item Name", new VarexpTuple(121, "TF", new String[]{""}, new String[]{""}, true, 20));
+        fieldMap.put("", new VarexpTuple(122, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("", new VarexpTuple(123, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("Item Format", new VarexpTuple(124, "TF", new String[]{""}, new String[]{""}, true, 1));
+        fieldMap.put("", new VarexpTuple(125, "TF", new String[]{""}, new String[]{""}, true, 0));
+        fieldMap.put("Auto Format Flag", new VarexpTuple(126, "CB", new String[]{"Auto", "NA"}, new String[]{"1", ""}, true, 1));
+        fieldMap.put("Label", new VarexpTuple(127, "TF", new String[]{""}, new String[]{""}, true, 80));
+
+        return fieldMap;
     }
 }
