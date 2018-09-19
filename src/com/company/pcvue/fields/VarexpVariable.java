@@ -1,6 +1,7 @@
 package com.company.pcvue.fields;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public abstract class VarexpVariable {
     }
 
     //This is a member variable to the VarexpMap, fieldMap. This is used to store and pass certain details of the VarexpVariable
-    public Map<String, VarexpTuple> fieldMap;
+    public Map<String, VarexpTuple> fieldMap = new LinkedHashMap<>();
 
     public List<String> getVarexpList() {
         return this.varexpArrayList;
