@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -62,5 +63,11 @@ public class Internal extends VarexpVariable {
 
         this.internalList.add(internalList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Broadcast Indication", new VarexpTuple(18, "CB", new String[]{"Update of the internal variable on the other stations", "Not Used"}, new String[]{"1", "0"}, true, 1));
+        return fieldMap;
     }
 }

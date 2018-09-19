@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -84,5 +85,24 @@ public class ATS extends VarexpVariable {
             atsList.add(varexpArraySplit.get(i).trim());
         }
         this.atsList.add(atsList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Log bit (0 to 1)", new VarexpTuple(41, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Log bit (1 to 0)", new VarexpTuple(42, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("", new VarexpTuple(43, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("Alarm Level", new VarexpTuple(45, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("Alarm", new VarexpTuple(46, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Name of mask bit", new VarexpTuple(47, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Hysteresis", new VarexpTuple(50, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Value", new VarexpTuple(51, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Threshold", new VarexpTuple(52, "CB", new String[]{"Threshold High", "Threshold Low"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Register Variable Name", new VarexpTuple(53, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Threshold System", new VarexpTuple(54, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Threshold Type", new VarexpTuple(55, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+
+        return fieldMap;
     }
 }

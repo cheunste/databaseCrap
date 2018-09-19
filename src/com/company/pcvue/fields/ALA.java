@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -68,6 +69,19 @@ public class ALA extends VarexpVariable {
         }
         this.alaList.add(alaList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Log bit (0 to 1)", new VarexpTuple(41, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Log bit (1 to 0)", new VarexpTuple(42, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("", new VarexpTuple(43, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("Alarm Level", new VarexpTuple(45, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("Alarm", new VarexpTuple(46, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Name of bit for mask", new VarexpTuple(47, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Alarm Temporization", new VarexpTuple(48, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 
     public ArrayList<List<String>> getArrayList() {

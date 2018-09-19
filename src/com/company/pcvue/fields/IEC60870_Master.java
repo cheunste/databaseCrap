@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -76,5 +77,11 @@ public class IEC60870_Master extends VarexpVariable {
 
         this.iec60870_masterList.add(iec60870_masterList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        //TODO: Impliment this when user actually uses this
+        return null;
     }
 }

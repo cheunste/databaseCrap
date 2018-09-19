@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -55,10 +56,16 @@ public class External extends VarexpVariable {
 
         externalList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            externalList.add(varexpArraySplit.get(i).trim().toString());
+            externalList.add(varexpArraySplit.get(i).trim());
         }
 
         this.externalList.add(externalList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("", new VarexpTuple(19, "TF", new String[]{""}, new String[]{"1", "253"}, true, 3));
+        return fieldMap;
     }
 }

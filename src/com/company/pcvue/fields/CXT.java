@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -60,9 +61,19 @@ public class CXT extends VarexpVariable {
 
         cxtList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            cxtList.add(varexpArraySplit.get(i).trim().toString());
+            cxtList.add(varexpArraySplit.get(i).trim());
         }
         this.cxtList.add(cxtList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Max. Char", new VarexpTuple(100, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Write Authorized", new VarexpTuple(101, "TF", new String[]{""}, new String[]{"1"}, true, 2));
+        fieldMap.put("Authorisation Level", new VarexpTuple(102, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("Display Format", new VarexpTuple(103, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 
 

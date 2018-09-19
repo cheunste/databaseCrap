@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -62,6 +63,16 @@ public class CMD extends VarexpVariable {
         }
 
         this.cmdList.add(cmdList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Log bit (0 to 1)", new VarexpTuple(41, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Log big (1 to 0)", new VarexpTuple(42, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("", new VarexpTuple(43, "TF", new String[]{""}, new String[]{""}, false, 0));
+        fieldMap.put("Authorisation level", new VarexpTuple(44, "TF", new String[]{""}, new String[]{"0", "29"}, true, 2));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 
     public ArrayList<List<String>> getArrayList() {

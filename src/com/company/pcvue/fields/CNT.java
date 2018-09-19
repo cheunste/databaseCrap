@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -79,11 +80,32 @@ public class CNT extends VarexpVariable {
 
         cntList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            cntList.add(varexpArraySplit.get(i).trim().toString());
+            cntList.add(varexpArraySplit.get(i).trim());
         }
 
         this.cntList.add(cntList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Measurement Units", new VarexpTuple(60, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Deadband", new VarexpTuple(61, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Min. Display Value", new VarexpTuple(62, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Max. Display Value", new VarexpTuple(63, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Scaling", new VarexpTuple(64, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Min Equip. Value", new VarexpTuple(65, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Max. Equip. Value", new VarexpTuple(66, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Display Format", new VarexpTuple(67, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Step Size", new VarexpTuple(80, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Dec/Inc. Counter", new VarexpTuple(81, "CB", new String[]{"Decrement", "Increment"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Bit to count", new VarexpTuple(82, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Count on transition to 0 or 1", new VarexpTuple(83, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Bit to reset", new VarexpTuple(84, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Reset on transition to 0 or 1", new VarexpTuple(85, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Deadband Type", new VarexpTuple(156, "CB", new String[]{"0", "1", "3"}, new String[]{"0", "1", "3"}, true, 2));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 }
 

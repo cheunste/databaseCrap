@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/28/2018.
@@ -73,5 +74,18 @@ public class OPC extends VarexpVariable {
 
         this.opcList.add(opcList);
 
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Server alias", new VarexpTuple(145, "TF", new String[]{""}, new String[]{""}, true, 10));
+        fieldMap.put("Group name", new VarexpTuple(146, "TF", new String[]{""}, new String[]{""}, true, 10));
+        fieldMap.put("Item name", new VarexpTuple(147, "TF", new String[]{""}, new String[]{""}, true, 255));
+        fieldMap.put("Access path", new VarexpTuple(148, "TF", new String[]{""}, new String[]{""}, true, 80));
+        fieldMap.put("Array item", new VarexpTuple(149, "CB", new String[]{"1: Variable is mapped on an array", "0: Otherwise"}, new String[]{"1", "0"}, true, 2));
+        fieldMap.put("Array item index", new VarexpTuple(150, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Customization expression", new VarexpTuple(151, "TF", new String[]{""}, new String[]{""}, true, 30));
+
+        return fieldMap;
     }
 }

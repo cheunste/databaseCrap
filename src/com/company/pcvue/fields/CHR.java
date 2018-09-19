@@ -2,6 +2,7 @@ package com.company.pcvue.fields;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Stephen on 5/20/2018.
@@ -78,9 +79,30 @@ public class CHR extends VarexpVariable {
 
         chrList.add("" + dbIndex);
         for (int i : varexpPositionList) {
-            chrList.add(varexpArraySplit.get(i).trim().toString());
+            chrList.add(varexpArraySplit.get(i).trim());
         }
         this.chrList.add(chrList);
+    }
+
+    @Override
+    public Map<String, VarexpTuple> getFieldMap() {
+        fieldMap.put("Measurement Units", new VarexpTuple(60, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Deadband", new VarexpTuple(61, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Min Display Value", new VarexpTuple(62, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Max Display Value", new VarexpTuple(63, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Scaling", new VarexpTuple(64, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Min. Equip Value", new VarexpTuple(65, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Max Equip. Value", new VarexpTuple(66, "TF", new String[]{""}, new String[]{""}, true, 4));
+        fieldMap.put("Display Format", new VarexpTuple(67, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Chronometer Period (in second)", new VarexpTuple(90, "TF", new String[]{""}, new String[]{""}, true, 2));
+        fieldMap.put("Chronometer inc/dec", new VarexpTuple(91, "TF", new String[]{"Decrement", "Increment"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Name of bit to enable chrono", new VarexpTuple(92, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Enable On", new VarexpTuple(93, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Name of bit to reset chrono", new VarexpTuple(94, "TF", new String[]{""}, new String[]{""}, true, 40));
+        fieldMap.put("Reset on Transition", new VarexpTuple(95, "CB", new String[]{"0", "1"}, new String[]{"0", "1"}, true, 2));
+        fieldMap.put("Deadband Type", new VarexpTuple(156, "CB", new String[]{"0", "1", "3"}, new String[]{"0", "1", "3"}, true, 2));
+        fieldMap.put("VCR", new VarexpTuple(157, "CB", new String[]{"N", "Y"}, new String[]{"0", "1"}, true, 2));
+        return fieldMap;
     }
 
     public ArrayList<List<String>> getArrayList() {
