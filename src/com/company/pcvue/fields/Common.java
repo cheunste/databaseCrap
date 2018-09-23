@@ -41,10 +41,11 @@ public class Common extends VarexpVariable {
         //fieldMap.put("Variable Type", new VarexpTuple(1, "TF", new String[]{""}, new String[]{""}, true, 3));
         fieldMap.put("Variable Type", new VarexpTuple(1, "CB",
                 new String[]{"Bit", "Bit and Command", "Alarm", "Alarm and command",
-                        "Threshold", "Threshold and alarm Register", "Register and command Counter", "Chronometer Text",
+                        "Threshold", "Threshold and alarm Register", "Register and command", "Counter", "Chronometer Text",
                         "Text and command"},
                 new String[]{"BIT", "CMD", "ALA", "ACM", "TSH", "ATS", "REG", "CTV", "CNT", "CHR", "TXT", "CXT"},
                 true, 3));
+
         fieldMap.put("Variable Internal ID", new VarexpTuple(2, "TF", new String[]{""}, new String[]{"1", "30000"}, true, 12));
         fieldMap.put("1st element of Variable", new VarexpTuple(3, "TF", new String[]{""}, new String[]{""}, true, 255));
         fieldMap.put("2nd element of Variable", new VarexpTuple(4, "TF", new String[]{""}, new String[]{""}, true, 255));
