@@ -81,7 +81,7 @@ public class DDE extends VarexpVariable {
         fieldMap.put("", new VarexpTuple(122, "TF", new String[]{""}, new String[]{""}, false, 0));
         fieldMap.put("", new VarexpTuple(123, "TF", new String[]{""}, new String[]{""}, false, 0));
         fieldMap.put("Item Format", new VarexpTuple(124, "TF", new String[]{""}, new String[]{""}, true, 1));
-        fieldMap.put("", new VarexpTuple(125, "TF", new String[]{""}, new String[]{""}, true, 0));
+        fieldMap.put("", new VarexpTuple(125, "TF", new String[]{""}, new String[]{""}, false, 0));
         fieldMap.put("Auto Format Flag", new VarexpTuple(126, "CB", new String[]{"Auto", "NA"}, new String[]{"1", ""}, true, 1));
         fieldMap.put("Label", new VarexpTuple(127, "TF", new String[]{""}, new String[]{""}, true, 80));
 
