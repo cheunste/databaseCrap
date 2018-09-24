@@ -17,6 +17,10 @@ public class REG extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         for (int i = 59; i <= 66; i++) {
             varexpPositionList.add(i);

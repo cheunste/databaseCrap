@@ -17,6 +17,10 @@ public class ATS extends VarexpVariable {
         setPositionList();
     }
 
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
 
     @Override
     void setPositionList() {

@@ -17,6 +17,10 @@ public class All_Alarms extends VarexpVariable {
 
     }
 
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
 
     @Override
     void setPositionList() {

@@ -16,7 +16,10 @@ public class BIT extends VarexpVariable {
         setPositionList();
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 40; i <= 42; i++) {

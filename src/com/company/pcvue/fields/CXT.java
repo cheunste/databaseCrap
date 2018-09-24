@@ -17,7 +17,10 @@ public class CXT extends VarexpVariable {
         setPositionList();
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 99; i <= 102; i++) {

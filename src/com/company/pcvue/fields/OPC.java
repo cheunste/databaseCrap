@@ -17,7 +17,10 @@ public class OPC extends VarexpVariable {
 
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 144; i <= 150; i++) {

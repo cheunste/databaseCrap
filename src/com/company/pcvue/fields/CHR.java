@@ -17,7 +17,10 @@ public class CHR extends VarexpVariable {
         setPositionList();
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
 

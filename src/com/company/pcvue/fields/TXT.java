@@ -17,6 +17,10 @@ public class TXT extends VarexpVariable {
         setPositionList();
     }
 
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
 
     @Override
     void setPositionList() {

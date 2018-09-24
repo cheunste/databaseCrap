@@ -17,6 +17,10 @@ public class DNP3_Master extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         for (int i = 206; i <= 210; i++) {
             varexpPositionList.add(i);

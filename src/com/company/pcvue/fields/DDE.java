@@ -24,6 +24,10 @@ public class DDE extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     String empty() {
         String emptyString = "";
         for (int i : varexpPositionList) {

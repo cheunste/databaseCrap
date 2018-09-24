@@ -63,7 +63,7 @@ public class dbConnector {
         }
     }
 
-    public void writeDatabase(Connection connection, String insertToDBCmd, List<String> subArrayList) throws SQLException {
+    public void writeDatabase(Connection connection, String insertToDBCmd, List<String> subArrayList) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //System.out.println(insertToDBCmd);
@@ -76,21 +76,20 @@ public class dbConnector {
 
     }
 
-    private void writeResultSet(ResultSet resultSet) throws SQLException {
+    private String writeResultSet(ResultSet resultSet) throws SQLException {
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnNum = rsmd.getColumnCount();
-        int temp = 0;
+        String resultString = "";
         while (resultSet.next()) {
-            String common = "";
             for (int i = 1; i <= columnNum; i++) {
                 //System.out.println(" "+rsmd.getColumnName(i));
-                common += resultSet.getString(i) + ",";
+                resultString += resultSet.getString(i) + ",";
                 //System.out.println(" "+rsmd.getString(i));
             }
-            System.out.println(common);
-            //System.out.println("");
-            temp++;
+            System.out.println(resultString);
         }
+
+        return resultString;
 
     }
 
@@ -172,15 +171,19 @@ public class dbConnector {
         }
     }
 
-    public ResultSet sqlQuery(String sqlCmd) {
+    public String sqlQuery(String databaseName, String sqlCmd) {
 
         try {
-            return statement.executeQuery(sqlCmd);
+            openConnection(databaseName);
+            setStatement(connect);
+            ResultSet rs = statement.executeQuery(sqlCmd);
+            String resultString = writeResultSet(rs);
+            return resultString;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return "";
         } finally {
-
+            close(connect);
         }
 
     }

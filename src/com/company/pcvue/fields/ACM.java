@@ -26,6 +26,11 @@ public class ACM extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return this.varexpPositionList;
+    }
+
+    @Override
     String empty() {
         String emptyString = "";
         for (int i : varexpPositionList) {

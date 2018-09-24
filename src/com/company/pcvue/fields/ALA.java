@@ -28,6 +28,11 @@ public class ALA extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return this.varexpPositionList;
+    }
+
+    @Override
     String empty() {
         String emptyString = "";
         for (int i : varexpPositionList) {

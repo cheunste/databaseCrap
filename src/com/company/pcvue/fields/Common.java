@@ -35,6 +35,11 @@ public class Common extends VarexpVariable {
         varexpPositionList.add(240);
     }
 
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+
     //This returns a map of all text field items, along with their VarexpTuple
     @Override
     public Map<String, VarexpTuple> getFieldMap() {

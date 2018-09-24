@@ -16,7 +16,10 @@ public class IEC60870_Master extends VarexpVariable {
         setPositionList();
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 179; i <= 188; i++) {

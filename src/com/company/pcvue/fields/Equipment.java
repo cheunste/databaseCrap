@@ -17,6 +17,10 @@ public class Equipment extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         for (int i = 29; i <= 36; i++) {
             varexpPositionList.add(i);

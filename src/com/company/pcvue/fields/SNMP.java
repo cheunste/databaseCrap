@@ -17,7 +17,10 @@ public class SNMP extends VarexpVariable {
 
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 229; i <= 238; i++) {

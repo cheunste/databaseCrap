@@ -17,6 +17,10 @@ public class Internal extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         varexpPositionList.add(17);
     }

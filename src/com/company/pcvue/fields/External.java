@@ -17,6 +17,10 @@ public class External extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         varexpPositionList.add(18);
     }

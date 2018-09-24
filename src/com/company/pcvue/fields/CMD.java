@@ -17,6 +17,10 @@ public class CMD extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     void setPositionList() {
         for (int i = 40; i <= 43; i++) {
             varexpPositionList.add(i);

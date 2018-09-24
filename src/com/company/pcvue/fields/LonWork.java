@@ -16,6 +16,10 @@ public class LonWork extends VarexpVariable {
         setPositionList();
     }
 
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
 
     @Override
     void setPositionList() {

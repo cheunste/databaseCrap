@@ -46,6 +46,10 @@ public class TSH extends VarexpVariable {
     }
 
     @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
+    @Override
     public String createTableCmd() {
 
         return "CREATE TABLE tsh(" +

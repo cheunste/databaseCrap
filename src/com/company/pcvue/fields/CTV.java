@@ -16,7 +16,10 @@ public class CTV extends VarexpVariable {
         setPositionList();
     }
 
-
+    @Override
+    List<Integer> getPositionList() {
+        return varexpPositionList;
+    }
     @Override
     void setPositionList() {
         for (int i = 59; i <= 66; i++) {
