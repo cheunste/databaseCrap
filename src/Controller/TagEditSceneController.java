@@ -250,6 +250,7 @@ public class TagEditSceneController {
 
      */
     private void populateTagValues(String id) {
+        //TODO: Verify how much you can leverage out of the Export function
         dbConnector connector = new dbConnector();
 
         String commonResult = connector.sqlQuery(databaseName, "SELECT * FROM COMMON WHERE variable_id=" + id + ";");
