@@ -67,7 +67,7 @@ public class SNMP extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> snmpList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

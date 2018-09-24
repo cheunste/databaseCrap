@@ -7,8 +7,16 @@ import java.util.Map;
 
 /**
  * Created by Stephen on 4/20/2018.
+ * This is an abstract class that represents a Varexp Variable. A Varexp Variable have three main parts
+ * 1) Fields (or parameters ) that are common to all Varexp Variables. This is known as the **common** fields
+ * 2) Command fields.
+ * 3) Source fields.
+ *
+ *  In a varexp's common field contains the information for the command and source field as well
+ *
  * <p>
- * IMPORTANT: This is an abstract class that is meant to be inheritaned from other class
+ * IMPORTANT: This is an abstract class that is meant to be inheritaned from other class, but have its own methods
+ * to make things easier.
  * <p>
  * This abstract class handles anything relating ot the varexp file
  * <p>
@@ -24,18 +32,22 @@ public abstract class VarexpVariable {
     protected List<Integer> varexpPositionList = new ArrayList<Integer>();
     //Member variable. This represents the maximum amount of fields that PcVue will have.
     //IMPORTANT: If you do by chance need to add additional functionality, you MUST expand this FIELD_NUM field
-    private int FIELD_NUM = 250;
+    private static int FIELD_NUM = 250;
+
     //This is the same varexpArrayList, but splitted based on ','
     private ArrayList<String> varexpArrayList = new ArrayList<>(FIELD_NUM);
 
     //return FIELD_NUM
     public int getFieldNum() {
-        return this.FIELD_NUM;
+        return FIELD_NUM;
     }
+
+    //return command and source positions
 
     //This is a member variable to the VarexpMap, fieldMap. This is used to store and pass certain details of the VarexpVariable
     public Map<String, VarexpTuple> fieldMap = new LinkedHashMap<>();
 
+    //Returns the varexp Array List
     public List<String> getVarexpList() {
         return this.varexpArrayList;
     }
@@ -43,7 +55,6 @@ public abstract class VarexpVariable {
     public ArrayList<List<String>> getArrayList() {
         return null;
     }
-
 
     //Abstract method to set the position numbers of a varexp variable (aka sub-variables)
     public List<Integer> getVarexpPositionList() {
@@ -63,11 +74,10 @@ public abstract class VarexpVariable {
     //This is the method all sub class will have to implement in order to get an array of position indexes
     abstract void setPositionList();
 
+    abstract List<Integer> getPositionList();
+
     //abstract method for returning empty fields. This is needed as not all fields are used
     abstract String empty();
-
-    //abstract void empty();
-    //abstract void empty();
 
     // abstract method for joining. This is so you can insert a variable in a joined table
     abstract String getJoinCmd();
@@ -91,7 +101,7 @@ public abstract class VarexpVariable {
         - Create a tempList arraylist<String> and copy all the crap from above to it
         - set varexpLIst to the new temp list
      */
-    protected void setvarexpArrayList(String varexpString) {
+    protected void setVarexpArrayList(String varexpString) {
 
         String[] temp = varexpString.replace("[", "").replace("]", "").split(",");
         this.varexpArrayList.clear();
@@ -137,4 +147,16 @@ public abstract class VarexpVariable {
     public void addToDatabaseQueue(ArrayList<List<String>> fileList, String databaseName, String tableName) {
 
     }
+
+
+    /**
+     * This function creates an empty varexpArrayList, initializes it with empty fields and returns it to the user.
+     */
+    public void initializeVarexpArray() {
+        for (int i = 0; i <= FIELD_NUM; i++) {
+            varexpArrayList.add(i, "");
+        }
+    }
+
+
 }

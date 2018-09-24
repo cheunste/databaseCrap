@@ -67,7 +67,7 @@ public class ACM extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> acmList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

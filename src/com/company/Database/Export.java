@@ -50,11 +50,9 @@ public class Export implements Runnable {
         }
     }
 
-    //This function performs the actual fetching from MySQL.
-    /*
-    @param: String databaseName: Name of the database (ie twin_buttes_2)
-    @param varexpVariableType: This is the type of varexp variable. acceptable items are things like "COMMON", "CNT", "I","O", etc.
-    See the varexp factory on this
+    /**
+     * This function performs the actual fetching from MySQL.
+     * @param databaseName Name of the database (ie twin_buttes_2)
      */
     private void fetch(String databaseName) {
         dbConnector db = new dbConnector();
@@ -81,7 +79,7 @@ public class Export implements Runnable {
             //Sets the item form the COMMON table to the outputVarexpVariable.
             int y = 1;
             for (int position : common.getVarexpPositionList()) {
-                String temp = removeUnwantedCharacters(innerList.get(y).toString());
+                String temp = removeUnwantedCharacters(innerList.get(y));
                 outputVarexpVariable.set(position, temp);
                 y++;
             }

@@ -55,7 +55,7 @@ public class TXT extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> txtList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

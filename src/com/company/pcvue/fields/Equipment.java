@@ -63,7 +63,7 @@ public class Equipment extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> equipmentList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

@@ -64,7 +64,7 @@ public class CTV extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> ctvList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

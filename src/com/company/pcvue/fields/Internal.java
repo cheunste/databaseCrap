@@ -56,7 +56,7 @@ public class Internal extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> internalList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

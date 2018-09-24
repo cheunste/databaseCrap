@@ -57,7 +57,7 @@ public class CMD extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> cmdList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

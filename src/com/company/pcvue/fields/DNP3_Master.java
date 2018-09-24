@@ -79,7 +79,7 @@ public class DNP3_Master extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> dnp3_masterList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

@@ -66,7 +66,7 @@ public class OPC extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> opcList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

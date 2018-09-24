@@ -80,7 +80,7 @@ public class ATS extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> atsList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

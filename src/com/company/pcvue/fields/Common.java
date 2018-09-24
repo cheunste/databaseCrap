@@ -176,7 +176,7 @@ public class Common extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> commonArrayList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

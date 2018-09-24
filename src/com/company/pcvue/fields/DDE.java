@@ -65,7 +65,7 @@ public class DDE extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> ddeList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

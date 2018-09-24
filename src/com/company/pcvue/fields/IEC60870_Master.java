@@ -69,7 +69,7 @@ public class IEC60870_Master extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> iec60870_masterList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 

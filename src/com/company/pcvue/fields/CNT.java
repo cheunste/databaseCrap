@@ -78,7 +78,7 @@ public class CNT extends VarexpVariable {
 
     @Override
     public void setArrayList(String varexpString, int dbIndex) {
-        setvarexpArrayList(varexpString);
+        setVarexpArrayList(varexpString);
         List<String> cntList = new ArrayList<>();
         List<String> varexpArraySplit = this.getVarexpList();
 
